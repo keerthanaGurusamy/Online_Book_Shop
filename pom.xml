@@ -7,14 +7,7 @@
   <groupId>com.chainsys</groupId>
   <artifactId>SimpleProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <dependencies>
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>4.0.1</version>
-    <scope>provided</scope>
-</dependency>
-</dependencies>
+  
   <packaging>war</packaging>
 
   <name>SimpleProject Maven Webapp</name>
