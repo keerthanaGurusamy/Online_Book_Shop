@@ -15,7 +15,7 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class BookdetailsDaoimpl implements BookdetailsDao{
 	
-	public void insertBooks(Bookdetails product)
+	public int insertBooks(Bookdetails product)
 	{
 		String  insert="insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition)values(?,?,?,?,?,?,?)";
 		Connection con = Connectionutil.getDbConnection();
@@ -37,6 +37,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			e.printStackTrace();
 			System.out.println("Try again");
 		}
+		return 1;
 	}
 	
 	public void deleteBooks(String product) {
@@ -66,7 +67,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8));
+				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9));
 				productsList.add(product);
 			}
 		} catch (SQLException e) {
@@ -155,7 +156,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=stm.executeQuery(condition);
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8));
+				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9));
 				conditionList.add(product);
 			}
 		} catch (SQLException e) {

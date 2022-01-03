@@ -11,6 +11,13 @@ public class Bookdetails {
 	private int price;
 	private String publish_date;
 	private String condition;
+	private String bookimages;
+	public String getBookimages() {
+		return bookimages;
+	}
+	public void setBookimages(String bookimages) {
+		this.bookimages = bookimages;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -58,7 +65,7 @@ public class Bookdetails {
 		// TODO Auto-generated constructor stub
 	}
 	public Bookdetails(String category, String description, String book_title, String book_code, int price,
-			String publish_date, String condition) {
+			String publish_date, String condition,String Bookimages) {
 		super();
 		this.category = category;
 		this.description = description;
@@ -67,6 +74,7 @@ public class Bookdetails {
 		this.price = price;
 		this.publish_date = publish_date;
 		this.condition = condition;
+		this.bookimages=Bookimages;
 	}
 	@Override
 	public String toString() {

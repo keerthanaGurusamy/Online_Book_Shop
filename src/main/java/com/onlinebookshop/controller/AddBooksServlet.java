@@ -49,7 +49,8 @@ public class AddBooksServlet extends HttpServlet {
 		Integer price =Integer.parseInt(request.getParameter("price"));
 		String publishdate =request.getParameter("publishdate");
 		String condition =request.getParameter("condition");
-		Bookdetails bookdetails = new Bookdetails(category,description,booktitle,bookcode,price,publishdate,condition);
+		String image = request.getParameter("image");
+		Bookdetails bookdetails = new Bookdetails(category,description,booktitle,bookcode,price,publishdate,condition,image);
 		bookDao.insertBooks(bookdetails);
 		pw.write("inserted successfully");
 		//doGet(request, response);

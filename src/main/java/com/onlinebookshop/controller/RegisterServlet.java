@@ -45,7 +45,8 @@ public class RegisterServlet extends HttpServlet {
 	    String address = request.getParameter("address");
 	    String emailid = request.getParameter("email");
 	    String password = request.getParameter("password");
-	    Userdetails user = new Userdetails(username,phonenumber,address,emailid,password);
+	    int wallet = Integer.parseInt(request.getParameter("wallet"));
+	    Userdetails user = new Userdetails(username,phonenumber,address,emailid,password, wallet);
 		UserdetailsDaoimpl userdao = new UserdetailsDaoimpl();
 		userdao.insertUser(user);
 		

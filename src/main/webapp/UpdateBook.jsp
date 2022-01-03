@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="AddBooks.jsp">Add Books</a>
-<a href="DeleteBooks.jsp">Delete Books</a>
-
+<form action="updatebook">
+</form>
 </body>
 </html>

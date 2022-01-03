@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		if(user!=null)
 		{
-		RequestDispatcher rd = request.getRequestDispatcher("Index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("ShowProduct.jsp");
              rd.forward(request, response);
 		}
 		else if(admin!=null)

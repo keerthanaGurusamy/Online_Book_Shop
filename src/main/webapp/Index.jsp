@@ -9,10 +9,10 @@
 <body>
 <form action="IndexServlet" method="post">
 <nav>
-        <a class="active" href="#"><i class="fa fa-fw fa-home" style="font-size:25px"></i> Home</a>
-        <a class="login" href="cart.html"><i class="fas fa-cart-arrow-down" style="font-size:25px"></i>Cart</a>
-        <a class="login" href="login.html"><i class="fa fa-fw fa-user" style="font-size:25px"></i>Login</a>
-    </nav>
+  <a href="Register.jsp">Register</a>
+  <a href="login.jsp" >Log In</a>
+  
+</nav>
     <section>
         <h3>Book Category</h3>
         <p>Architecture</p>
