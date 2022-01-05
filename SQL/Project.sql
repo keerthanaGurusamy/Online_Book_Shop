@@ -21,17 +21,17 @@ commit;
 create table bookdetails(book_id int DEFAULT book_id.nextval,
                         category VARCHAR2(100) NOT NULL,
                         description VARCHAR(100),
-                        publisher_id int NOT NULL,
                         book_title VARCHAR2(100) NOT NULL,
                         book_code VARCHAR2(100) NOT NULL,
                         price int NOT NULL,
                         publish_date date NOT NULL,
                         condition VARCHAR2(100) NOT NULL,
+                        bookimages varchar2(4000) Not Null,
                         CONSTRAINT BOOK PRIMARY KEY(book_id));
 
 create SEQUENCE book_id increment by 1 start with 1000;
-
-insert into bookdetails(category,description,publisher_id,book_title,book_code,price,publish_date,condition)values('Architecture','A fascinating, thought-provoking journey into our built environment',10,'The Great Indoors','B10',200,'10-12-2021','New');
+drop sequence book_id;
+insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values('Architecture','A fascinating, thought-provoking journey into our built environment','The Great Indoors','B10',800,'10-12-2021','New','https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg');
 
 ALTER TABLE bookdetails
 DROP COLUMN Publisher_id;
@@ -53,11 +53,13 @@ create table orderdetails(order_id int DEFAULT ORDER_ID.nextval,
                  book_id int not null,
                  quantity int NOT NULL,
                  total_cost decimal NOT NULL,
+                 order_date timestamp default current_timestamp,
                  CONSTRAINT orders_id PRIMARY KEY(order_id),
                  CONSTRAINT customer_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
 create SEQUENCE order_id increment by 1 start with 300;
+drop sequence order_id;
 
 create table rating(id int generated always as identity(start with 1 increment by 1),
                    cus_id int  not null,
@@ -65,18 +67,25 @@ create table rating(id int generated always as identity(start with 1 increment b
                    rating number(2,1));
 
 
-alter table  bookdetails add bookimages varchar2(5000);
+alter table  bookdetails add bookimages varchar2(4000);
 
-update bookdetails set bookimages='https://pngimg.com/uploads/book/book_PNG2111.png' where book_code='B10'; 
+update bookdetails set bookimages='https://s.wsj.net/public/resources/images/ED-AZ816_bkrvin_JV_20200625175244.jpg' where book_code='B10'; 
 commit;
+drop table bookdetails cascade constraints;
+truncate TABLE bookdetails;
 
 select * from bookdetails;
 select * from cart;
 select * from user_details;
-select * from order_details;
+select * from orderdetails;
 select * from author_details;
 select * from rating;
 
+update bookdetails set category='Architecture',description='A fascinating, thought-provoking journey into our built environment',book_code='B10',
+publish_date='12-11-2021',condition='New',bookimages='https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg',
+price=500 where book_title='The Great Indoors';
+
+--select * from bookdetails inner join author_details on bookdetails.book_id=author_details.book_id;
 commit;
 desc user_details;
 desc bookdetails;
@@ -85,7 +94,7 @@ desc cart;
 desc order_details;
 desc rating;
 
-drop table cart cascade constraints;
+drop table order_details cascade constraints;
 
 
 create table order_details(order_id int NOT NULL,
@@ -97,3 +106,6 @@ create table order_details(order_id int NOT NULL,
                           CONSTRAINT o_id FOREIGN KEY(order_id) REFERENCES cart(order_id));
                           
                           
+                          
+                          
+                          update bookdetails price=? where book_title=?

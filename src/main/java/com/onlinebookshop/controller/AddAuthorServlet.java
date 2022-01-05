@@ -1,29 +1,27 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.onlinebookshop.daoimpl.UserdetailsDao;
-import com.onlinebookshop.model.Userdetails;
+import com.onlinebookshop.daoimpl.AuthorDetailsDaoimpl;
+import com.onlinebookshop.model.AuthorDetails;
+
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class AddAuthorServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AddAuthor")
+public class AddAuthorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public AddAuthorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,30 +39,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String email = request.getParameter("emailid");
-		String password = request.getParameter("password");
-		UserdetailsDao userdao = new UserdetailsDao();
-		Userdetails user = userdao.validateUser(email, password);
-		Userdetails admin = userdao.admin(email, password);
-		PrintWriter pw = response.getWriter();
-		if(user!=null)
-		{
-		RequestDispatcher rd = request.getRequestDispatcher("ShowProduct.jsp");
-             rd.forward(request, response);
-		}
-		else if(admin!=null)
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-			rd.forward(request, response);
-		}
-		else
-		{
-			pw.write("Invalid login");
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
-		}
-
-
+		String authorname =request.getParameter("authorname");
+		String email = request.getParameter("email");
+		String bookid = request.getParameter("bookid");
+		AuthorDetails author = new AuthorDetails(authorname,email,bookid);
+		AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
+		authordao.insertAuthor(author);
 		//doGet(request, response);
 	}
 

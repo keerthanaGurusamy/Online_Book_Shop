@@ -17,7 +17,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	
 	public int insertBooks(Bookdetails product)
 	{
-		String  insert="insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition)values(?,?,?,?,?,?,?)";
+		String  insert="insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values(?,?,?,?,?,?,?,?)";
 		Connection con = Connectionutil.getDbConnection();
 		PreparedStatement pstm=null;
 		try {
@@ -27,8 +27,9 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			pstm.setString(3, product.getBook_title());
 			pstm.setString(4, product.getBook_code());
 			pstm.setInt(5, product.getPrice());
-			pstm.setString(6, product.getPublish_date());
+			pstm.setDate(6, java.sql.Date.valueOf(product.getPublish_date()));
 			pstm.setString(7, product.getCondition());
+			pstm.setString(8, product.getBookimages());
 			pstm.executeUpdate();
 			System.out.println("Book details are inserted ");
 			
@@ -67,7 +68,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9));
+				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
 				productsList.add(product);
 			}
 		} catch (SQLException e) {
@@ -115,13 +116,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		return price;
 	}
 	
-	public void updateBooks(int price,String book_title) {
+	public void updateBooks(Bookdetails bookdetails) {
 		String updateQuery="update bookdetails set price=? where book_title=?";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pst=con.prepareStatement(updateQuery);
-			pst.setString(2, book_title);
-			pst.setInt(1, price);
+			pst.setInt(1, bookdetails.getPrice());
+			pst.setString(2, bookdetails.getBook_title());
 			int i=pst.executeUpdate();
 			System.out.println(i+"row updated");
 		} catch (SQLException e) {
@@ -131,13 +132,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		}
 	}
 	
-	public ResultSet filterPrice(int price) {
+	public ResultSet filterPrice(Bookdetails bookdetails) {
 		List<Bookdetails> filterList=new ArrayList<Bookdetails>();
 		String filter="select * from bookdetails where price <= ?";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement(filter);
-			preparedStatement.setInt(1, price);
+			preparedStatement.setInt(1, bookdetails.getPrice());
 			ResultSet rs = preparedStatement.executeQuery();
 			return rs;
 		} catch (SQLException e) {
@@ -156,7 +157,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=stm.executeQuery(condition);
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getString(7),rs.getString(8),rs.getString(9));
+				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
 				conditionList.add(product);
 			}
 		} catch (SQLException e) {
@@ -167,5 +168,24 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		return conditionList;
 	}
 	
+	public List<Bookdetails> categoryList() {
+		List<Bookdetails> categoryList=new ArrayList<Bookdetails>();
+		String category ="select category from bookdetails";
+		Connection con = Connectionutil.getDbConnection();
+		Statement stm;
+		try {
+			stm = con.createStatement();
+			ResultSet rs=stm.executeQuery(category);
+			while(rs.next())
+			{
+			Bookdetails categorylist = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+			categoryList.add(categorylist);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return categoryList;
+	}
 
 }

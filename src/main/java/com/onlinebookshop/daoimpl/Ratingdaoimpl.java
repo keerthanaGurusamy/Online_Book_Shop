@@ -32,7 +32,7 @@ public class Ratingdaoimpl implements RatingDao{
 				e.printStackTrace();
 				System.out.println("Try again");
 			}
-		
+			
 		return -1;
 	}
 	public double fetchrating(Rating rating) {

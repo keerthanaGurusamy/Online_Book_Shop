@@ -11,6 +11,7 @@ public class Userdetails {
 	private String password;
     private int cus_id;
     private int wallet;
+    
 	public int getCus_id() {
 	return cus_id;
 }
@@ -86,8 +87,6 @@ public void setWallet(int wallet) {
 		this.cus_id = cus_id;
 		
 	}
-
-	
 
 	@Override
 	public String toString() {

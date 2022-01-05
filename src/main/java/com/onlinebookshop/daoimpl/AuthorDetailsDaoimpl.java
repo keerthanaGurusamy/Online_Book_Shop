@@ -34,16 +34,16 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 		}
 	}
 	public void updateAuthor(String email_id,String name) {
-		String updateQuery="update author_details set email_id=? where name=?";
+		String updateQuery="update author_details set name=? where email_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pst=con.prepareStatement(updateQuery);
-			pst.setString(2, name);
-			pst.setString(1, email_id);
+			pst.setString(1, name);
+			pst.setString(2, email_id);
 			int i=pst.executeUpdate();
 			System.out.println(i+"row updated");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			System.out.println("Try again");
 		}

@@ -1,5 +1,6 @@
 package com.onlinebookshop.model;
 
+ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Bookdetails {
@@ -9,15 +10,9 @@ public class Bookdetails {
 	private String book_title;
 	private String book_code;
 	private int price;
-	private String publish_date;
+	private LocalDate publish_date;
 	private String condition;
 	private String bookimages;
-	public String getBookimages() {
-		return bookimages;
-	}
-	public void setBookimages(String bookimages) {
-		this.bookimages = bookimages;
-	}
 	public String getCategory() {
 		return category;
 	}
@@ -48,10 +43,10 @@ public class Bookdetails {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getPublish_date() {
+	public LocalDate getPublish_date() {
 		return publish_date;
 	}
-	public void setPublish_date(String publish_date) {
+	public void setPublish_date(LocalDate publish_date) {
 		this.publish_date = publish_date;
 	}
 	public String getCondition() {
@@ -60,12 +55,18 @@ public class Bookdetails {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+	public String getBookimages() {
+		return bookimages;
+	}
+	public void setBookimages(String bookimages) {
+		this.bookimages = bookimages;
+	}
 	public Bookdetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Bookdetails(String category, String description, String book_title, String book_code, int price,
-			String publish_date, String condition,String Bookimages) {
+			LocalDate publish_date, String condition, String bookimages) {
 		super();
 		this.category = category;
 		this.description = description;
@@ -74,17 +75,17 @@ public class Bookdetails {
 		this.price = price;
 		this.publish_date = publish_date;
 		this.condition = condition;
-		this.bookimages=Bookimages;
+		this.bookimages = bookimages;
 	}
 	@Override
 	public String toString() {
 		return "Bookdetails [category=" + category + ", description=" + description + ", book_title=" + book_title
 				+ ", book_code=" + book_code + ", price=" + price + ", publish_date=" + publish_date + ", condition="
-				+ condition + "]";
+				+ condition + ", bookimages=" + bookimages + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(book_code, book_title, category, condition, description, price, publish_date);
+		return Objects.hash(book_code, book_title, bookimages, category, condition, description, price, publish_date);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -96,10 +97,12 @@ public class Bookdetails {
 			return false;
 		Bookdetails other = (Bookdetails) obj;
 		return Objects.equals(book_code, other.book_code) && Objects.equals(book_title, other.book_title)
-				&& Objects.equals(category, other.category) && Objects.equals(condition, other.condition)
-				&& Objects.equals(description, other.description) && price == other.price
-				&& Objects.equals(publish_date, other.publish_date);
+				&& Objects.equals(bookimages, other.bookimages) && Objects.equals(category, other.category)
+				&& Objects.equals(condition, other.condition) && Objects.equals(description, other.description)
+				&& price == other.price && Objects.equals(publish_date, other.publish_date);
 	}
+	
+	
 	
 	
 }

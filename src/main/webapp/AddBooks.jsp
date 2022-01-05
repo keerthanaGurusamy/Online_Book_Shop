@@ -19,9 +19,11 @@
 <label for="price">Price :</label><br>
 <input type="text" name="price" class="price" required><br><br>
 <label for="publishdate">Publish Date :</label><br>
-<input type="text" name="publishdate" class="publishdate" required><br><br>
+<input type="date" name="publishdate" class="publishdate" required><br><br>
 <label for="condition">Condition :</label><br>
 <input type="text" name="condition" class="condition" required><br><br>
+<label for="image">Image :</label><br>
+<input type="text" name="image" class="image" required><br><br>
 <button type ="submit">Add</button>
 </form>
 </body>

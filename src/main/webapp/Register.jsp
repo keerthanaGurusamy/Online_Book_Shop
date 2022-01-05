@@ -5,9 +5,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="Register.css">
 </head>
 <body>
+<div class="nav">
+    <ul>
+        <li><input type="text" class="text"></li>
+        <li><button>search</button></li>
+        <li><a href="" class="set1">cart</a></li>
+        <li><a href="">User profile</a></li>
+    </ul>
+</div>
 <form action="RegisterServlet" method="post">
 <fieldset>
         <h2>Sign In</h2>
@@ -22,8 +30,8 @@
         <label for="password">Password :</label><br>
         <input type="text" name="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <label for="password">Repeat Password :</label><br>
-        <input type="text" name="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
-         <label for="wallet">Enter amount :</label><br>
+        <input type="password" name="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
+        <label for="wallet">Enter amount :</label><br>
         <input type="number" name="wallet" class="wal"  pattern="[0-9]{1,10}" required><br><br>
         <button type="submit">Sign in</button>
     </fieldset>

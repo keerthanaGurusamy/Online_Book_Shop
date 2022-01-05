@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
   <%@page import="com.onlinebookshop.model.Userdetails"%>
     <%@page import="java.util.*"%>
-            <%@page import="com.onlinebookshop.daoimpl.UserdetailsDaoimpl"%>
+            <%@page import="com.onlinebookshop.daoimpl.UserdetailsDao"%>
  
 <!DOCTYPE html>
 <html>
@@ -18,10 +18,11 @@
 </style>
 </head>
 <body>
-<% UserdetailsDaoimpl userdetailsdao = new UserdetailsDaoimpl();
+<%
+
+ UserdetailsDao userdetailsdao = new UserdetailsDao();
         List<Userdetails> userList = new ArrayList<Userdetails>();
         userList = userdetailsdao.viewUser();
-
 %>
 
 

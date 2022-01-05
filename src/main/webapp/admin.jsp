@@ -5,10 +5,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
-<a href="AddBooks.jsp">Add Books</a>
-<a href="DeleteBooks.jsp">Delete Books</a>
-
+<a href="AddBooks.jsp">Add Books</a><br><br>
+<a href="DeleteBooks.jsp">Delete Books</a><br><br>
+<a href="ViewUser.jsp">View User</a><br><br>
+<a href="DeleteUser.jsp">Delete User</a><br><br>
+<a href="UpdateBook.jsp">Update Book</a><br><br>
+<a href="AddAuthor.jsp">Add Author</a><br><br>
+<a href="AuthorUpdate.jsp">Update Author</a><br><br>
+<a href="ViewAuthor.jsp">View Author</a><br><br>
+<a href="ShowProduct.jsp">Show Products</a>
 </body>
 </html>

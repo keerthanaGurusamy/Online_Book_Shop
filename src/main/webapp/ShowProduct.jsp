@@ -21,9 +21,13 @@ top:280px;
 left: -200px;
 
 }
+table td{
+padding-bottom: 150px;
+}
 </style>
 </head>
 <body>
+
 <%!
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
 List<Bookdetails> showProduct;
@@ -43,16 +47,15 @@ showProduct = bookdetaildao.showProduct();
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src=<%=bookdetails.getBookimages()%> alt="book"></td>    
+                                    <td><img src=<%=bookdetails.getBookimages()%> width=50 height=300 alt="book"></td>    
                                     <td class="book">
-                                        <span>Category: <%=bookdetails.getCategory() %> </span><br>
-                                        <span> Description: <%=bookdetails.getDescription() %>  </span><br>
-                                        <span>Book Title: <%=bookdetails.getBook_title()%> </span><br>
-                                        <span>Book Code:<%=bookdetails.getBook_code() %> </span><br>
-                                        <span>Price:<%=bookdetails.getPrice() %></span><br>
-                                         <span>Publish Date:<%=bookdetails.getPublish_date() %></span><br>
-                                         <span>Condition:<%=bookdetails.getCondition() %></span><br>
-                                         <span><input type="Submit"></span>
+                                        <span><b>Category: </b><%=bookdetails.getCategory() %> </span><br>
+                                        <span><b>Description: </b><%=bookdetails.getDescription() %>  </span><br>
+                                        <span><b>Book Title: </b><%=bookdetails.getBook_title()%> </span><br>
+                                        <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
+                                        <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
+                                         <span><b>Publish Date:</b><%=bookdetails.getPublish_date() %></span><br>
+                                         <span><button type="submit">Buy</button></span>
                                        
                                     </td>
                                 </tr>
@@ -61,7 +64,7 @@ showProduct = bookdetaildao.showProduct();
                             
                     </td>
                        <% count ++;
-                       if(count==3){ %> 
+                       if(count==2){ %> 
                     	   </tr>
                     	   <tr>              
                      <%count=0; }}%>  

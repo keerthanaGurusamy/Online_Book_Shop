@@ -1,10 +1,6 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +11,16 @@ import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.Bookdetails;
 
 /**
- * Servlet implementation class AddBooksServlet
+ * Servlet implementation class UpdateServlet
  */
-@WebServlet("/AddBooks")
-public class AddBooksServlet extends HttpServlet {
+@WebServlet("/updatebook")
+public class UpdateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddBooksServlet() {
+    public UpdateBookServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,20 +37,15 @@ public class AddBooksServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		BookdetailsDaoimpl bookDao = new BookdetailsDaoimpl();
-		String category =request.getParameter("category");
-		String description =request.getParameter("description");
+	
+		
 		String booktitle =request.getParameter("booktitle");
-		String bookcode =request.getParameter("bookcode");
-		Integer price =Integer.parseInt(request.getParameter("price"));
-		String date =request.getParameter("publishdate");
-		LocalDate publishdate = LocalDate.parse(date);
-		String condition =request.getParameter("condition");
-		String image = request.getParameter("image");
-		Bookdetails bookdetails = new Bookdetails(category,description,booktitle,bookcode,price,publishdate,condition,image);
-		bookDao.insertBooks(bookdetails);
-		pw.write("inserted successfully");
+		
+		int price =Integer.parseInt(request.getParameter("price"));
+		
+		Bookdetails bookdetails = new Bookdetails(null,null,booktitle,null,price,null,null,null);
+		BookdetailsDaoimpl bookDao = new BookdetailsDaoimpl();
+		bookDao.updateBooks(bookdetails);
 		//doGet(request, response);
 	}
 

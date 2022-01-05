@@ -12,7 +12,7 @@ public interface BookdetailsDao {
 	public List<Bookdetails> showProduct();
 	public int findProductid(String book_title);
 	public int findPrice(int proid);
-	public void updateBooks(int price,String book_title);
-	public ResultSet filterPrice(int price);
-	//public List<Bookdetails> filterCondition();
+	public void updateBooks(Bookdetails bookdetails);
+	public ResultSet filterPrice(Bookdetails bookdetails);
+	public List<Bookdetails> filterCondition();
 }

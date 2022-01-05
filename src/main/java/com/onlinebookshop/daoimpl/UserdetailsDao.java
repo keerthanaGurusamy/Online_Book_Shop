@@ -13,7 +13,7 @@ import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.Userdetails;
 import com.onlinebookshop.util.Connectionutil;
 
-public class UserdetailsDaoimpl implements UserDetailsDao{
+public class UserdetailsDao implements UserDetailsDao{
 
 	private static final String update = null;
 
@@ -82,18 +82,20 @@ public class UserdetailsDaoimpl implements UserDetailsDao{
 		return user;
 	}
 	// update profile
-	public void update(String email_id,String password) {
-		String updateQuery="update user_details set password=? where email_id=?";
+	public void update(Userdetails user) {
+		String updateQuery="update user_details set name=?,phoneNo=?,address=?,password=? where email_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pst=con.prepareStatement(updateQuery);
-			pst.setString(2, email_id);
-			pst.setString(1,password);
+			pst.setString(1, user.getName());
+			pst.setLong(2, user.getPhoneNo());
+			pst.setString(3, user.getAddress());
+			pst.setString(4, user.getPassword());
+			pst.setString(5,user.getEmail_id() );
 			int i=pst.executeUpdate();
 			System.out.println(i+"row updated");
 			pst.close();
 			con.close();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,8 +106,8 @@ public class UserdetailsDaoimpl implements UserDetailsDao{
 	}
 	//Delete user details
 	
-	public void deletedDetails(String delete) {
-		String deleteQuery="delete from user_details where email_id=?";
+	public void deleteuser(String delete) {
+		String deleteQuery="update user_details set role='Inactive' where email_id=?";
 		Connection con=Connectionutil.getDbConnection();
 		System.out.println("Connection Sucessfull");
 		try {
@@ -180,14 +182,15 @@ public class UserdetailsDaoimpl implements UserDetailsDao{
 	//update wallet:
 	public int  updatewall(Userdetails userdetails) {
 		Connection con = Connectionutil.getDbConnection();
-		String query = "update user_details set wallet = ? where cus_id = ?";
-		PreparedStatement statement;
+		String query = "update user_details set wallet = ? where email_id = ?";
+		PreparedStatement pstm;
 		try {
-			statement = con.prepareStatement(query);
-			statement.setDouble(1, userdetails.getWallet());
-			statement.setInt(2,userdetails.getCus_id());
-			int res = statement.executeUpdate();
-			return res;
+			pstm = con.prepareStatement(query);
+			pstm.setDouble(1, userdetails.getWallet());
+			pstm.setString(2,userdetails.getEmail_id());
+			int i = pstm.executeUpdate();
+			System.out.println(i+"Wallet is updated");
+			return i;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
