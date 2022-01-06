@@ -7,6 +7,8 @@ create table user_details(cus_id int Default cus_id.nextval,
                          password VARCHAR2(30)NOT NULL,
                          wallet int Not Null,
                          CONSTRAINT cus PRIMARY KEY(cus_id),UNIQUE(email_id),UNIQUE(phoneNo));
+ALTER TABLE user_details
+MODIFY  wallet int Default 0;
 
 insert into user_details (name,phoneNo,role,address,email_id,password,wallet) values('karthick','9345257036','admin','Mylapore,chennai,600019','karthick30@gmail.com','karthick30',0);
 insert into user_details (name,phoneNo,role,address,email_id,password) values('keerthi','9345257096','admin','Mylapore,chennai,600019','keke05@gmail.com','keke05020');
@@ -74,6 +76,10 @@ commit;
 drop table bookdetails cascade constraints;
 truncate TABLE bookdetails;
 
+create table cart(cart_id int generated always as IDENTITY(start with 100 increment by 1),
+                  book_id int Not Null,
+                  CONSTRAINT book_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
+
 select * from bookdetails;
 select * from cart;
 select * from user_details;
@@ -91,7 +97,7 @@ desc user_details;
 desc bookdetails;
 desc author_details;
 desc cart;
-desc order_details;
+desc orderdetails;
 desc rating;
 
 drop table order_details cascade constraints;
@@ -104,8 +110,8 @@ create table order_details(order_id int NOT NULL,
                           status varchar2(50) NOT NULL,
                           CONSTRAINT c_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                           CONSTRAINT o_id FOREIGN KEY(order_id) REFERENCES cart(order_id));
-                          
-                          
-                          
-                          
-                          update bookdetails price=? where book_title=?
+
+
+
+select * from bookdetails where book_id in (select book_id from cart);
+select * from bookdetails;

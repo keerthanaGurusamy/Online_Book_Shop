@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Bookdetails {
 
+	private int bookid;
 	private String category;
 	private String description;
 	private String book_title;
@@ -34,6 +35,9 @@ public class Bookdetails {
 	public String getBook_code() {
 		return book_code;
 	}
+	public int getBookid() {
+		return this.bookid;
+	}
 	public void setBook_code(String book_code) {
 		this.book_code = book_code;
 	}
@@ -42,6 +46,9 @@ public class Bookdetails {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
 	}
 	public LocalDate getPublish_date() {
 		return publish_date;
@@ -68,6 +75,19 @@ public class Bookdetails {
 	public Bookdetails(String category, String description, String book_title, String book_code, int price,
 			LocalDate publish_date, String condition, String bookimages) {
 		super();
+		this.category = category;
+		this.description = description;
+		this.book_title = book_title;
+		this.book_code = book_code;
+		this.price = price;
+		this.publish_date = publish_date;
+		this.condition = condition;
+		this.bookimages = bookimages;
+	}
+	public Bookdetails(int bookid, String category, String description, String book_title, String book_code, int price,
+			LocalDate publish_date, String condition, String bookimages) {
+		super();
+		this.bookid = bookid;
 		this.category = category;
 		this.description = description;
 		this.book_title = book_title;

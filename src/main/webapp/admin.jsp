@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+<div class="nav">
+    <center><h1>Books Wagon</h1></center>
+</div>
+<aside>
 <a href="AddBooks.jsp">Add Books</a><br><br>
 <a href="DeleteBooks.jsp">Delete Books</a><br><br>
 <a href="ViewUser.jsp">View User</a><br><br>
@@ -17,5 +21,6 @@
 <a href="AuthorUpdate.jsp">Update Author</a><br><br>
 <a href="ViewAuthor.jsp">View Author</a><br><br>
 <a href="ShowProduct.jsp">Show Products</a>
+</aside>
 </body>
 </html>

@@ -12,3 +12,6 @@ body{
     background-size: cover;
     color: white;
 }
+aside{
+	float: left;
+}

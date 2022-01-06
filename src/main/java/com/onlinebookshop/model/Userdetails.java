@@ -73,7 +73,7 @@ public void setWallet(int wallet) {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Userdetails(String name, long phoneNo, String address, String email_id, String password, int wallet) {
+	public Userdetails(String name, long phoneNo, String address, String email_id, String password,int wallet) {
 		
 		this.name = name;
 		this.phoneNo = phoneNo;

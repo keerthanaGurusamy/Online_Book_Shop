@@ -68,7 +68,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+				Bookdetails product = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
 				productsList.add(product);
 			}
 		} catch (SQLException e) {

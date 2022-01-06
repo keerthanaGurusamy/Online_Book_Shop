@@ -31,8 +31,6 @@
         <input type="text" name="password" class="password" pattern="[A-Za-z0-9]{8,10}"  required><br><br>
         <label for="password">Repeat Password :</label><br>
         <input type="password" name="repeat" class="repeat"  pattern="[A-Za-z0-9]{8,10}" required><br><br>
-        <label for="wallet">Enter amount :</label><br>
-        <input type="number" name="wallet" class="wal"  pattern="[0-9]{1,10}" required><br><br>
         <button type="submit">Sign in</button>
     </fieldset>
 </form>

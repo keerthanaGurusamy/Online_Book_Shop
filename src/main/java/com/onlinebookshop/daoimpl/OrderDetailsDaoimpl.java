@@ -35,7 +35,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		}
 	}
 	
-	public List<OrderDetails> viewCart()
+	public List<OrderDetails> viewOrder()
 	{
 		List<OrderDetails> cartList=new ArrayList<OrderDetails>();
 		String view ="select * from orderdetails";

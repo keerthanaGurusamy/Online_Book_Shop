@@ -18,7 +18,7 @@ public class UserdetailsDao implements UserDetailsDao{
 	private static final String update = null;
 
 	public void insertUser(Userdetails user) {
-		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password,wallet) values(?,?,?,?,?,?)";
+		String insertQuery = "insert into user_details(name,phoneNo,address,email_id,password) values(?,?,?,?,?)";
 
 		Connectionutil conUtil = new Connectionutil();
 		Connection con = conUtil.getDbConnection();
@@ -31,7 +31,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			pst.setString(3, user.getAddress());
 			pst.setString(4, user.getEmail_id());
 			pst.setString(5, user.getPassword());
-			pst.setInt(6, user.getWallet());
+			
 			pst.executeUpdate();
 			System.out.println("Value inserted Succes");
 		} catch (SQLException e) {
@@ -52,7 +52,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			ResultSet rs=stm.executeQuery(AdminQuery);
 			if(rs.next())
 			{
-				 user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),email_id, password, rs.getInt(8));
+				 user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),email_id, password,rs.getInt(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +71,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			ResultSet rs=stm.executeQuery(validateQuery);
 			if(rs.next())
 			{
-				user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),email_id, password, rs.getInt(8));
+				user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),email_id, password,rs.getInt(8));
 			}
 			 
 		} catch (SQLException e) {
@@ -131,7 +131,7 @@ public class UserdetailsDao implements UserDetailsDao{
 			Statement stm=con.createStatement();
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next()) {
-				Userdetails user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),rs.getString(6),rs.getString(7), rs.getInt(8));
+				Userdetails user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
 				userList.add(user);
 			}
 		} catch (SQLException e) {
@@ -160,7 +160,7 @@ public class UserdetailsDao implements UserDetailsDao{
         return CusId;
 	}
 	
-	public int walletbal(int userid) 
+	public int walletballance(int userid) 
 	{
 		Connection con = Connectionutil.getDbConnection();
 		String query = "select wallet from user_details where cus_id = ?";
@@ -180,22 +180,27 @@ public class UserdetailsDao implements UserDetailsDao{
 		return -1;
 	}
 	//update wallet:
-	public int  updatewall(Userdetails userdetails) {
+	public boolean  updatewall(Userdetails userdetails) {
+		System.out.println("frgthjkl");
 		Connection con = Connectionutil.getDbConnection();
 		String query = "update user_details set wallet = ? where email_id = ?";
+		System.out.println("f678kl");
 		PreparedStatement pstm;
 		try {
+			System.out.println("f000000kl");
 			pstm = con.prepareStatement(query);
-			pstm.setDouble(1, userdetails.getWallet());
+			pstm.setInt(1, userdetails.getWallet());
 			pstm.setString(2,userdetails.getEmail_id());
 			int i = pstm.executeUpdate();
+			System.out.println("fr7645678");
 			System.out.println(i+"Wallet is updated");
-			return i;
+			System.out.println("1234567890");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return -1;
+		return true;
 	}
 }
 	

@@ -1,54 +1,45 @@
+<%@page import="com.onlinebookshop.model.Userdetails"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register page</title>
+    <title>Recharge Wallet</title>
 
     <link rel="stylesheet" href="RechargeWallet.css">
 </head>
 <body>
+<div class="nav">
+    <ul>
+        <li><input type="text" class="text"></li>
+        <li><button>search</button></li>
+        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
+        <li><a href="">User profile</a></li>
+        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+    </ul>
+</div>
+<% Userdetails user = (Userdetails) session.getAttribute("currentuser");%>
+<center><h2>Welcome <% out.print(user.getName());%>!</h2></center>
 
-<form action="recharge">
+<form action="recharge" method="post">
     <fieldset class="signup">
-       <center><h2>Recharge Wallet here!</h2></center>
+       <h2>Recharge Your Wallet..</h2>
 
-        <table id="signuptable" style="border-spacing: 5px;">
-       
-          <tr>
-                <th><label for="emailId">Email Id:</label></th>
-                <th><input type="email" name="UserEmail" id="emailId" placeholder="Enter email Id"  required ></th>
-            </tr>
-           
-       
-            <tr>
-                <th><label for="CardNumber">Card Number:</label></th>
-                <th><input type="number" name="AccountNumber" id="AccountNumber" placeholder="Enter card number"  required autofocus ></th>
-            </tr>
-           
-                   
-           <tr>
-                <th><label for="cvv">CVV:</label></th>
-                <th><input type="number" name="cvv" id="cvv" placeholder="Enter CVV" required ></th>
-            </tr>
-           
-               <tr>
-                <th><label for="mobile">Mobile Number:</label></th>
-                <th><input type="number" name="MobileNumber" id="mobile" placeholder="Enter mobile number" required></th>
-            </tr>                    
-           
-            <tr>
-                <th><label for="Amount">Amount:</label></th>
-                <th><input type="number" name="Amount" id="amount" placeholder="Enter Amount" required ></th>
-               
-        </table>
-       
-        <table id="buttontable">
-            <tr>
-                <td><button type="submit">Recharge Wallet</button></td>
+         <label for="emailId">Email Id:</label><br>
+         <input type="email" name="UserEmail" id="emailId" placeholder="Enter email Id"  required ><br><br>
                  
-            </tr>
-        </table>    
+         <label for="CardNumber">Card Number:</label><br>
+         <input type="number" name="AccountNumber" id="AccountNumber" placeholder="Enter card number"  required autofocus ><br><br>
+                 
+         <label for="cvv">CVV:</label><br>
+         <input type="number" name="cvv" id="cvv" placeholder="Enter CVV" required ><br><br>
+         
+         <label for="Amount">Amount:</label><br>
+         <input type="number" name="Amount" id="amount" placeholder="Enter Amount" required ><br><br>
+         
+          
+         <button type="submit">Recharge Wallet</button>
+             
     </fieldset>
     </form>
 </body>

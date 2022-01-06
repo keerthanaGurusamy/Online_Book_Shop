@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="filterprice" method="post">
-<input type="text" name="filter" class="filter">
-<button type="submit">Search</button>
-</form>
+item added to cart successfully!!
 </body>
 </html>

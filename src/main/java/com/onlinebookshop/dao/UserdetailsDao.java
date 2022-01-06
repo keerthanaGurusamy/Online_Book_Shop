@@ -13,6 +13,6 @@ public interface UserDetailsDao {
 	public void deleteuser(String delete);
 	public List<Userdetails> viewUser();
 	public int findUserId(String emailId);
-	public int walletbal(int userid);
-	public int  updatewall(Userdetails userdetails);
+	public int walletballance(int userid);
+	public boolean  updatewall(Userdetails userdetails);
 }

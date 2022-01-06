@@ -9,6 +9,14 @@
 </head>
 <body>
 <form action="LoginServlet" method="post">
+<div class="nav">
+    <ul>
+        <li><input type="text" class="text"></li>
+        <li><button>search</button></li>
+        <li><a href="" class="set1">cart</a></li>
+        <li><a href="">User profile</a></li>
+    </ul>
+</div>
 <fieldset>
         <h2>Log in</h2>
         <label for="emailid">Email Id :</label><br>

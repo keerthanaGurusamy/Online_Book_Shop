@@ -1,49 +1,26 @@
-<%@page import="com.onlinebookshop.model.Bookdetails"%>
-<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
-<%@page import="java.util.*"%>
-
+<%@page import="com.onlinebookshop.model.Cart"%>
+<%@page import="com.onlinebookshop.daoimpl.CartDaoimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="com.onlinebookshop.model.Bookdetails"%>
+<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Product</title>
-<link rel="stylesheet" href="ShowProduct.css">
-<style>
-img{
-width: 350px;
-padding:20px;
-}
-span{
-position : relative;
-top:280px;
-left: -200px;
-
-}
-table td{
-padding-bottom: 150px;
-}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
-<div class="nav">
-    <ul>
-        <li><input type="text" class="text"></li>
-        <li><button>search</button></li>
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-    </ul>
-</div>
-
 <%!
-BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
+CartDaoimpl cartDaoimpl = new CartDaoimpl();
 List<Bookdetails> showProduct;
-
 %>
+<%! int bookid; %>
 <%
-showProduct = bookdetaildao.showProduct();
+ bookid =(int)session.getAttribute("itemidcart");
+Cart cart = new Cart();
+showProduct =cartDaoimpl.fetchCart(cart);
 %>
 <table>
             <tbody>
@@ -81,6 +58,5 @@ showProduct = bookdetaildao.showProduct();
                 </tr>
             </tbody>
         </table>
-
-
 </body>
+</html>

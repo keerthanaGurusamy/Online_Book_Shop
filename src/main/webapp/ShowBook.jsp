@@ -8,8 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Product</title>
-<link rel="stylesheet" href="ShowProduct.css">
+<title>Insert title here</title>
 <style>
 img{
 width: 350px;
@@ -27,16 +26,7 @@ padding-bottom: 150px;
 </style>
 </head>
 <body>
-<div class="nav">
-    <ul>
-        <li><input type="text" class="text"></li>
-        <li><button>search</button></li>
-        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        <li><a href="">User profile</a></li>
-        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-    </ul>
-</div>
-
+<a href="RechargeWallet.jsp">Recharge Wallet</a>
 <%!
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
 List<Bookdetails> showProduct;
@@ -64,7 +54,7 @@ showProduct = bookdetaildao.showProduct();
                                         <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
                                         <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
                                          <span><b>Publish Date:</b><%=bookdetails.getPublish_date() %></span><br>
-                                         <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>">Add to Cart</a></span>
+                                         <span><a href="ShowProduct.jsp?bookid=<%=bookdetails.getBookid()%>"><button>view</button></a></span>
                                        
                                     </td>
                                 </tr>
