@@ -5,7 +5,7 @@ create table user_details(cus_id int Default cus_id.nextval,
                          address VARCHAR2(100) NOT NULL,
                          email_id VARCHAR2(30)NOT NULL,
                          password VARCHAR2(30)NOT NULL,
-                         wallet int Not Null,
+                         wallet int Default 0,
                          CONSTRAINT cus PRIMARY KEY(cus_id),UNIQUE(email_id),UNIQUE(phoneNo));
 ALTER TABLE user_details
 MODIFY  wallet int Default 0;
@@ -55,10 +55,14 @@ create table orderdetails(order_id int DEFAULT ORDER_ID.nextval,
                  book_id int not null,
                  quantity int NOT NULL,
                  total_cost decimal NOT NULL,
-                 order_date timestamp default current_timestamp,
+                 order_date Default SYSDATE,
                  CONSTRAINT orders_id PRIMARY KEY(order_id),
                  CONSTRAINT customer_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
+
+                          
+ALTER TABLE orderdetails
+MODIFY  order_date Default SYSDATE;
 
 create SEQUENCE order_id increment by 1 start with 300;
 drop sequence order_id;
@@ -77,12 +81,17 @@ drop table bookdetails cascade constraints;
 truncate TABLE bookdetails;
 
 create table cart(cart_id int generated always as IDENTITY(start with 100 increment by 1),
+                  cus_id int Not Null,
                   book_id int Not Null,
-                  CONSTRAINT book_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
+                  FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
+                  FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
+drop table cart cascade constraints;
+select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in 106);
 select * from bookdetails;
 select * from cart;
 select * from user_details;
+commit;
 select * from orderdetails;
 select * from author_details;
 select * from rating;
@@ -100,18 +109,16 @@ desc cart;
 desc orderdetails;
 desc rating;
 
-drop table order_details cascade constraints;
 
+--create table order_details(order_id int NOT NULL,
+                         -- cus_id int NOT NULL,
+                         -- book_id int NOT NULL, 
+                         -- order_date TIMESTAMP default current_timestamp,
+                         -- status varchar2(50) NOT NULL,
+                         -- CONSTRAINT c_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
+                         -- CONSTRAINT o_id FOREIGN KEY(order_id) REFERENCES cart(order_id));
 
-create table order_details(order_id int NOT NULL,
-                          cus_id int NOT NULL,
-                          book_id int NOT NULL, 
-                          order_date TIMESTAMP default current_timestamp,
-                          status varchar2(50) NOT NULL,
-                          CONSTRAINT c_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
-                          CONSTRAINT o_id FOREIGN KEY(order_id) REFERENCES cart(order_id));
+--select * from user_details inner join orderdetails on user_details.cus_id = orderdetails.cus_id 
+--inner join bookdetails on orderdetails.book_id =bookdetails.book_id WHERE user_details.cus_id=107;
 
-
-
-select * from bookdetails where book_id in (select book_id from cart);
-select * from bookdetails;
+select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id=106 );

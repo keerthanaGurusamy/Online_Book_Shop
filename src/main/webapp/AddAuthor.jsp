@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Author</title>
 </head>
 <body>
 <form action="AddAuthor" method="post">

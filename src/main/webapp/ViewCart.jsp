@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+  <%@page import="com.onlinebookshop.model.Cart"%>
+    <%@page import="java.util.*"%>
+            <%@page import="com.onlinebookshop.daoimpl.CartDaoimpl"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin</title>
+<title>View Cart</title>
 <style>
 body{
     background-image: url(image/book.jpg);
@@ -51,6 +55,20 @@ body{
         	padding-top: 20px 10px;
         	
         }
+        fieldset{
+            position: absolute;
+            top: 120px;
+            right: 40%;
+            padding-right: 30px;
+            padding-left: 30px;
+            
+        }
+        <h2>Books Wagon</h2>
+        #allusers table,th,tr,td{
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+        }
 </style>
 </head>
 <body>
@@ -67,7 +85,52 @@ body{
 		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
 </ul>
 </aside>
-	<h2>Books Wagon</h2>
-	<h1>Welcome Admin</h1>
+ <h2>Books Wagon</h2>
+
+<%
+
+ CartDaoimpl cartdao = new CartDaoimpl();
+        List<Cart> cartList = new ArrayList<Cart>();
+        cartList = cartdao.allCart();
+%>
+
+<div>
+<table border="2" id="allusers">
+<thead>
+<tr>
+  <th >S.no</th>
+<th>Cart id</th>
+<th>Book Id</th>
+<th>Customer Id</th>
+</tr>
+</thead>
+<br>
+<br>
+
+<tbody>
+<%
+int i = 0;
+for (Cart viewcart : cartList) {
+	i++;
+%>
+<tr>
+
+
+<td><%=i%></td>
+<td><%=viewcart.getCart_id()%></td>
+<td><%=viewcart.getBook_id()%></td>
+<td><%=viewcart.getCus_id()%></td>
+
+</tr>
+
+<%
+}
+%>
+</tbody>
+          </table>
+
+
+</div>
+ 
 </body>
 </html>

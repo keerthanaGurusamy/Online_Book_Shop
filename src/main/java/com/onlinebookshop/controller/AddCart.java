@@ -19,16 +19,17 @@ public class AddCart extends HttpServlet {
 		HttpSession session = request.getSession();
 		int bid= Integer.parseInt(request.getParameter("bookid"));
 		
-		System.out.println(bid);
+    	System.out.println("bid"+bid);
 		
 		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
+		int userId=(int) session.getAttribute("userId");
 		
 		
 		CartDaoimpl cart = new CartDaoimpl();
-		Cart cart2 = new Cart(bid);
+		Cart cart2 = new Cart(userId,bid);
 		cart.insertcart(cart2);
 		session.setAttribute("itemidcart", bid);
-		response.sendRedirect("ShowCart.jsp");
+		response.sendRedirect("cartsuccess.jsp");
 	}
 	
 

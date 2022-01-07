@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.OrderDetailsDao;
+import com.onlinebookshop.model.Bookdetails;
 import com.onlinebookshop.model.OrderDetails;
 import com.onlinebookshop.model.Userdetails;
 import com.onlinebookshop.util.Connectionutil;
@@ -34,25 +35,29 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			System.out.println("Value not inserted");
 		}
 	}
-	
-	public List<OrderDetails> viewOrder()
+
+		
+	public List<Bookdetails> viewOrder(int cusid)
 	{
-		List<OrderDetails> cartList=new ArrayList<OrderDetails>();
-		String view ="select * from orderdetails";
+		List<Bookdetails> orderList=new ArrayList<Bookdetails>();
+		String view ="select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id in ?)";
 		Connection con = Connectionutil.getDbConnection();
 		try {
-			Statement stm=con.createStatement();
-			ResultSet rs=stm.executeQuery(view);
+			PreparedStatement pstm = con.prepareStatement(view);
+			pstm.setInt(1, cusid);
+			
+			ResultSet rs = pstm.executeQuery();
 			while(rs.next())
 			{
-				OrderDetails cart=new OrderDetails(rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5));
-				cartList.add(cart);
+				orderList.add(new Bookdetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getString(7),rs.getString(8)));
+				
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return cartList;
+		return orderList;
 	}
 	
 	public int updateCart(int quantity,int book_id)

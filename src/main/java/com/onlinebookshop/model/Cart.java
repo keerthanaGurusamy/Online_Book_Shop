@@ -6,6 +6,22 @@ public class Cart {
 
 	private int cart_id;
 	private int book_id;
+	private int cus_id;
+	
+	
+	
+	public Cart(int cart_id, int book_id, int cus_id) {
+		super();
+		this.cart_id = cart_id;
+		this.book_id = book_id;
+		this.cus_id = cus_id;
+	}
+	public int getCus_id() {
+		return cus_id;
+	}
+	public void setCus_id(int cus_id) {
+		this.cus_id = cus_id;
+	}
 	public int getCart_id() {
 		return cart_id;
 	}

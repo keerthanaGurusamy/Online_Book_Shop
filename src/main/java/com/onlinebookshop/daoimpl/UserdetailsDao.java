@@ -181,20 +181,20 @@ public class UserdetailsDao implements UserDetailsDao{
 	}
 	//update wallet:
 	public boolean  updatewall(Userdetails userdetails) {
-		System.out.println("frgthjkl");
+		
 		Connection con = Connectionutil.getDbConnection();
 		String query = "update user_details set wallet = ? where email_id = ?";
-		System.out.println("f678kl");
+		
 		PreparedStatement pstm;
 		try {
-			System.out.println("f000000kl");
+			
 			pstm = con.prepareStatement(query);
 			pstm.setInt(1, userdetails.getWallet());
 			pstm.setString(2,userdetails.getEmail_id());
 			int i = pstm.executeUpdate();
-			System.out.println("fr7645678");
+			
 			System.out.println(i+"Wallet is updated");
-			System.out.println("1234567890");
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

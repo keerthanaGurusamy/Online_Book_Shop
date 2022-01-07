@@ -37,14 +37,12 @@ padding-bottom: 150px;
     </ul>
 </div>
 
-<%!
+<%
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<Bookdetails> showProduct;
+List<Bookdetails> showProduct= bookdetaildao.showProduct();
 
 %>
-<%
-showProduct = bookdetaildao.showProduct();
-%>
+ 
 <table>
             <tbody>
                 <tr>

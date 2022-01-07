@@ -7,11 +7,16 @@ a{
 	color: white;
 }
 body{
-    background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
-}
-aside{
-	float: left;
-}
+            background-image: url(image/book.jpg);
+            background-repeat: no-repeat;
+            background-size: 1400px 900px;
+            color: white;
+        }
+fieldset{
+            position: absolute;
+            top: 120px;
+            right: 40%;
+            padding-right: 30px;
+            padding-left: 30px;
+            
+        }
