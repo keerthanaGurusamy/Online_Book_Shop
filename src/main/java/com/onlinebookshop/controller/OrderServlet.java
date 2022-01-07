@@ -26,10 +26,12 @@ public class OrderServlet extends HttpServlet {
 		
 		int userid=Integer.parseInt(session.getAttribute("userId").toString());
 		System.out.println("user Id :"+userid);
+		
 		String userName=(String) session.getAttribute("emailid");
 		System.out.println("user name :"+userName);
+		
 		int itemid = (int) session.getAttribute("itemidcart");
-		System.out.println("Book Name :"+itemid);
+		System.out.println("Book id :"+itemid);
 		
 		BookdetailsDaoimpl bookdetails = new BookdetailsDaoimpl();
 		
@@ -48,14 +50,18 @@ public class OrderServlet extends HttpServlet {
 		UserdetailsDao userdao = new UserdetailsDao();
 		
 		int wallet =userdao.walletballance(userid);
-		System.out.println("Wallet"+wallet);
 		
+		System.out.println("Wallet"+wallet);
+		if(wallet > 0) {
 		int newWallet=wallet-totalprice;
 		System.out.println(newWallet);
 		
 		Userdetails user = new Userdetails(null,0,null,userName,null,newWallet);
 		userdao.updatewall(user);
 		response.sendRedirect("ordermsg.jsp");
+		}else {
+			response.getWriter().println("Low Balance");
+		}
 	}
 
 	

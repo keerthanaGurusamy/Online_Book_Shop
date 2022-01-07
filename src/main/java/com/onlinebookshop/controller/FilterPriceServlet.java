@@ -1,43 +1,37 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class FilterPriceServlet
- */
+import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
+import com.onlinebookshop.model.Bookdetails;
+
+
 @WebServlet("/filterprice")
 public class FilterPriceServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FilterPriceServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int price =Integer.parseInt(request.getParameter(""));
+		int price =Integer.parseInt(request.getParameter("search"));
 		
-		//doGet(request, response);
+		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
+		Bookdetails book =new Bookdetails(0,null,null,null,null,price,null,null,null);
+		
+		HttpSession session=request.getSession();
+	    
+	    
+		ResultSet rs = bookdao.filterPrice(book);
+		session.setAttribute("filteredbook", rs);
+		response.sendRedirect("FilterPriceProduct.jsp");
+		
+		
 	}
 
 }

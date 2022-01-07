@@ -32,10 +32,10 @@
          <input type="number" name="AccountNumber" id="AccountNumber" placeholder="Enter card number"  required autofocus ><br><br>
                  
          <label for="cvv">CVV:</label><br>
-         <input type="number" name="cvv" id="cvv" placeholder="Enter CVV" required ><br><br>
+         <input type="number" name="cvv" id="cvv" placeholder="Enter CVV" Pattern="[0-9]+" maxlength="3" ><br><br>
          
          <label for="Amount">Amount:</label><br>
-         <input type="number" name="Amount" id="amount" placeholder="Enter Amount" required ><br><br>
+         <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+" maxlength="5" ><br><br>
          
           
          <button type="submit">Recharge Wallet</button>

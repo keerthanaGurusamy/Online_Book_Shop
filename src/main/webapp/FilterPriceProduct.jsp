@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.onlinebookshop.model.Bookdetails"%>
 <%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
 <%@page import="java.util.*"%>
@@ -8,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Product</title>
+<title>Filter By Price</title>
 <link rel="stylesheet" href="ShowProduct.css">
 <style>
 img{
@@ -27,11 +28,10 @@ padding-bottom: 150px;
 </style>
 </head>
 <body>
-<form action="filterprice" method="post">
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text"></li>
-        <li><a href="FilterPrice.jsp"><button>search</button></a></li>
+        <li><input type="text" class="text"></li>
+        <li><button>search</button></li>
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
@@ -42,8 +42,12 @@ padding-bottom: 150px;
 
 <%
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<Bookdetails> showProduct= bookdetaildao.showProduct();
-
+List<Bookdetails> showProduct= new ArrayList();
+ResultSet rs = (ResultSet) session.getAttribute("filteredbook");
+while(rs.next()){
+	
+	showProduct.add(new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9)));
+}
 %>
  
 <table>
@@ -83,6 +87,5 @@ List<Bookdetails> showProduct= bookdetaildao.showProduct();
             </tbody>
         </table>
 
-</form>
 
 </body>

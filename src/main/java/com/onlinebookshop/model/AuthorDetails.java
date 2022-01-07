@@ -6,7 +6,7 @@ public class AuthorDetails {
 
 	private String name;
 	private String email_id;
-	private String book_id;
+	private int book_id;
 	public String getName() {
 		return name;
 	}
@@ -19,17 +19,17 @@ public class AuthorDetails {
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
 	}
-	public String getBook_id() {
+	public int getBook_id() {
 		return book_id;
 	}
-	public void setBook_id(String book_id) {
+	public void setBook_id(int book_id) {
 		this.book_id = book_id;
 	}
 	public AuthorDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AuthorDetails(String name, String email_id, String book_id) {
+	public AuthorDetails(String name, String email_id, int book_id) {
 		super();
 		this.name = name;
 		this.email_id = email_id;

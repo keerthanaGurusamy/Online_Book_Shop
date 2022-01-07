@@ -24,7 +24,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			pstm=con.prepareStatement(insert);
 			pstm.setString(1, author.getName());
 			pstm.setString(2, author.getEmail_id());
-			pstm.setString(3, author.getBook_id());
+			pstm.setInt(3, author.getBook_id());
 			pstm.executeUpdate();
 			System.out.println("Author inserted");
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next())
 			{
-				AuthorDetails author = new AuthorDetails(rs.getString(2),rs.getString(3),rs.getString(4));
+				AuthorDetails author = new AuthorDetails(rs.getString(2),rs.getString(3),rs.getInt(4));
 				authorList.add(author);
 			}
 		} catch (SQLException e) {

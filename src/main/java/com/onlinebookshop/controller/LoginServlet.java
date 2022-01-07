@@ -55,10 +55,13 @@ public class LoginServlet extends HttpServlet {
              
              HttpSession session=request.getSession();
  			session.setAttribute("currentuser", user);
+ 			
  			int userid=userdao.findUserId(email);
  			System.out.println(userid);
+ 			
  			session.setAttribute("userId", userid);
  			System.out.println("userId"+userid);
+ 			
  			response.sendRedirect("ShowProduct.jsp");
  			session.setAttribute("emailid", email);
  			

@@ -88,6 +88,9 @@ create table cart(cart_id int generated always as IDENTITY(start with 100 increm
 
 drop table cart cascade constraints;
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in 106);
+select name,phoneno,address,email_id,password,wallet from user_details where cus_id=108;
+
+
 select * from bookdetails;
 select * from cart;
 select * from user_details;
@@ -95,6 +98,7 @@ commit;
 select * from orderdetails;
 select * from author_details;
 select * from rating;
+delete author_details where book_id=1005;
 
 update bookdetails set category='Architecture',description='A fascinating, thought-provoking journey into our built environment',book_code='B10',
 publish_date='12-11-2021',condition='New',bookimages='https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg',

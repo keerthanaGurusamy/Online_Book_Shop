@@ -202,6 +202,26 @@ public class UserdetailsDao implements UserDetailsDao{
 		}
 		return true;
 	}
+	
+	public List<Userdetails> myProfile(int userid){
+		List<Userdetails> userList=new ArrayList<Userdetails>();
+		String profile="select name,phoneno,address,email_id,password,wallet from user_details where cus_id=?";
+		Connection con=Connectionutil.getDbConnection();
+		try {
+			PreparedStatement pstm = con.prepareStatement(profile);
+			pstm.setInt(1, userid);
+	
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				Userdetails user=new Userdetails(rs.getString(1),rs.getLong(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userList;
+	}
 }
 	
 

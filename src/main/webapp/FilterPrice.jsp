@@ -7,7 +7,10 @@
 <title>Filter Price</title>
 </head>
 <body>
-<form action="filterprice" method="post">
+<form action="" method="post">
+
+<input type="text" name="price" class="price" required><br><br>
+<button type="submit">Search</button>
 </form>
 </body>
 </html>

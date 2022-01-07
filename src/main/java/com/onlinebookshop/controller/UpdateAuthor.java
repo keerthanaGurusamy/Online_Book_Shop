@@ -41,7 +41,7 @@ public class UpdateAuthor extends HttpServlet {
           String authoremail = request.getParameter("emailid");
           String authorname = request.getParameter("authorname");
           
-          AuthorDetails author = new AuthorDetails(authorname,authoremail,null);
+          AuthorDetails author = new AuthorDetails(authorname,authoremail,0);
           AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
           authordao.updateAuthor(authoremail, authorname);
      
