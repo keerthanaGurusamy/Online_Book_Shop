@@ -63,7 +63,6 @@ body{
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		<li><a href="ShowProduct.jsp">Show Products</a></li>
 		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
 </ul>
 </aside>

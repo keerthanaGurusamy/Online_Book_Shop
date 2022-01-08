@@ -27,7 +27,7 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
 <table>
             <tbody>
                 <tr>
-                <p>Book List</p>
+                
                 <% int count=0;
                 for(Bookdetails bookdetails: productsList){
                 	%>

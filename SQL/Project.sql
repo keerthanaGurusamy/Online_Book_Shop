@@ -71,7 +71,7 @@ create table rating(id int generated always as identity(start with 1 increment b
                    cus_id int  not null,
                    book_id int  not null,
                    rating number(2,1));
-
+desc rating;
 
 alter table  bookdetails add bookimages varchar2(4000);
 
@@ -91,11 +91,12 @@ select Category,Description,book_title,book_code,price,publish_date,condition,bo
 select name,phoneno,address,email_id,password,wallet from user_details where cus_id=108;
 
 
-select * from bookdetails;
+
 select * from cart;
 select * from user_details;
 commit;
 select * from orderdetails;
+select * from bookdetails;
 select * from author_details;
 select * from rating;
 delete author_details where book_id=1005;
@@ -113,7 +114,7 @@ desc cart;
 desc orderdetails;
 desc rating;
 
-
+select * from bookdetails where price <= 200;
 --create table order_details(order_id int NOT NULL,
                          -- cus_id int NOT NULL,
                          -- book_id int NOT NULL, 
@@ -126,3 +127,7 @@ desc rating;
 --inner join bookdetails on orderdetails.book_id =bookdetails.book_id WHERE user_details.cus_id=107;
 
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id=106 );
+
+
+select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,a.name,a.email_id,r.rating from bookdetails b inner join author_details a on b.book_id = a.book_id inner join rating r on b.book_id = r.book_id;
+

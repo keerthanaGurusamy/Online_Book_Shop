@@ -26,8 +26,8 @@ public class FilterPriceServlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 	    
-	    
 		ResultSet rs = bookdao.filterPrice(book);
+		
 		session.setAttribute("filteredbook", rs);
 		response.sendRedirect("FilterPriceProduct.jsp");
 		

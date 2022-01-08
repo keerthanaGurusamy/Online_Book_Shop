@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import com.onlinebookshop.model.Bookdetails;
+import com.onlinebookshop.model.ProductDetails;
 
 public interface BookdetailsDao {
 

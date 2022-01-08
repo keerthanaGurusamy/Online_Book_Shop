@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
+
 import com.onlinebookshop.daoimpl.CartDaoimpl;
 import com.onlinebookshop.model.Cart;
 
@@ -21,7 +21,7 @@ public class AddCart extends HttpServlet {
 		
     	System.out.println("bid"+bid);
 		
-		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
+		
 		int userId=(int) session.getAttribute("userId");
 		
 		

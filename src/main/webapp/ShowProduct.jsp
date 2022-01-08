@@ -44,14 +44,17 @@ padding-bottom: 150px;
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
 List<Bookdetails> showProduct= bookdetaildao.showProduct();
 
+
+
 %>
  
 <table>
             <tbody>
                 <tr>
-                <p>Book List</p>
+                
                 <%int count=0;
                 for(Bookdetails bookdetails: showProduct){
+                	
                 	%>
                     <td>
                         <table id="producttable">
@@ -65,6 +68,7 @@ List<Bookdetails> showProduct= bookdetaildao.showProduct();
                                         <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
                                         <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
                                          <span><b>Publish Date:</b><%=bookdetails.getPublish_date() %></span><br>
+                                         <span><b>Condition:</b><%=bookdetails.getPublish_date() %></span><br>
                                          <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>">Add to Cart</a></span>
                                        
                                     </td>

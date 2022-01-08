@@ -26,14 +26,24 @@ public class RechargeWalletServlet extends HttpServlet {
 		 System.out.println(cvv);
 		 
 		 
+		 
 		 UserdetailsDao userdao = new UserdetailsDao();
 		 
-		 Userdetails updatewallet = new Userdetails(null,0,null,email,null,amount);
+		 HttpSession session = request.getSession();
+			
+			int userid=Integer.parseInt(session.getAttribute("userId").toString());
+			
+			int wallet =userdao.walletballance(userid);
+			 
+			int addwallet = wallet+amount;
+		 
+		 Userdetails updatewallet = new Userdetails(null,0,null,email,null,addwallet);
+		 
+		 
 		 
 		boolean wall= userdao.updatewall(updatewallet);
-		 
-		 
-		 
+		
+		
 		
 		 if(wall)
 		 {

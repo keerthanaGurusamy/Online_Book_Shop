@@ -133,7 +133,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	}
 	
 	public ResultSet filterPrice(Bookdetails bookdetails) {
-		System.out.println(bookdetails.getPrice()+"fghjkl");
+		
 		List<Bookdetails> filterList=new ArrayList<Bookdetails>();
 		String filter="select * from bookdetails where price <= ?";
 		Connection con = Connectionutil.getDbConnection();

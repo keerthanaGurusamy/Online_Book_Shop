@@ -17,53 +17,46 @@ import com.onlinebookshop.model.Userdetails;
 @WebServlet("/OrderServlet")
 public class OrderServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
-		
-		int quantity=Integer.parseInt(request.getParameter("quantity"));
-		System.out.println("Quantity"+quantity);
-		
-		int userid=Integer.parseInt(session.getAttribute("userId").toString());
-		System.out.println("user Id :"+userid);
-		
-		String userName=(String) session.getAttribute("emailid");
-		System.out.println("user name :"+userName);
-		
+
+		int quantity = Integer.parseInt(request.getParameter("quantity"));
+
+		int userid = Integer.parseInt(session.getAttribute("userId").toString());
+
+		String userName = (String) session.getAttribute("emailid");
+
 		int itemid = (int) session.getAttribute("itemidcart");
-		System.out.println("Book id :"+itemid);
-		
+
 		BookdetailsDaoimpl bookdetails = new BookdetailsDaoimpl();
-		
-		
+
 		int price = bookdetails.findPrice(itemid);
-		System.out.println("Price :"+price);
-		
-		int totalprice = quantity*price;
-		System.out.println("total price :" + totalprice );
-		
+
+		int totalprice = quantity * price;
+
 		OrderDetailsDaoimpl orderDao = new OrderDetailsDaoimpl();
-		
-		OrderDetails orderBook = new OrderDetails(itemid,userid,quantity,totalprice);
-		orderDao.insertOrder(orderBook);
- 
+
+		OrderDetails orderBook = new OrderDetails(itemid, userid, quantity, totalprice);
+
 		UserdetailsDao userdao = new UserdetailsDao();
-		
-		int wallet =userdao.walletballance(userid);
-		
-		System.out.println("Wallet"+wallet);
-		if(wallet > 0) {
-		int newWallet=wallet-totalprice;
-		System.out.println(newWallet);
-		
-		Userdetails user = new Userdetails(null,0,null,userName,null,newWallet);
-		userdao.updatewall(user);
-		response.sendRedirect("ordermsg.jsp");
-		}else {
+
+		int wallet = userdao.walletballance(userid);
+
+		if (wallet > totalprice) {
+
+			int newWallet = wallet - totalprice;
+
+			Userdetails user = new Userdetails(null, 0, null, userName, null, newWallet);
+
+			userdao.updatewall(user);
+
+			response.sendRedirect("ordermsg.jsp");
+
+		} else {
 			response.getWriter().println("Low Balance");
 		}
 	}
-
-	
 
 }

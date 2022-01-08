@@ -11,8 +11,7 @@
 <body>
 <div class="nav">
     <ul>
-        <li><input type="text" class="text"></li>
-        <li><button>search</button></li>
+        
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
