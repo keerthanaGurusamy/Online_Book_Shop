@@ -10,8 +10,8 @@ import com.onlinebookshop.model.Userdetails;
 public interface OrderDetailsDao {
 
 	public void insertOrder(OrderDetails cart);
-	public List<Bookdetails> viewOrder(int cusid);
+	public List<OrderDetails> viewOrder();
 	public int updateCart(int quantity,int book_id);
 	public int deleteCart(int bookid);
-	public ResultSet viewUserCart(Userdetails currentUser);
+	public List<OrderDetails> viewUserCart(int userid);
 }

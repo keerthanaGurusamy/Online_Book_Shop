@@ -1,6 +1,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.onlinebookshop.model.Bookdetails"%>
 <%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
+<%@page import="com.onlinebookshop.model.Bookdetails"%>
+<%@page import="com.onlinebookshop.model.ProductDetails"%>
 <%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -41,13 +43,10 @@ padding-bottom: 150px;
 </div>
 
 <%
+int price=(int)session.getAttribute("filteredbook");
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<Bookdetails> showProduct= new ArrayList();
-ResultSet rs = (ResultSet) session.getAttribute("filteredbook");
-while(rs.next()){
-	
-	showProduct.add(new Bookdetails(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9)));
-}
+List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
+
 %>
  
 <table>
@@ -55,21 +54,26 @@ while(rs.next()){
                 <tr>
                 <p>Book List</p>
                 <%int count=0;
-                for(Bookdetails bookdetails: showProduct){
+                for(ProductDetails bookdetails: showProduct){
                 	%>
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src=<%=bookdetails.getBookimages()%> width=50 height=300 alt="book"></td>    
+                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=300 alt="book"></td>    
                                     <td class="book">
                                         <span><b>Category: </b><%=bookdetails.getCategory() %> </span><br>
                                         <span><b>Description: </b><%=bookdetails.getDescription() %>  </span><br>
                                         <span><b>Book Title: </b><%=bookdetails.getBook_title()%> </span><br>
                                         <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
                                         <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
-                                         <span><b>Publish Date:</b><%=bookdetails.getPublish_date() %></span><br>
-                                         <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>">Add to Cart</a></span>
+                                         <span><b>Publish Date:</b><%=bookdetails.getPublish_date()%></span><br>
+                                         <span><b>Condition:</b><%=bookdetails.getCondition() %></span><br>
+                                         <span><b>Author Name:</b><%=bookdetails.getName() %></span><br>
+                                         <span><b>Author Email:</b><%=bookdetails.getEmail_id() %></span><br>
+                                         <span><b>Ratings:</b><%=bookdetails.getRating() %></span><br>
+
+                                         <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>"><button>Add to Cart</button></a></span>
                                        
                                     </td>
                                 </tr>

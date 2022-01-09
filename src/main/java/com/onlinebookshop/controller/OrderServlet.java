@@ -28,6 +28,8 @@ public class OrderServlet extends HttpServlet {
 
 		String userName = (String) session.getAttribute("emailid");
 
+		System.out.println(userName);
+		
 		int itemid = (int) session.getAttribute("itemidcart");
 
 		BookdetailsDaoimpl bookdetails = new BookdetailsDaoimpl();
@@ -40,6 +42,8 @@ public class OrderServlet extends HttpServlet {
 
 		OrderDetails orderBook = new OrderDetails(itemid, userid, quantity, totalprice);
 
+		orderDao.insertOrder(orderBook);
+		
 		UserdetailsDao userdao = new UserdetailsDao();
 
 		int wallet = userdao.walletballance(userid);

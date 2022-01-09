@@ -31,19 +31,23 @@ public class CartDaoimpl {
 		}
 		}
 	
-	public List<Bookdetails> fetchCart(int cusid) {
-		List<Bookdetails> booklist = new ArrayList<>();
-		String Query = "select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in ?) ";
+	public List<ProductDetails> fetchCart(int cusid) {
+		
+		List<ProductDetails> booklist = new ArrayList<>();
+		String Query = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in (select c.book_id from cart c where c.cus_id = ?)";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pstm = con.prepareStatement(Query);
 			pstm.setInt(1, cusid);
 	
+			System.out.println("usr" + cusid);
 			
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				
-				booklist.add(new Bookdetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getString(7),rs.getString(8)));
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+			    booklist.add(product);
+			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

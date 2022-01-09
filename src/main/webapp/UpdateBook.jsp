@@ -73,15 +73,18 @@ body{
 <body>
 <aside>
 <ul>
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="ViewUser.jsp">View User</a></li>
+        <li><a href="ViewUser.jsp">View User</a></li>
 		<li><a href="DeleteUser.jsp">Delete User</a></li>
+		
+        <li><a href="AddBooks.jsp">Add Books</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
+		<li><a href="ViewAllBook.jsp">All Books</a></li>
+		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		<li><a href="ShowProduct.jsp">Show Products</a></li>
-		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
+		
+		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 </ul>
 </aside>
  <h2>Books Wagon</h2>

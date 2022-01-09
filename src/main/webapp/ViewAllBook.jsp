@@ -1,11 +1,16 @@
- 
+<%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
+<%@page import ="com.onlinebookshop.model.Bookdetails" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+  <%@page import="com.onlinebookshop.model.Userdetails"%>
+    <%@page import="java.util.*"%>
+            <%@page import="com.onlinebookshop.daoimpl.UserdetailsDao"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Books</title>
+<title>All Books</title>
 <style>
 body{
     background-image: url(image/book.jpg);
@@ -69,7 +74,6 @@ body{
         }
                }
 </style>
-
 </head>
 <body>
 <aside>
@@ -86,31 +90,67 @@ body{
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
 		
 		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+
 </ul>
 </aside>
+ <h2>Books Wagon</h2>
 
-<h2>Books Wagon</h2>
+<%
 
-<form action="AddBooks" method="post">
-<fieldset>
-<label for="category">Category :</label><br>
-<input type="text" name="category" class="category" required><br><br>
-<label for="description">Description :</label><br>
-<input type="text" name="description" class="description" required><br><br>
-<label for="booktitle">Book title :</label><br>
-<input type="text" name="booktitle" class="booktitle" required><br><br>
-<label for="bookcode">Book Code :</label><br>
-<input type="text" name="bookcode" class="bookcode" required><br><br>
-<label for="price">Price :</label><br>
-<input type="text" name="price" class="price" required><br><br>
-<label for="publishdate">Publish Date :</label><br>
-<input type="date" name="publishdate" class="publishdate" required><br><br>
-<label for="condition">Condition :</label><br>
-<input type="text" name="condition" class="condition" required><br><br>
-<label for="image">Image :</label><br>
-<input type="file" name="image" class="image" required><br><br>
-<button type ="submit">Add</button>
-</fieldset>
-</form>
+         BookdetailsDaoimpl bookdetailsdao = new BookdetailsDaoimpl();
+        List<Bookdetails> userList = new ArrayList<Bookdetails>();
+         userList = bookdetailsdao.ViewAllBook();
+%>
+
+<div>
+<table border="2" id="allusers">
+<thead>
+<tr>
+  <th >S.no</th>
+<th>Book Id</th>
+<th>Category</th>
+<th>Description</th>
+<th>Book Title</th>
+<th>Book Code</th>
+<th>Price</th>
+<th>Publish Date</th>
+<th>Condition</th>
+<th>Book image</th>
+</tr>
+</thead>
+<br>
+<br>
+
+<tbody>
+<%
+int i = 0;
+for (Bookdetails viewBook : userList) {
+	i++;
+%>
+<tr>
+
+
+<td><%=i%></td>
+<td><%=viewBook.getBookid()%></td>
+<td><%=viewBook.getCategory()%></td>
+<td><%=viewBook.getDescription()%></td>
+<td> <%=viewBook.getBook_title()%></td>
+<td> <%=viewBook.getBook_code()%></td>
+<td> <%=viewBook.getPrice()%></td>
+<td> <%=viewBook.getPublish_date()%></td>
+<td> <%=viewBook.getCondition()%></td>
+<td> <%=viewBook.getBookimages()%></td>
+
+</tr>
+
+<%
+}
+%>
+</tbody>
+          </table>
+
+
+</div>
+ 
 </body>
 </html>

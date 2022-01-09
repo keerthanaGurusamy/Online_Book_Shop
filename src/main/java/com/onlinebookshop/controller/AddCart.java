@@ -23,7 +23,8 @@ public class AddCart extends HttpServlet {
 		
 		
 		int userId=(int) session.getAttribute("userId");
-		
+
+		System.out.println("add cart"+userId);
 		
 		CartDaoimpl cart = new CartDaoimpl();
 		Cart cart2 = new Cart(userId,bid);

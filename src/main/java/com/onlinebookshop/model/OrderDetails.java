@@ -1,5 +1,6 @@
 package com.onlinebookshop.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class OrderDetails {
@@ -8,6 +9,9 @@ public class OrderDetails {
 	private int cus_id;
 	private int quantity;
 	private double total_cost;
+	private LocalDate order_date;
+	
+	
 	public int getBook_id() {
 		return book_id;
 	}
@@ -32,6 +36,12 @@ public class OrderDetails {
 	public void setTotal_cost(double total_cost) {
 		this.total_cost = total_cost;
 	}
+	public LocalDate getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(LocalDate order_date) {
+		this.order_date = order_date;
+	}
 	public OrderDetails() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -43,6 +53,16 @@ public class OrderDetails {
 		this.quantity = quantity;
 		this.total_cost = total_cost;
 	}
+	
+	public OrderDetails(int book_id, int cus_id, int quantity, double total_cost,LocalDate order_date) {
+		super();
+		this.book_id = book_id;
+		this.cus_id = cus_id;
+		this.quantity = quantity;
+		this.total_cost = total_cost;
+		this.order_date = order_date;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cart [book_id=" + book_id + ", cus_id=" + cus_id + ", quantity=" + quantity + ", total_cost="

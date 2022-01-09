@@ -37,24 +37,26 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	}
 
 		
-	public List<Bookdetails> viewOrder(int cusid)
+	public List<OrderDetails> viewOrder()
 	{
-		List<Bookdetails> orderList=new ArrayList<Bookdetails>();
-		String view ="select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id in ?)";
+		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
+		//String view ="select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id in ?)";
+		
+		String view = "select cus_id,book_id,quantity,total_cost,order_date from orderdetails";
 		Connection con = Connectionutil.getDbConnection();
 		try {
-			PreparedStatement pstm = con.prepareStatement(view);
-			pstm.setInt(1, cusid);
+			Statement stm = con.createStatement();
 			
-			ResultSet rs = pstm.executeQuery();
+			
+			ResultSet rs = stm.executeQuery(view);
 			while(rs.next())
 			{
-				orderList.add(new Bookdetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getString(7),rs.getString(8)));
-				
-				
+				//orderList.add(new Bookdetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getString(7),rs.getString(8)));
+				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				orderList.add(order);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return orderList;
@@ -95,21 +97,26 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		return 0;
 	}
 	
-	public ResultSet viewUserCart(Userdetails currentUser){
-		String myCart ="select * from orderdetails where cus_id=?";
+	public List<OrderDetails> viewUserCart(int userid){
+		
+		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
+		String myCart ="select cus_id,book_id,quantity,total_cost,order_date from orderdetails where cus_id=?";
 		
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pstm = con.prepareStatement(myCart);
-			pstm.setInt(1, currentUser.getCus_id());
+			pstm.setInt(1, userid);
 			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				
+				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				orderList.add(order);
+			}
 			
-			return rs;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return orderList;
 	}
-	
 }

@@ -1,6 +1,8 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +32,17 @@ public class RatingServlet extends HttpServlet {
 		
 		Rating rate=new Rating(userid,book,rating);
 		Ratingdaoimpl ratingdao = new Ratingdaoimpl();
-		ratingdao.insertrating(rate);
+		try {
+			int res = ratingdao.insertrating(rate);
+			if(res > 0) {
+				response.sendRedirect("ShowProduct.jsp");
+			}else {
+				response.getWriter().println("ÿou have already rated for this book!!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

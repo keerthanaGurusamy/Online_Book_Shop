@@ -2,6 +2,7 @@ package com.onlinebookshop.controller;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.onlinebookshop.daoimpl.BookdetailsDaoimpl;
 import com.onlinebookshop.model.Bookdetails;
+import com.onlinebookshop.model.ProductDetails;
 
 
 @WebServlet("/filterprice")
@@ -22,13 +24,13 @@ public class FilterPriceServlet extends HttpServlet {
 		int price =Integer.parseInt(request.getParameter("search"));
 		
 		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
-		Bookdetails book =new Bookdetails(0,null,null,null,null,price,null,null,null);
+		//ProductDetails book =new ProductDetails(null, null, null, null, price, null, null, null, null,0, null);
 		
 		HttpSession session=request.getSession();
 	    
-		ResultSet rs = bookdao.filterPrice(book);
+	     bookdao.filterPrice(price);
 		
-		session.setAttribute("filteredbook", rs);
+		session.setAttribute("filteredbook", price);
 		response.sendRedirect("FilterPriceProduct.jsp");
 		
 		

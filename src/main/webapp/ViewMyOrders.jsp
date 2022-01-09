@@ -1,11 +1,16 @@
- 
+<%@page import="com.onlinebookshop.model.OrderDetails"%>
+<%@page import="com.onlinebookshop.daoimpl.OrderDetailsDaoimpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+  <%@page import="com.onlinebookshop.model.Cart"%>
+    <%@page import="java.util.*"%>
+            <%@page import="com.onlinebookshop.daoimpl.CartDaoimpl"%>
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Books</title>
+<title>View Orders</title>
 <style>
 body{
     background-image: url(image/book.jpg);
@@ -54,10 +59,10 @@ body{
         }
         fieldset{
             position: absolute;
-            top: 130px;
+            top: 120px;
             right: 40%;
-            padding-right: 5px;
-            padding-left: 50px;
+            padding-right: 30px;
+            padding-left: 30px;
             
         }
         <h2>Books Wagon</h2>
@@ -65,52 +70,74 @@ body{
         border: 1px solid black;
         border-collapse: collapse;
         padding: 10px;
-        
         }
-               }
 </style>
-
 </head>
 <body>
 <aside>
 <ul>
-       <li><a href="ViewUser.jsp">View User</a></li>
-		<li><a href="DeleteUser.jsp">Delete User</a></li>
-		
         <li><a href="AddBooks.jsp">Add Books</a></li>
+		<li><a href="ViewUser.jsp">View User</a></li>
+		<li><a href="DeleteUser.jsp">Delete User</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
-		<li><a href="ViewAllBook.jsp">All Books</a></li>
-		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		
-		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+		<li><a href="ShowProduct.jsp">Show Products</a></li>
+		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
 </ul>
 </aside>
+ <h2>Books Wagon</h2>
 
-<h2>Books Wagon</h2>
+<%
 
-<form action="AddBooks" method="post">
-<fieldset>
-<label for="category">Category :</label><br>
-<input type="text" name="category" class="category" required><br><br>
-<label for="description">Description :</label><br>
-<input type="text" name="description" class="description" required><br><br>
-<label for="booktitle">Book title :</label><br>
-<input type="text" name="booktitle" class="booktitle" required><br><br>
-<label for="bookcode">Book Code :</label><br>
-<input type="text" name="bookcode" class="bookcode" required><br><br>
-<label for="price">Price :</label><br>
-<input type="text" name="price" class="price" required><br><br>
-<label for="publishdate">Publish Date :</label><br>
-<input type="date" name="publishdate" class="publishdate" required><br><br>
-<label for="condition">Condition :</label><br>
-<input type="text" name="condition" class="condition" required><br><br>
-<label for="image">Image :</label><br>
-<input type="file" name="image" class="image" required><br><br>
-<button type ="submit">Add</button>
-</fieldset>
-</form>
+        int userid = (int) session.getAttribute("userId");
+        OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
+        List<OrderDetails> orderList = new ArrayList<OrderDetails>();
+        orderList = orderdao.viewUserCart(userid);
+%>
+
+<div>
+<table border="2" id="allusers">
+<thead>
+<tr>
+  <th >S.no</th>
+<th>Customer id</th>
+<th>Book Id</th>
+<th>Quantity</th>
+<th>Total Cost</th>
+<th>Order Date</th>
+</tr>
+</thead>
+<br>
+<br>
+
+<tbody>
+<%
+int i = 0;
+for (OrderDetails viewOrder : orderList) {
+	i++;
+%>
+<tr>
+
+
+<td><%=i%></td>
+<td><%=viewOrder.getCus_id()%></td>
+<td><%=viewOrder.getBook_id()%></td>
+<td><%=viewOrder.getQuantity()%></td>
+<td><%=viewOrder.getTotal_cost()%></td>
+<td><%=viewOrder.getOrder_date()%></td>
+</tr>
+
+<%
+}
+%>
+</tbody>
+          </table>
+
+
+</div>
+ 
 </body>
+</html>
 </html>

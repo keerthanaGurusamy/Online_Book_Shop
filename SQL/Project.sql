@@ -70,15 +70,13 @@ drop sequence order_id;
 create table rating(id int generated always as identity(start with 1 increment by 1),
                    cus_id int  not null,
                    book_id int  not null,
-                   rating number(2,1));
-desc rating;
+                   rating number(2,1),
+                   CONSTRAINT customer FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
+                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
-alter table  bookdetails add bookimages varchar2(4000);
 
-update bookdetails set bookimages='https://s.wsj.net/public/resources/images/ED-AZ816_bkrvin_JV_20200625175244.jpg' where book_code='B10'; 
-commit;
-drop table bookdetails cascade constraints;
-truncate TABLE bookdetails;
+drop table rating cascade constraints;
+
 
 create table cart(cart_id int generated always as IDENTITY(start with 100 increment by 1),
                   cus_id int Not Null,
@@ -94,19 +92,20 @@ select name,phoneno,address,email_id,password,wallet from user_details where cus
 
 select * from cart;
 select * from user_details;
-commit;
 select * from orderdetails;
 select * from bookdetails;
 select * from author_details;
 select * from rating;
-delete author_details where book_id=1005;
 
-update bookdetails set category='Architecture',description='A fascinating, thought-provoking journey into our built environment',book_code='B10',
-publish_date='12-11-2021',condition='New',bookimages='https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg',
-price=500 where book_title='The Great Indoors';
 
---select * from bookdetails inner join author_details on bookdetails.book_id=author_details.book_id;
+--truncate table bookdetails;
+--truncate table orderdetails;
+--truncate table rating;
+
+
+
 commit;
+
 desc user_details;
 desc bookdetails;
 desc author_details;
@@ -114,20 +113,28 @@ desc cart;
 desc orderdetails;
 desc rating;
 
-select * from bookdetails where price <= 200;
---create table order_details(order_id int NOT NULL,
-                         -- cus_id int NOT NULL,
-                         -- book_id int NOT NULL, 
-                         -- order_date TIMESTAMP default current_timestamp,
-                         -- status varchar2(50) NOT NULL,
-                         -- CONSTRAINT c_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
-                         -- CONSTRAINT o_id FOREIGN KEY(order_id) REFERENCES cart(order_id));
-
 --select * from user_details inner join orderdetails on user_details.cus_id = orderdetails.cus_id 
 --inner join bookdetails on orderdetails.book_id =bookdetails.book_id WHERE user_details.cus_id=107;
 
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id=106 );
 
 
-select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,a.name,a.email_id,r.rating from bookdetails b inner join author_details a on b.book_id = a.book_id inner join rating r on b.book_id = r.book_id;
+select b.book_id,category,b.description,b.book_title,b.book_code,b.price,b.bookimages,b.publish_date,b.condition,b.bookimages,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE') from bookdetails b left join author_details a on b.book_id = a.book_id ;
+select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,b.bookimages,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE') from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in (select c.book_id from cart c where c.cus_id in 107);
 
+
+select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),NVL(r.rating,0),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id left join rating r on b.book_id = r.book_id where price <=200;
+
+select  Distinct (b.category),b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),NVL(r.rating,0),b.bookimages from bookdetails b, author_details a,rating r where b.book_id = a.book_id(+) and b.book_id = r.book_id(+);
+select * from author_details;
+
+
+select avg(rating) from rating where book_id =1005;
+select * from cart;
+delete from cart where cus_id=108;
+
+commit;
+
+delete from orderdetails where cus_id=107;
+
+select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in (select c.book_id from cart c where c.cus_id in 108);

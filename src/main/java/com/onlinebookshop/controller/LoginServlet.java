@@ -19,27 +19,7 @@ import com.onlinebookshop.model.Userdetails;
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String email = request.getParameter("emailid");
@@ -62,9 +42,9 @@ public class LoginServlet extends HttpServlet {
  			session.setAttribute("userId", userid);
  			System.out.println("userId"+userid);
  			
- 			response.sendRedirect("ShowProduct.jsp");
- 			session.setAttribute("emailid", email);
  			
+ 			session.setAttribute("emailid", email);
+ 			response.sendRedirect("ShowProduct.jsp");
 		}
 		else if(admin!=null)
 		{

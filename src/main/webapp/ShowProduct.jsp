@@ -1,5 +1,8 @@
+<%@page import="com.onlinebookshop.daoimpl.Ratingdaoimpl"%>
 <%@page import="com.onlinebookshop.model.Bookdetails"%>
 <%@page import="com.onlinebookshop.daoimpl.BookdetailsDaoimpl"%>
+<%@page import="com.onlinebookshop.model.ProductDetails"%>
+<%@page import="com.onlinebookshop.model.Rating" %>
 <%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -18,7 +21,7 @@ padding:20px;
 span{
 position : relative;
 top:280px;
-left: -200px;
+left: -270px;
 
 }
 table td{
@@ -32,17 +35,20 @@ padding-bottom: 150px;
     <ul>
         <li><input type="text" name="search" class="text"></li>
         <li><a href="FilterPrice.jsp"><button>search</button></a></li>
+        
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         <li><a href="Ratings.jsp">Add Ratings</a></li>
-        
+        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
     </ul>
 </div>
-
+<%!double rate; %>
 <%
+int userid = (int)session.getAttribute("userId");
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<Bookdetails> showProduct= bookdetaildao.showProduct();
+List<ProductDetails> showProduct= bookdetaildao.showProduct(userid);
+Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 
 
@@ -53,22 +59,33 @@ List<Bookdetails> showProduct= bookdetaildao.showProduct();
                 <tr>
                 
                 <%int count=0;
-                for(Bookdetails bookdetails: showProduct){
+                for(ProductDetails bookdetails: showProduct){
                 	
                 	%>
                     <td>
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src=<%=bookdetails.getBookimages()%> width=50 height=300 alt="book"></td>    
+                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=300 alt="book"></td>    
                                     <td class="book">
-                                        <span><b>Category: </b><%=bookdetails.getCategory() %> </span><br>
-                                        <span><b>Description: </b><%=bookdetails.getDescription() %>  </span><br>
-                                        <span><b>Book Title: </b><%=bookdetails.getBook_title()%> </span><br>
-                                        <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
-                                        <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
-                                         <span><b>Publish Date:</b><%=bookdetails.getPublish_date() %></span><br>
-                                         <span><b>Condition:</b><%=bookdetails.getPublish_date() %></span><br>
+                                        <span><b>Category   :   </b><%=bookdetails.getCategory() %></span><br>
+                                        <span><b>Description   :   </b><%=bookdetails.getDescription() %>  </span><br>
+                                        <span><b>Book Title   :   </b><%=bookdetails.getBook_title()%> </span><br>
+                                        <span><b>Book Code   :   </b><%=bookdetails.getBook_code() %> </span><br>
+                                        <span><b>Price   :   </b><%=bookdetails.getPrice() %></span><br>
+                                         <span><b>Publish Date   :   </b><%=bookdetails.getPublish_date()%></span><br>
+                                         <span><b>Condition   :   </b><%=bookdetails.getCondition() %></span><br>
+                                         <span><b>Author Name   :   </b><%=bookdetails.getName() %></span><br>
+                                         <span><b>Author Email   :   </b><%=bookdetails.getEmail_id() %></span><br>
+                                         <%
+                                         
+                                         Rating rating = new Rating();
+                                         rating.setBook_id(bookdetails.getBookid());
+                                         rate = ratingdaoimpl.fetchrating(rating);
+                                         
+                                         %>
+                                         
+                                         <span><b>Ratings:</b><%=rate %></span><br>
                                          <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>">Add to Cart</a></span>
                                        
                                     </td>

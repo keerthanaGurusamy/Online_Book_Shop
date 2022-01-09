@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.onlinebookshop.dao.BookdetailsDao;
 import com.onlinebookshop.model.Bookdetails;
+import com.onlinebookshop.model.ProductDetails;
 import com.onlinebookshop.model.Userdetails;
 import com.onlinebookshop.util.Connectionutil;
 
@@ -57,19 +59,23 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		
 	}
 
-	public List<Bookdetails> showProduct()
+	public List<ProductDetails> showProduct(int userid)
 	{
-		List<Bookdetails> productsList=new ArrayList<Bookdetails>();
+		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
 		
-		String show = "select * from bookdetails";
+		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id ";
 		Connection con = Connectionutil.getDbConnection();
 		try {
-			Statement stm=con.createStatement();
-			ResultSet rs=stm.executeQuery(show);
+			PreparedStatement pstm = con.prepareStatement(show);
+			
+			ResultSet rs=pstm.executeQuery();
 			while(rs.next())
 			{
-				Bookdetails product = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
 				productsList.add(product);
+				
+//				String category, String description, String book_title, String book_code, int price,
+//				LocalDate publish_date, String condition, String name, String email_id, int rating,String bookimages)
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -132,21 +138,25 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		}
 	}
 	
-	public ResultSet filterPrice(Bookdetails bookdetails) {
+	public List<ProductDetails> filterPrice(int price) {
 		
-		List<Bookdetails> filterList=new ArrayList<Bookdetails>();
-		String filter="select * from bookdetails where price <= ?";
+		List<ProductDetails> FilterPrice=new ArrayList<ProductDetails>();
+		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where price <= ?";
 		Connection con = Connectionutil.getDbConnection();
 		try {
-			PreparedStatement preparedStatement = con.prepareStatement(filter);
-			preparedStatement.setInt(1, bookdetails.getPrice());
-			ResultSet rs = preparedStatement.executeQuery();
-			return rs;
+			PreparedStatement pstm = con.prepareStatement(filter);
+		    pstm.setInt(1, price);
+			ResultSet rs=pstm.executeQuery();
+			while(rs.next())
+			{
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+				FilterPrice.add(product);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		return null;
+		return FilterPrice;
 	}
 	
 	public List<Bookdetails> filterCondition() {
@@ -187,6 +197,31 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			e.printStackTrace();
 		}
 		return categoryList;
+	}
+	
+	public List<Bookdetails> ViewAllBook()
+	{
+		List<Bookdetails> productsList=new ArrayList<Bookdetails>();
+		
+		String show = "select book_id,category,description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails";
+		Connection con = Connectionutil.getDbConnection();
+		try {
+			PreparedStatement pstm = con.prepareStatement(show);
+			
+			ResultSet rs=pstm.executeQuery();
+			while(rs.next())
+			{
+				Bookdetails book = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+				productsList.add(book);
+				
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return productsList;
 	}
 
 }

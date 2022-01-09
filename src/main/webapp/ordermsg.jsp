@@ -7,7 +7,6 @@
 <title>Order success</title>
 </head>
 <body>
-<h1>Order successfully</h1>
-<a href="MyOrders.jsp">My Order</a>
+<h1>Your Order is successfully Placed</h1>
 </body>
 </html>
