@@ -14,21 +14,41 @@ import com.onlinebookshop.util.Connectionutil;
 
 public class CartDaoimpl {
 
-	public void insertcart(Cart cart) {
-	   	
+	public int insertcart(Cart cart) throws SQLException {
+		int res = 0;
+		//sSystem.out.println(cartexist(cart.getCus_id(), cart.getBook_id()));
+		if(cartexist(cart.getCus_id(), cart.getBook_id()) == false) {
+			//System.out.println(cart.getCus_id() + "fvghjk" +cart.getBook_id());
 		String insertQuery="insert into cart(book_id,cus_id)values(?,?)";
 		Connection con = Connectionutil.getDbConnection();
+		
 		try {
 			PreparedStatement pstm = con.prepareStatement(insertQuery);
 			pstm.setInt(1, cart.getBook_id());
 			pstm.setInt(2, cart.getCart_id());
-			pstm.executeUpdate();
+			res =  pstm.executeUpdate();
 			pstm.executeUpdate("commit");
-			System.out.println("Book added to cart");
+			//System.out.println("Book added to cart");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
+		return res ;
+	}
+	
+	//cart exist:
+		public boolean cartexist(int userid ,int bookid) throws SQLException {
+			Connection con = Connectionutil.getDbConnection();
+			String query ="select * from cart where cus_id in ? and book_id in ?";
+			PreparedStatement pst =con.prepareStatement(query);
+			pst.setInt(1, userid);
+			pst.setInt(2, bookid);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			return false;
 		}
 	
 	public List<ProductDetails> fetchCart(int cusid) {
@@ -74,5 +94,22 @@ public class CartDaoimpl {
 		return cartList;
 		
 
+	}
+	
+	public int deleteCart(int bookid) {
+		System.out.println(bookid);
+		String delete="delete from cart where book_id=?";
+		Connection con = Connectionutil.getDbConnection();
+		PreparedStatement pstm=null;
+		try {
+			pstm=con.prepareStatement(delete);
+			pstm.setInt(1, bookid);
+			int noOfRows=pstm.executeUpdate();
+			System.out.println(noOfRows+ "row deleted");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

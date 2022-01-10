@@ -83,7 +83,7 @@ body{
 <body>
 <aside>
 <ul>
-        <li><a href="ViewUser.jsp">View User</a></li>
+       <li><a href="ViewUser.jsp">View User</a></li>
 		<li><a href="DeleteUser.jsp">Delete User</a></li>
 		
         <li><a href="AddBooks.jsp">Add Books</a></li>

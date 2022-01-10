@@ -37,7 +37,7 @@ public class RatingServlet extends HttpServlet {
 			if(res > 0) {
 				response.sendRedirect("ShowProduct.jsp");
 			}else {
-				response.getWriter().println("ÿou have already rated for this book!!");
+				response.getWriter().println("You have already rated for this book!!");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -52,7 +52,7 @@ List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
 <table>
             <tbody>
                 <tr>
-                <p>Book List</p>
+                
                 <%int count=0;
                 for(ProductDetails bookdetails: showProduct){
                 	%>

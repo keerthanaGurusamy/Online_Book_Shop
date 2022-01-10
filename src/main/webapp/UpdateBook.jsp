@@ -7,7 +7,7 @@
 <title>Update Book</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
+   background-image: url(image/book.jpg);
     background-repeat: no-repeat;
     background-size: 1350px 800px; 
     color: white;
@@ -47,7 +47,7 @@ body{
         }
         h2{
         	text-aling:center;
-        	color: white;
+        
         	padding-top: 20px 10px;
         	
         }
@@ -91,6 +91,7 @@ body{
 
 <form action="updatebook" method="post">
 <fieldset>
+<h4>Update Book :</h4><br>
 <label for="booktitle">Book title :</label><br>
 <input type="text" name="booktitle" id="booktitle" class="booktitle" required><br><br>
 

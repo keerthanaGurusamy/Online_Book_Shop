@@ -57,34 +57,40 @@ body{
         	padding-top: 20px 10px;
         	
         }
-        fieldset{
-            position: absolute;
-            top: 120px;
-            right: 40%;
-            padding-right: 30px;
-            padding-left: 30px;
-            
-        }
+        
         <h2>Books Wagon</h2>
         #allusers table,th,tr,td{
         border: 1px solid black;
         border-collapse: collapse;
         padding: 10px;
         }
+table{
+margin-top: 120px;
+
+}
+th{
+padding: 10px;
+}
+td{
+padding: 10px;
+}
 </style>
 </head>
 <body>
 <aside>
 <ul>
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="ViewUser.jsp">View User</a></li>
+        <li><a href="ViewUser.jsp">View User</a></li>
 		<li><a href="DeleteUser.jsp">Delete User</a></li>
+		
+        <li><a href="AddBooks.jsp">Add Books</a></li>
 		<li><a href="UpdateBook.jsp">Update Book</a></li>
+		<li><a href="ViewAllBook.jsp">All Books</a></li>
+		
 		<li><a href="AddAuthor.jsp">Add Author</a></li>
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		<li><a href="ShowProduct.jsp">Show Products</a></li>
-		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
+		
+		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 </ul>
 </aside>
  <h2>Books Wagon</h2>

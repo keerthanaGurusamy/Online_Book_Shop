@@ -18,86 +18,59 @@ body{
     background-size: 1350px 800px; 
     color: white;
 }
-.nav{
-	background-color: black;
-	color: white;
-}
-*{
-			margin:0;
-			padding:0;
-		}
-        li{
-            list-style:none;
-            padding: 30px 17px;
-        }
-        li a{
-            text-decoration: none;
-            color:white;
-        }
-        aside{
-        	float:left;
-        	margin-right: 380px;
-        }
-        h1{
-        	border:1px solid white;
-        	padding-top:220px;
-        	padding-bottom: 20px;
-        }
-        h1{
-        	border : 1px solid;
-        	border-color: transparent;
-        	padding: 280px 90px;
-        }
-        ul{
-        	background-color:black;
-        }
-        h2{
-        	text-aling:center;
-        	color: white;
-        	padding-top: 20px 10px;
-        	
-        }
-        fieldset{
-            position: absolute;
-            top: 120px;
-            right: 40%;
-            padding-right: 30px;
-            padding-left: 30px;
-            
-        }
-        <h2>Books Wagon</h2>
-        #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 6px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+  
+  .set1{
+      margin-right: 10px;
+  }
+  table{
+  margin-left: 450px;
+  }
 </style>
 </head>
 <body>
-<aside>
-<ul>
-        <li><a href="AddBooks.jsp">Add Books</a></li>
-		<li><a href="ViewUser.jsp">View User</a></li>
-		<li><a href="DeleteUser.jsp">Delete User</a></li>
-		<li><a href="UpdateBook.jsp">Update Book</a></li>
-		<li><a href="AddAuthor.jsp">Add Author</a></li>
-		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
-		<li><a href="ViewAuthor.jsp">View Author</a></li>
-		<li><a href="ShowProduct.jsp">Show Products</a></li>
-		<li><a href="ViewCart.jsp">View ALL Cart</a></li>
-</ul>
-</aside>
- <h2>Books Wagon</h2>
+<div class="nav">
+    <ul>        
+        <li><a href="ShowProduct.jsp" class="set1">Show Products</a></li>
+        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="Ratings.jsp">Add Ratings</a></li>
+       
+        
+    </ul>
+</div>
 
 <%
-
-        int userid = (int) session.getAttribute("userId");
+int userid = (int) session.getAttribute("userId");
         OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
         List<OrderDetails> orderList = new ArrayList<OrderDetails>();
-        orderList = orderdao.viewUserCart(userid);
+        orderList = orderdao.viewUserOrder(userid);
 %>
 
 <div>
+<h3>My Orders</h3>
 <table border="2" id="allusers">
 <thead>
 <tr>
@@ -107,6 +80,7 @@ body{
 <th>Quantity</th>
 <th>Total Cost</th>
 <th>Order Date</th>
+<th>Status</th>
 </tr>
 </thead>
 <br>
@@ -127,6 +101,7 @@ for (OrderDetails viewOrder : orderList) {
 <td><%=viewOrder.getQuantity()%></td>
 <td><%=viewOrder.getTotal_cost()%></td>
 <td><%=viewOrder.getOrder_date()%></td>
+<td><%=viewOrder.getStatus()%></td>
 </tr>
 
 <%

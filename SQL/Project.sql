@@ -56,6 +56,7 @@ create table orderdetails(order_id int DEFAULT ORDER_ID.nextval,
                  quantity int NOT NULL,
                  total_cost decimal NOT NULL,
                  order_date Default SYSDATE,
+                 status varchar2(20) Default 'ordered',
                  CONSTRAINT orders_id PRIMARY KEY(order_id),
                  CONSTRAINT customer_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
@@ -75,7 +76,7 @@ create table rating(id int generated always as identity(start with 1 increment b
                   CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
 
-drop table rating cascade constraints;
+
 
 
 create table cart(cart_id int generated always as IDENTITY(start with 100 increment by 1),
@@ -84,11 +85,13 @@ create table cart(cart_id int generated always as IDENTITY(start with 100 increm
                   FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                   FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
-drop table cart cascade constraints;
+
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in 106);
 select name,phoneno,address,email_id,password,wallet from user_details where cus_id=108;
 
+update user_details set role='user' where email_id='pavi@gmail.com';
 
+commit;
 
 select * from cart;
 select * from user_details;
@@ -97,14 +100,15 @@ select * from bookdetails;
 select * from author_details;
 select * from rating;
 
-
 --truncate table bookdetails;
 --truncate table orderdetails;
 --truncate table rating;
 
+--alter table orderdetails add status varchar2(20) Default 'ordered';
+
+--select * from cart where cus_id in 106 and book_id in 1050;
 
 
-commit;
 
 desc user_details;
 desc bookdetails;
@@ -129,12 +133,11 @@ select  Distinct (b.category),b.description,b.book_title,b.book_code,b.price,b.p
 select * from author_details;
 
 
-select avg(rating) from rating where book_id =1005;
-select * from cart;
-delete from cart where cus_id=108;
-
-commit;
-
-delete from orderdetails where cus_id=107;
+--select avg(rating) from rating where book_id =1005;
 
 select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id  where b.book_id in (select c.book_id from cart c where c.cus_id in 108);
+
+---condition
+select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old';
+
+COMMIT

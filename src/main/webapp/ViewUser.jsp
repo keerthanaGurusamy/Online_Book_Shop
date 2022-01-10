@@ -11,7 +11,7 @@
 <title>USERS LIST PAGE</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
+   background-image: url(image/book.jpg);
     background-repeat: no-repeat;
     background-size: 1350px 800px; 
     color: white;
@@ -51,7 +51,7 @@ body{
         }
         h2{
         	text-aling:center;
-        	color: white;
+        	
         	padding-top: 20px 10px;
         	
         }
@@ -61,13 +61,10 @@ body{
             right: 40%;
             padding-right: 30px;
             padding-left: 30px;
-            
+           
         }
-        <h2>Books Wagon</h2>
-        #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
+        td{
+        padding: 7px;
         }
 </style>
 </head>
@@ -97,7 +94,7 @@ body{
         userList = userdetailsdao.viewUser();
 %>
 
-<div>
+<div class="table">
 <table border="2" id="allusers">
 <thead>
 <tr>

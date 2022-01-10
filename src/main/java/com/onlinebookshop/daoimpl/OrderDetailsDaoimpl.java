@@ -42,7 +42,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
 		//String view ="select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id in ?)";
 		
-		String view = "select cus_id,book_id,quantity,total_cost,order_date from orderdetails";
+		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			Statement stm = con.createStatement();
@@ -52,7 +52,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			while(rs.next())
 			{
 				//orderList.add(new Bookdetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDate(6).toLocalDate(),rs.getString(7),rs.getString(8)));
-				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate(),rs.getString(6));
 				orderList.add(order);
 			}
 		} catch (SQLException e) {
@@ -62,7 +62,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		return orderList;
 	}
 	
-	public int updateCart(int quantity,int book_id)
+	public int updateOrder(int quantity,int book_id)
 	{
 		String updateQuery="update orderdetails set quantity=? where book_id=?";
 		Connection con = Connectionutil.getDbConnection();
@@ -81,26 +81,28 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		
 	}
 	
-	public int deleteCart(int bookid) {
-		String delete="delete from orderdetails where book_id=?";
+	public int deleteOrder(int orderid) {
+		String deleteOrder="update orderdetails set status='order canceled'  where order_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		PreparedStatement pstm=null;
 		try {
-			pstm=con.prepareStatement(delete);
-			pstm.setInt(1, bookid);
+			pstm=con.prepareStatement(deleteOrder);
+			pstm.setInt(1, orderid);
 			int noOfRows=pstm.executeUpdate();
 			System.out.println(noOfRows+ "row deleted");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return 0;
+		return 1;
 	}
 	
-	public List<OrderDetails> viewUserCart(int userid){
+	
+	
+	public List<OrderDetails> viewUserOrder(int userid){
 		
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
-		String myCart ="select cus_id,book_id,quantity,total_cost,order_date from orderdetails where cus_id=?";
+		String myCart ="select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=?";
 		
 		Connection con = Connectionutil.getDbConnection();
 		try {
@@ -109,7 +111,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				
-				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate(),rs.getString(6));
 				orderList.add(order);
 			}
 			
@@ -119,4 +121,8 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		}
 		return orderList;
 	}
+	
+	
+	
+	
 }

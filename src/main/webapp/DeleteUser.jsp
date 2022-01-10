@@ -7,7 +7,7 @@
 <title>Delete User</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
+   background-image: url(image/book.jpg);
     background-repeat: no-repeat;
     background-size: 1350px 800px; 
     color: white;
@@ -47,7 +47,7 @@ body{
         }
         h2{
         	text-aling:center;
-        	color: white;
+        	
         	padding-top: 20px 10px;
         	
         }
@@ -89,6 +89,7 @@ body{
 
 <form action="deleteuser" method="post">
 <fieldset>
+ <h4>Delete User  :</h4><br>
 <label for="emailid">User Email Id :</label><br><br>
 <input type="text" name="emailid" class="emailid"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 <center><button type="submit">Delete</button></center>

@@ -13,11 +13,13 @@
 <title>All Books</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
+
+ background-image: url(image/book.jpg);
     background-repeat: no-repeat;
     background-size: 1350px 800px; 
     color: white;
-}
+    }
+    
 .nav{
 	background-color: black;
 	color: white;
@@ -53,7 +55,7 @@ body{
         }
         h2{
         	text-aling:center;
-        	color: white;
+        
         	padding-top: 20px 10px;
         	
         }

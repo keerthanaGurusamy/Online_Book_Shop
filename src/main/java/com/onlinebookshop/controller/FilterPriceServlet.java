@@ -21,14 +21,14 @@ public class FilterPriceServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int price =Integer.parseInt(request.getParameter("search"));
+		int price = Integer.parseInt(request.getParameter("search"));
 		
 		BookdetailsDaoimpl bookdao = new BookdetailsDaoimpl();
 		//ProductDetails book =new ProductDetails(null, null, null, null, price, null, null, null, null,0, null);
 		
 		HttpSession session=request.getSession();
 	    
-	     bookdao.filterPrice(price);
+	    bookdao.filterPrice(price);
 		
 		session.setAttribute("filteredbook", price);
 		response.sendRedirect("FilterPriceProduct.jsp");

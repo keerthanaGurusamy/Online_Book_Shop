@@ -15,5 +15,5 @@ public interface BookdetailsDao {
 	public int findPrice(int proid);
 	public void updateBooks(Bookdetails bookdetails);
 	public List<ProductDetails> filterPrice(int price);
-	public List<Bookdetails> filterCondition();
+	public List<ProductDetails> filterCondition(int userid);
 }

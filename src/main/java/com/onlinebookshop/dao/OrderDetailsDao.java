@@ -11,7 +11,7 @@ public interface OrderDetailsDao {
 
 	public void insertOrder(OrderDetails cart);
 	public List<OrderDetails> viewOrder();
-	public int updateCart(int quantity,int book_id);
-	public int deleteCart(int bookid);
-	public List<OrderDetails> viewUserCart(int userid);
+	public int updateOrder(int quantity,int book_id);
+	public int deleteOrder(int bookid);
+	public List<OrderDetails> viewUserOrder(int userid);
 }

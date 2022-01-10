@@ -15,15 +15,57 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Cart</title>
+<style>
+body{
+background-color:#cdc8b1;
+}
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 6px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+  
+  .set1{
+      margin-right: 10px;
+  }
+</style>
 </head>
 <body>
+<div class="nav">
+    <ul>        
+        <li><a href="ShowProduct.jsp" class="set1">Show Products</a></li>
+        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        <li><a href="Ratings.jsp">Add Ratings</a></li>
+        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+        
+    </ul>
+</div>
 <%! int bookid;
     int cusid;
     double rate;
 %>
 <%
 CartDaoimpl cartDaoimpl = new CartDaoimpl();
- 
+ Cart cartmodel = new  Cart();
   cusid= (int)session.getAttribute("userId");
  
   List<ProductDetails> productsList =cartDaoimpl.fetchCart(cusid);
@@ -58,9 +100,10 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
                                          rate = ratingdaoimpl.fetchrating(rating);
                                          
                                          %>
-                                         <span><b>Ratings:</b><%=rate %></span><br>
+                                         <span><b>Ratings:</b><%=rate %></span><br><br>
                                          <span><a href = "BuyOrder.jsp?bookid=<%=bookdetails.getBookid()%>"><button>Buy</button></a></span>
-                                       
+                                         <span><a href = "removecart?bookid=<%=bookdetails.getBookid()%>"><button>Remove</button></a></span>
+                                         
                                     </td>
                                 </tr>
                             </tbody>

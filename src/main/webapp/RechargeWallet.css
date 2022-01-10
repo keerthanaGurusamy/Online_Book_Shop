@@ -1,14 +1,6 @@
-body {
-	background: url(image/book.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-}
 
 body{
-    background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
+   background-color:#f5f5dc;
 }
 fieldset{
     position: absolute;

@@ -36,16 +36,12 @@ padding-bottom: 150px;
 <body>
 <form action="filterprice" method="post">
 <div class="nav">
-    <ul>
-        <li><input type="text" name="search" class="text"></li>
-        <li><a href=><button>Search By Price</button></a></li>
-        
+    <ul>        
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         <li><a href="Ratings.jsp">Add Ratings</a></li>
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
-        <li><a href="FilterByCondition.jsp">Old Books</a></li>
         
     </ul>
 </div>
@@ -54,7 +50,7 @@ padding-bottom: 150px;
 <%
 int userid = (int)session.getAttribute("userId");
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<ProductDetails> showProduct= bookdetaildao.showProduct(userid);
+List<ProductDetails> showProduct= bookdetaildao.filterCondition(userid);
 Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 

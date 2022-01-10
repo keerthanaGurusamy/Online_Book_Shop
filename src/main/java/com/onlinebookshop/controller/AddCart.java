@@ -1,6 +1,8 @@
 package com.onlinebookshop.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +25,26 @@ public class AddCart extends HttpServlet {
 		
 		
 		int userId=(int) session.getAttribute("userId");
-
-		System.out.println("add cart"+userId);
+        System.out.println(userId);
 		
-		CartDaoimpl cart = new CartDaoimpl();
+		
+		CartDaoimpl cartdao = new CartDaoimpl();
 		Cart cart2 = new Cart(userId,bid);
-		cart.insertcart(cart2);
+		cart2.setCus_id(userId);
 		session.setAttribute("itemidcart", bid);
-		response.sendRedirect("cartsuccess.jsp");
+		try {
+			int cart=cartdao.insertcart(cart2);
+			if(cart > 0) {
+				response.sendRedirect("cartsuccess.jsp");
+			}else {
+				response.getWriter().println("You have already add this book in cart");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 

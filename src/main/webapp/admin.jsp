@@ -7,10 +7,7 @@
 <title>Admin</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
+   background-color:#cdc8b1;
 }
 .nav{
 	background-color: black;
@@ -46,8 +43,8 @@ body{
         	background-color:black;
         }
         h2{
-        	text-aling:center;
-        	color: white;
+        	padding-left:70px;
+        	
         	padding-top: 20px 10px;
         	
         }
@@ -71,6 +68,6 @@ body{
 </ul>
 </aside>
 	<h2>Books Wagon</h2>
-	<h1>Welcome Admin</h1>
+	<h1>Welcome Admin!...</h1>
 </body>
 </html>

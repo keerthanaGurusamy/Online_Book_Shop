@@ -4,14 +4,28 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class OrderDetails {
-
+    
+	private int order_id;
 	private int book_id;
 	private int cus_id;
 	private int quantity;
 	private double total_cost;
 	private LocalDate order_date;
+	private String Status;
 	
 	
+	public int getOrder_id() {
+		return order_id;
+	}
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+	public String getStatus() {
+		return Status;
+	}
+	public void setStatus(String status) {
+		Status = status;
+	}
 	public int getBook_id() {
 		return book_id;
 	}
@@ -54,15 +68,27 @@ public class OrderDetails {
 		this.total_cost = total_cost;
 	}
 	
-	public OrderDetails(int book_id, int cus_id, int quantity, double total_cost,LocalDate order_date) {
+	public OrderDetails(int book_id, int cus_id, int quantity, double total_cost,LocalDate order_date,String status) {
 		super();
 		this.book_id = book_id;
 		this.cus_id = cus_id;
 		this.quantity = quantity;
 		this.total_cost = total_cost;
 		this.order_date = order_date;
+		this.Status = status;
 	}
 	
+	public OrderDetails(int order_id, int book_id, int cus_id, int quantity, double total_cost, LocalDate order_date,
+			String status) {
+		super();
+		this.order_id = order_id;
+		this.book_id = book_id;
+		this.cus_id = cus_id;
+		this.quantity = quantity;
+		this.total_cost = total_cost;
+		this.order_date = order_date;
+		this.Status = status;
+	}
 	@Override
 	public String toString() {
 		return "Cart [book_id=" + book_id + ", cus_id=" + cus_id + ", quantity=" + quantity + ", total_cost="
