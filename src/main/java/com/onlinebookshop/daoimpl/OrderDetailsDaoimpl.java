@@ -28,7 +28,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			pst.setInt(3, cart.getQuantity());
 			pst.setDouble(4, cart.getTotal_cost());
 			pst.executeUpdate();
-			System.out.println("Value inserted successfully");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,7 +81,9 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		
 	}
 	
-	public int deleteOrder(int orderid) {
+	public int cancelOrder(int orderid) {
+		
+		
 		String deleteOrder="update orderdetails set status='order canceled'  where order_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		PreparedStatement pstm=null;
@@ -89,6 +91,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			pstm=con.prepareStatement(deleteOrder);
 			pstm.setInt(1, orderid);
 			int noOfRows=pstm.executeUpdate();
+			pstm.executeUpdate("commit");
 			System.out.println(noOfRows+ "row deleted");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -97,12 +100,24 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		return 1;
 	}
 	
-	
+	//rating exist:
+		public boolean OrderCancelled(String status ,int orderid) throws SQLException {
+			Connection con = Connectionutil.getDbConnection();
+			String query ="select * from rating where status='order canceled' and order_id in ?";
+			PreparedStatement pst =con.prepareStatement(query);
+			pst.setString(1, status);
+			pst.setInt(2, orderid);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+			return false;
+		}
 	
 	public List<OrderDetails> viewUserOrder(int userid){
 		
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
-		String myCart ="select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=?";
+		String myCart ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=?";
 		
 		Connection con = Connectionutil.getDbConnection();
 		try {
@@ -111,7 +126,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {
 				
-				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate(),rs.getString(6));
+				OrderDetails order = new OrderDetails(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getDouble(5),rs.getDate(6).toLocalDate(),rs.getString(7));
 				orderList.add(order);
 			}
 			
@@ -123,6 +138,42 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	}
 	
 	
+	public int findOrderPrice(int orderid) {
+		String find="select total_cost from orderdetails where order_id='"+orderid+"'";
+		Connection con = Connectionutil.getDbConnection();
+		int productId =0;
+		try {
+			Statement stm =con.createStatement();
+			ResultSet rs=stm.executeQuery(find);
+			if(rs.next())
+			{
+				productId=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return productId;
+		
+	}
 	
+	public String findStatus(int orderid) {
+		String find="select status from orderdetails where order_id='"+orderid+"'";
+		Connection con = Connectionutil.getDbConnection();
+		String status=null;
+		try {
+			Statement stm =con.createStatement();
+			ResultSet rs=stm.executeQuery(find);
+			if(rs.next())
+			{
+				 status=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return status;
+		
+	}
 	
 }

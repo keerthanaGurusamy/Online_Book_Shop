@@ -37,8 +37,8 @@ padding-bottom: 150px;
 <form action="filterprice" method="post">
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text"></li>
-        <li><a href=><button>Search By Price</button></a></li>
+        <li><input type="text" name="search" class="text" placeholder="Enter price"></li>
+        <li><a href=><button>Search</button></a></li>
         
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
@@ -85,7 +85,7 @@ Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
                                         <span><b>Author Name   :   </b><%=bookdetails.getName() %></span><br>
                                         <span><b>Author Email   :   </b><%=bookdetails.getEmail_id() %></span><br>
                                          <%
-                                         
+                     
                                          Rating rating = new Rating();
                                          rating.setBook_id(bookdetails.getBookid());
                                          rate = ratingdaoimpl.fetchrating(rating);
@@ -94,7 +94,7 @@ Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
                                          
                                          <span><b>Ratings:</b><%=rate %></span><br><br>
                                          <span><a href = "addcartserv?bookid=<%=bookdetails.getBookid()%>"><button>Add to Cart</button></a></span>
-                                       
+                                         
                                     </td>
                                 </tr>
                             </tbody>

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>cart success</title>
+<title>Low Balance</title>
 <style>
+	
 body{
  background-image: url(image/book.jpg);
     background-repeat: no-repeat;
@@ -64,6 +65,9 @@ ul
         
     </ul>
 </div>
-<h1>item added to cart successfully!!</h1>
+<h1>NOT ENOUGH AMOUNT IN YOUR WALLET !...</h1>
+<h1>Recharge Your Wallet</h1>
+<% int user=(int) session.getAttribute("newwallet");%>
+<h2>Available Balance : <% out.print(user);%></h2>
 </body>
 </html>

@@ -37,10 +37,10 @@ public class LoginServlet extends HttpServlet {
  			session.setAttribute("currentuser", user);
  			
  			int userid=userdao.findUserId(email);
- 			System.out.println(userid);
+ 			//System.out.println(userid);
  			
  			session.setAttribute("userId", userid);
- 			System.out.println("userId"+userid);
+ 			//System.out.println("userId"+userid);
  			
  			
  			session.setAttribute("emailid", email);

@@ -17,13 +17,16 @@ public class RechargeWalletServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		 String email = request.getParameter("UserEmail");
-		 System.out.println(email);
+		 //System.out.println(email);
+		
 		 int amount = Integer.parseInt(request.getParameter("Amount"));
-		 System.out.println(amount);
+		// System.out.println(amount);
+		 
 		 Double cardNumber = Double.parseDouble(request.getParameter("AccountNumber"));
-		 System.out.println(cardNumber);
+		 //System.out.println(cardNumber);
+		 
 		 Double cvv = Double.parseDouble(request.getParameter("cvv"));
-		 System.out.println(cvv);
+		 //System.out.println(cvv);
 		 
 		 
 		 

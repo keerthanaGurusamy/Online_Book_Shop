@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Cart</title>
+<title>My Cart</title>
 <style>
 body{
 background-color:#cdc8b1;
@@ -46,6 +46,9 @@ ul
   .set1{
       margin-right: 10px;
   }
+  h3{
+  margin-left: 600px;
+  }
 </style>
 </head>
 <body>
@@ -75,12 +78,14 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
 <table>
             <tbody>
                 <tr>
-                
+                 <h3>MY CART</h3>
                 <% int count=0;
                 for(ProductDetails bookdetails: productsList){
                 	%>
                     <td>
                         <table id="producttable">
+                        
+                       
                             <tbody>
                                 <tr>
                                     <td><img src="image/<%=bookdetails.getBookimages()%>" width=150 height=300 alt="book"></td>    

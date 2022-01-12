@@ -7,9 +7,20 @@
 		<servlet-name>RemoveCartServlet</servlet-name>
 		<servlet-class>com.onlinebookshop.controller.RemoveCartServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>OrderCancel</display-name>
+		<servlet-name>OrderCancel</servlet-name>
+		<servlet-class>com.onlinebookshop.controller.OrderCancel</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>RemoveCartServlet</servlet-name>
 		<url-pattern>/RemoveCartServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OrderCancel</servlet-name>
+		<url-pattern>/OrderCancel</url-pattern>
 	</servlet-mapping>
 	  
 </web-app>

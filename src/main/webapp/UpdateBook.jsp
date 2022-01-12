@@ -7,14 +7,8 @@
 <title>Update Book</title>
 <style>
 body{
-   background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
-}
-.nav{
-	background-color: black;
-	color: white;
+   background-image:url("image/backgroundimg.jpeg");
+   background-size:cover;
 }
 *{
 			margin:0;
@@ -22,52 +16,26 @@ body{
 		}
         li{
             list-style:none;
-            padding: 30px 17px;
-        }
-        li a{
-            text-decoration: none;
-            color:white;
-        }
-        aside{
-        	float:left;
-        	margin-right: 380px;
-        }
-        h1{
-        	border:1px solid white;
-        	padding-top:220px;
-        	padding-bottom: 20px;
-        }
-        h1{
-        	border : 1px solid;
-        	border-color: transparent;
-        	padding: 280px 90px;
+            display: inline-flex;
+            padding-top : 18px;
+            padding-bottom: 18px;
+            padding-left: 40px; 
         }
         ul{
-        	background-color:black;
+        	background-color: DodgerBlue;
         }
-        h2{
-        	text-aling:center;
+        li a{
+        	list-style: none;
+        	text-decoration: none;
+        	color: black;
+        	font-size: 18px;
+        	font-weight:bold;
+        }
+        .set
+        {
+        	margin: 100px 400px;
+        }
         
-        	padding-top: 20px 10px;
-        	
-        }
-        fieldset{
-            position: absolute;
-            top: 120px;
-            
-            right: 40%;
-            padding-right: 30px;
-            padding-left: 30px;
-            padding-top: 20px;
-            padding-bottom:20px;
-            
-        }
-        <h2>Books Wagon</h2>
-        #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
 </style>
 </head>
 <body>
@@ -90,16 +58,17 @@ body{
  <h2>Books Wagon</h2>
 
 <form action="updatebook" method="post">
-<fieldset>
+<div class="set">
 <h4>Update Book :</h4><br>
-<label for="booktitle">Book title :</label><br>
+<label for="booktitle">Book title :</label>
 <input type="text" name="booktitle" id="booktitle" class="booktitle" required><br><br>
 
-<label for="price">Price :</label><br>
+<label for="price">Price :</label>
 <input type="text" name="price" id="price" class="price" required><br><br>
 
 <button type ="submit">update</button>
 </fieldset>
 </form>
+</div>
 </body>
 </html>

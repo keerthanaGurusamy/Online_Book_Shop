@@ -19,11 +19,16 @@ public class RemoveCartServlet extends HttpServlet {
 		
 		int bookid= Integer.parseInt(request.getParameter("bookid"));
 		
-		System.out.println("serv"+bookid);
+		//System.out.println("serv"+bookid);
+		
 	    session.setAttribute("bookid", bookid);
 	   
+	    int userid=(int)session.getAttribute("userId");
+	    
 	    CartDaoimpl cartdao = new CartDaoimpl();
-	    cartdao.deleteCart(bookid);
+	    
+	    
+	    cartdao.deleteCart(bookid,userid);
 	    
 	    response.sendRedirect("ShowCart.jsp");
 	}

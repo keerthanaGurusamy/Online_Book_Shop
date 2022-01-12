@@ -8,14 +8,8 @@
 <title>Add Books</title>
 <style>
 body{
-  background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
-}
-.nav{
-	background-color: black;
-	color: white;
+   background-image:url("image/backgroundimg.jpeg");
+   background-size:cover;
 }
 *{
 			margin:0;
@@ -23,59 +17,28 @@ body{
 		}
         li{
             list-style:none;
-            padding: 30px 17px;
-        }
-        li a{
-            text-decoration: none;
-            color:white;
-        }
-        aside{
-        	float:left;
-        	margin-right: 380px;
-        }
-        h1{
-        	border:1px solid white;
-        	padding-top:220px;
-        	padding-bottom: 20px;
-        }
-        h1{
-        	border : 1px solid;
-        	border-color: transparent;
-        	padding: 280px 90px;
+            display: inline-flex;
+            padding-top : 18px;
+            padding-bottom: 18px;
+            padding-left: 40px; 
         }
         ul{
-        	background-color:black;
+        	background-color: DodgerBlue;
         }
-        h2{
-        	text-aling:center;
-        	
-        	padding-top: 20px 10px;
-        	
+        li a{
+        	list-style: none;
+        	text-decoration: none;
+        	color: black;
+        	font-size: 18px;
+        	font-weight:bold;
         }
-        fieldset{
-            position: absolute;
-            top: 80px;
-            right: 40%;
-            padding-right: 5px;
-            padding-left: 50px;
-            padding-bottom: 30px;
-            padding-top: 10px
-            
+        .books
+        {
+        	margin: 60px 400px;
         }
-        
-        button{
-        width: 60px;
-        }
-        <h2>Books Wagon</h2>
-        #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        
-        }
-               }
-</style>
 
+        
+</style>
 </head>
 <body>
 <aside>
@@ -98,26 +61,26 @@ body{
 <h2>Books Wagon</h2>
 
 <form action="AddBooks" method="post">
-<fieldset>
+<div class="books">
 <h4>Add Books :</h4><br>
-<label for="category">Category :</label><br>
+<label for="category">Category     :</label>
 <input type="text" name="category" class="category"- pattern="[A-Z a-z]+" required><br><br>
-<label for="description">Description :</label><br>
+<label for="description">Description : </label>
 <input type="text" name="description" class="description" pattern="[A-Z a-z ,]{6,}" required><br><br>
-<label for="booktitle">Book title :</label><br>
+<label for="booktitle">Book title :</label>
 <input type="text" name="booktitle" class="booktitle" pattern="[A-z a-z,]{5,}" required><br><br>
-<label for="bookcode">Book Code :</label><br>
+<label for="bookcode">Book Code :</label>
 <input type="text" name="bookcode" class="bookcode" pattern="[A-Z]+[0-9]{2,5}" required><br><br>
-<label for="price">Price :</label><br>
+<label for="price">Price :</label>
 <input type="text" name="price" class="price" Pattern="[1-9][0-9]+" maxlength="5" required><br><br>
-<label for="publishdate">Publish Date :</label><br>
+<label for="publishdate">Publish Date :</label>
 <input type="date" name="publishdate" class="publishdate" required><br><br>
-<label for="condition">Condition :</label><br>
+<label for="condition">Condition :</label>
 <input type="text" name="condition" class="condition" pattern="[A-Za-z]{3,10}" required><br><br>
-<label for="image">Image :</label><br>
+<label for="image">Image :</label>
 <input type="file" name="image" class="image" required><br><br>
 <button type ="submit">Add</button>
-</fieldset>
+</div>
 </form>
 </body>
 </html>

@@ -28,7 +28,7 @@ public class OrderServlet extends HttpServlet {
 
 		String userName = (String) session.getAttribute("emailid");
 
-		System.out.println(userName);
+		//System.out.println(userName);
 		
 		int itemid = (int) session.getAttribute("itemidcart");
 
@@ -37,7 +37,9 @@ public class OrderServlet extends HttpServlet {
 		int price = bookdetails.findPrice(itemid);
 
 		int totalprice = quantity * price;
-
+        
+		session.setAttribute("Totalprice", totalprice);
+		
 		OrderDetailsDaoimpl orderDao = new OrderDetailsDaoimpl();
 
 		OrderDetails orderBook = new OrderDetails(itemid, userid, quantity, totalprice);
@@ -48,10 +50,14 @@ public class OrderServlet extends HttpServlet {
 
 		int wallet = userdao.walletballance(userid);
 
+		
+		
 		if (wallet > totalprice) {
 
 			int newWallet = wallet - totalprice;
 
+			session.setAttribute("newwallet", newWallet);
+			
 			Userdetails user = new Userdetails(null, 0, null, userName, null, newWallet);
 
 			userdao.updatewall(user);
@@ -59,7 +65,7 @@ public class OrderServlet extends HttpServlet {
 			response.sendRedirect("ordermsg.jsp");
 
 		} else {
-			response.getWriter().println("Low Balance");
+			response.sendRedirect("LowBalance.jsp");
 		}
 	}
 

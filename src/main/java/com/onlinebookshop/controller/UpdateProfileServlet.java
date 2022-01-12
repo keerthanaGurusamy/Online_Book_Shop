@@ -24,7 +24,7 @@ public class UpdateProfileServlet extends HttpServlet {
 		Userdetails user = new Userdetails(name,phoneno,address,email,password,0);
 		UserdetailsDao userdao = new UserdetailsDao();
 		userdao.update(user);
-		//doGet(request, response);
+		
 	}
 
 }

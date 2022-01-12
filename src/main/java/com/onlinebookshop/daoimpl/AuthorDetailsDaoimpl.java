@@ -26,7 +26,7 @@ public class AuthorDetailsDaoimpl implements AuthorDetailsDao {
 			pstm.setString(2, author.getEmail_id());
 			pstm.setInt(3, author.getBook_id());
 			pstm.executeUpdate();
-			System.out.println("Author inserted");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

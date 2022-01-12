@@ -16,10 +16,13 @@ public class CartDaoimpl {
 
 	public int insertcart(Cart cart) throws SQLException {
 		int res = 0;
-		//sSystem.out.println(cartexist(cart.getCus_id(), cart.getBook_id()));
+		//System.out.println(cartexist(cart.getCus_id(), cart.getBook_id()));
+		
 		if(cartexist(cart.getCus_id(), cart.getBook_id()) == false) {
+		
 			//System.out.println(cart.getCus_id() + "fvghjk" +cart.getBook_id());
-		String insertQuery="insert into cart(book_id,cus_id)values(?,?)";
+		
+			String insertQuery="insert into cart(book_id,cus_id)values(?,?)";
 		Connection con = Connectionutil.getDbConnection();
 		
 		try {
@@ -96,14 +99,15 @@ public class CartDaoimpl {
 
 	}
 	
-	public int deleteCart(int bookid) {
-		System.out.println(bookid);
-		String delete="delete from cart where book_id=?";
+	public int deleteCart(int bookid,int userid) {
+		
+		String delete="delete from cart where book_id=? and cus_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		PreparedStatement pstm=null;
 		try {
 			pstm=con.prepareStatement(delete);
 			pstm.setInt(1, bookid);
+			pstm.setInt(2, userid);
 			int noOfRows=pstm.executeUpdate();
 			System.out.println(noOfRows+ "row deleted");
 		} catch (SQLException e) {

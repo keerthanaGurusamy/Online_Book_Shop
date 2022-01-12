@@ -19,13 +19,15 @@ public class AddCart extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
 		int bid= Integer.parseInt(request.getParameter("bookid"));
 		
-    	System.out.println("bid"+bid);
+    	//System.out.println("bid"+bid);
 		
 		
 		int userId=(int) session.getAttribute("userId");
-        System.out.println(userId);
+		
+        //System.out.println(userId);
 		
 		
 		CartDaoimpl cartdao = new CartDaoimpl();

@@ -33,10 +33,9 @@ create table bookdetails(book_id int DEFAULT book_id.nextval,
 
 create SEQUENCE book_id increment by 1 start with 1000;
 drop sequence book_id;
-insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values('Architecture','A fascinating, thought-provoking journey into our built environment','The Great Indoors','B10',800,'10-12-2021','New','https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg');
 
-ALTER TABLE bookdetails
-DROP COLUMN Publisher_id;
+
+insert into bookdetails(category,description,book_title,book_code,price,publish_date,condition,bookimages)values('Architecture','A fascinating, thought-provoking journey into our built environment','The Great Indoors','B10',800,'10-12-2021','New','https://d2g9wbak88g7ch.cloudfront.net/productimages/images200/725/9781787395725.jpg');
 
 
 create table author_details(author_id int DEFAULT author_id.nextval,
@@ -89,7 +88,7 @@ create table cart(cart_id int generated always as IDENTITY(start with 100 increm
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in 106);
 select name,phoneno,address,email_id,password,wallet from user_details where cus_id=108;
 
-update user_details set role='user' where email_id='pavi@gmail.com';
+update user_details set role='user' where email_id='keerthi05@gmail.com';
 
 commit;
 
@@ -100,6 +99,7 @@ select * from bookdetails;
 select * from author_details;
 select * from rating;
 
+alter table bookdetails add status varchar2(20) Default 'Available';
 --truncate table bookdetails;
 --truncate table orderdetails;
 --truncate table rating;
@@ -130,7 +130,7 @@ select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,
 select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),NVL(r.rating,0),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id left join rating r on b.book_id = r.book_id where price <=200;
 
 select  Distinct (b.category),b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),NVL(r.rating,0),b.bookimages from bookdetails b, author_details a,rating r where b.book_id = a.book_id(+) and b.book_id = r.book_id(+);
-select * from author_details;
+
 
 
 --select avg(rating) from rating where book_id =1005;
@@ -140,4 +140,4 @@ select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,
 ---condition
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old';
 
-COMMIT
+delete from cart where book_id=1047 and cus_id= 106;

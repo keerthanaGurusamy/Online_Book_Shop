@@ -13,41 +13,30 @@
 <title>View Orders</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
-    background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
+   background-image:url("image/backgroundimg.jpeg");
+   background-size:cover;
 }
-ul
-    {
-        list-style: none;
-        background-color: #1c1c1c;
-        margin:0;
-    }
-  li{
-      display:inline-block;
-      padding-top: 14px;
-      padding-bottom: 14px;
-      text-align: center;
-      font-size: 17px;
-  }
-  li a{
-      text-decoration: none;
-      color:white;
-      display:block;
-      padding-right: 6px;
-      padding-left: 7px;
-  }
- li  button{
-      margin-right: 500px;
-  }
-  
-  .set1{
-      margin-right: 10px;
-  }
-  table{
-  margin-left: 450px;
-  }
+*{
+			margin:0;
+			padding:0;
+		}
+        li{
+            list-style:none;
+            display: inline-flex;
+            padding-top : 18px;
+            padding-bottom: 18px;
+            padding-left: 40px; 
+        }
+        ul{
+        	background-color: DodgerBlue;
+        }
+        li a{
+        	list-style: none;
+        	text-decoration: none;
+        	color: black;
+        	font-size: 18px;
+        	font-weight:bold;
+        }
 </style>
 </head>
 <body>
@@ -75,18 +64,20 @@ int userid = (int) session.getAttribute("userId");
 <thead>
 <tr>
   <th >S.no</th>
-<th>Customer id</th>
+
 <th>Book Id</th>
 <th>Quantity</th>
 <th>Total Cost</th>
 <th>Order Date</th>
 <th>Status</th>
+
 </tr>
 </thead>
 <br>
 <br>
 
 <tbody>
+
 <%
 int i = 0;
 for (OrderDetails viewOrder : orderList) {
@@ -96,23 +87,37 @@ for (OrderDetails viewOrder : orderList) {
 
 
 <td><%=i%></td>
-<td><%=viewOrder.getCus_id()%></td>
+
 <td><%=viewOrder.getBook_id()%></td>
 <td><%=viewOrder.getQuantity()%></td>
 <td><%=viewOrder.getTotal_cost()%></td>
 <td><%=viewOrder.getOrder_date()%></td>
-<td><%=viewOrder.getStatus()%></td>
+<td><%=viewOrder.getStatus() %></td>
+<td><span><a href = "cancelorder?orderid=<%=viewOrder.getOrder_id()%>"><button>Cancel</button></a></span><td>
+
+
 </tr>
 
 <%
 }
 %>
+<%!
+ String c;
+%>
+<%
+if(session.getAttribute("cancel") != null){
+
+	c=session.getAttribute("cancel").toString();
+}
+%>
+
 </tbody>
           </table>
 
 
-</div>
- 
+</div><br><br>
+               <%=c %>
+               <%session.removeAttribute(c); %>
 </body>
 </html>
 </html>

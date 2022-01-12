@@ -54,7 +54,8 @@ public class AddBooksServlet extends HttpServlet {
 		String image = request.getParameter("image");
 		Bookdetails bookdetails = new Bookdetails(category,description,booktitle,bookcode,price,publishdate,condition,image);
 		bookDao.insertBooks(bookdetails);
-		pw.write("inserted successfully");
+		
+		response.sendRedirect("ViewAllBook.jsp");
 		//doGet(request, response);
 	}
 

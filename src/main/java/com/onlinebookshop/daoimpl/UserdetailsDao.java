@@ -141,6 +141,24 @@ public class UserdetailsDao implements UserDetailsDao{
 		return userList;
 	}
 	
+	public List<Userdetails> viewParticularUser(){
+		List<Userdetails> userList=new ArrayList<Userdetails>();
+		String show="select * from user_details where role='user'";
+		Connection con=Connectionutil.getDbConnection();
+		try {
+			Statement stm=con.createStatement();
+			ResultSet rs=stm.executeQuery(show);
+			while(rs.next()) {
+				Userdetails user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+				userList.add(user);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userList;
+	}
+	
 	public int findUserId(String emailId)
 	{
 		String findUser="select cus_id from user_details where email_id='"+emailId+"'";
@@ -222,6 +240,30 @@ public class UserdetailsDao implements UserDetailsDao{
 		}
 		return userList;
 	}
+	
+       public boolean  refundWall(Userdetails userdetails) {
+		
+		Connection con = Connectionutil.getDbConnection();
+		String query = "update user_details set wallet = ? where email_id = ?";
+		
+		PreparedStatement pstm;
+		try {
+			
+			pstm = con.prepareStatement(query);
+			pstm.setInt(1, userdetails.getWallet());
+			pstm.setString(2,userdetails.getEmail_id());
+			int i = pstm.executeUpdate();
+			
+			System.out.println(i+"Wallet is updated");
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
+
 }
 	
 

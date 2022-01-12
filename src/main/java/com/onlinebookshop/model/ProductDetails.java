@@ -17,6 +17,7 @@ public class ProductDetails {
 	private String email_id;
 	private int rating;
 	private String bookimages;
+	private String status;
 	
 	public int getBookid() {
 		return bookid;
@@ -90,6 +91,14 @@ public class ProductDetails {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public ProductDetails() {
 		super();
 		// TODO Auto-generated constructor stub

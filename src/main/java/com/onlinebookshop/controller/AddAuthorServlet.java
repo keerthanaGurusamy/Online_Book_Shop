@@ -48,7 +48,7 @@ public class AddAuthorServlet extends HttpServlet {
 		BookdetailsDaoimpl bookdetailsDaoimpl = new BookdetailsDaoimpl();
 		int bid = bookdetailsDaoimpl.findProductid(bname);
 		
-		System.out.println(email);
+		//System.out.println(email);
 		
 		AuthorDetails author = new AuthorDetails(authorname,email,bid);
 		AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
