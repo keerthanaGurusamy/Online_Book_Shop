@@ -13,40 +13,63 @@
 <title>View Orders</title>
 <style>
 body{
-   background-image:url("image/backgroundimg.jpeg");
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
-*{
-			margin:0;
-			padding:0;
-		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
-        }
-        ul{
-        	background-color: DodgerBlue;
-        }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
-        }
+a{
+    text-decoration: none;
+    color: white;
+}
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 7px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 700px;
+  }
+  
+  .set1{
+      margin-right: 10px;
+  }
+  h3{
+  text-align: center;
+  
+  }
+  table {
+	margin-left: 450px;
+}
+  
 </style>
 </head>
 <body>
 <div class="nav">
-    <ul>        
-        <li><a href="ShowProduct.jsp" class="set1">Show Products</a></li>
+    <ul>       
+        <li><a href="ShowProduct.jsp">Show Product</a></li>   
+        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        <li><a href="Ratings.jsp">Add Ratings</a></li>
-       
+        
+        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
@@ -70,7 +93,7 @@ int userid = (int) session.getAttribute("userId");
 <th>Total Cost</th>
 <th>Order Date</th>
 <th>Status</th>
-
+<th>Cancel Order</th>
 </tr>
 </thead>
 <br>
@@ -101,23 +124,13 @@ for (OrderDetails viewOrder : orderList) {
 <%
 }
 %>
-<%!
- String c;
-%>
-<%
-if(session.getAttribute("cancel") != null){
 
-	c=session.getAttribute("cancel").toString();
-}
-%>
 
 </tbody>
           </table>
 
 
 </div><br><br>
-               <%=c %>
-               <%session.removeAttribute(c); %>
+              
 </body>
-</html>
 </html>

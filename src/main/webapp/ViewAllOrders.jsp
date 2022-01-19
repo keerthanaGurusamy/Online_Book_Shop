@@ -13,66 +13,73 @@
 <title>View Orders</title>
 <style>
 body{
-    background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
-}
-.nav{
-	background-color: black;
-	color: white;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            padding: 30px 17px;
-        }
-        li a{
-            text-decoration: none;
-            color:white;
-        }
-        aside{
-        	float:left;
-        	margin-right: 380px;
-        }
-        h1{
-        	border:1px solid white;
-        	padding-top:220px;
-        	padding-bottom: 20px;
-        }
-        h1{
-        	border : 1px solid;
-        	border-color: transparent;
-        	padding: 280px 90px;
-        }
-        ul{
-        	background-color:black;
-        }
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
         h2{
-        	text-aling:center;
-        	color: white;
-        	padding-top: 20px 10px;
-        	
+        margin-top:20px;
+        text-align: center;
+        
+        }
+        h1{
+        margin-top: 70px;
         }
         
-        <h2>Books Wagon</h2>
-        #allusers table,th,tr,td{
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 10px;
-        }
+fieldset{
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
 table{
-margin-top: 120px;
-
+margin-top: 10px;
+margin-left: 450px;
 }
 th{
 padding: 10px;
 }
 td{
 padding: 10px;
+}
+h3{
+text-align: center;
+margin-top: 20px;
 }
 </style>
 </head>
@@ -90,11 +97,11 @@ padding: 10px;
 		<li><a href="AuthorUpdate.jsp">Update Author</a></li>
 		<li><a href="ViewAuthor.jsp">View Author</a></li>
 		
-		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
+		
 </ul>
 </aside>
  <h2>Books Wagon</h2>
-
+ <h3>All Orders</h3>
 <%
 
  OrderDetailsDaoimpl orderdao = new OrderDetailsDaoimpl();
@@ -112,6 +119,7 @@ padding: 10px;
 <th>Quantity</th>
 <th>Total Cost</th>
 <th>Order Date</th>
+<th>Status</th>
 </tr>
 </thead>
 <br>
@@ -132,6 +140,7 @@ for (OrderDetails viewOrder : orderList) {
 <td><%=viewOrder.getQuantity()%></td>
 <td><%=viewOrder.getTotal_cost()%></td>
 <td><%=viewOrder.getOrder_date()%></td>
+<td><%=viewOrder.getStatus() %></td>
 </tr>
 
 <%

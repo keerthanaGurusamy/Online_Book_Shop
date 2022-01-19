@@ -8,36 +8,93 @@
 <title>Add Books</title>
 <style>
 body{
-   background-image:url("image/backgroundimg.jpeg");
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+        h2{
+        margin-top:50px;
+        text-align: center;
+        
         }
-        ul{
-        	background-color: DodgerBlue;
-        }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
+        h1{
+        margin-top: 100px;
         }
         .books
         {
         	margin: 60px 400px;
         }
-
         
+        h2{
+            text-align: center;
+        }
+        
+        .category{
+            margin-left: 40px;
+        }
+        
+        .description{
+            margin-left: 22px;
+        }
+        
+        .booktitle{
+            margin-left: 32px;
+        }
+        
+        .bookcode{
+           margin-left: 24px;
+        }
+        
+        .price{
+           margin-left: 62px;
+        }
+        
+        .publishdate{
+           margin-left: 14px;
+        }
+        
+        .condition{
+           margin-left: 30px;
+        }
+        
+        .image{
+           margin-left: 53px;
+        }
+        button{
+           margin-left: 100px;
+           width: 60px;
+           padding-top: 6px;
+           padding-bottom: 6px;
+        }
 </style>
 </head>
 <body>
@@ -63,8 +120,8 @@ body{
 <form action="AddBooks" method="post">
 <div class="books">
 <h4>Add Books :</h4><br>
-<label for="category">Category     :</label>
-<input type="text" name="category" class="category"- pattern="[A-Z a-z]+" required><br><br>
+<label for="category">Category :</label>
+<input type="text" name="category" class="category" pattern="[A-Z a-z]+" required><br><br>
 <label for="description">Description : </label>
 <input type="text" name="description" class="description" pattern="[A-Z a-z ,]{6,}" required><br><br>
 <label for="booktitle">Book title :</label>

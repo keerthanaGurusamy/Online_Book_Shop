@@ -17,9 +17,18 @@
 <title>My Cart</title>
 <style>
 body{
-background-color:#cdc8b1;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
-ul
+img{
+width: 250px;
+padding:20px;
+border-radius: 14%;
+box-shadow: 5px 15px 12px #888888;
+}ul
     {
         list-style: none;
         background-color: #1c1c1c;
@@ -36,7 +45,7 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 6px;
+      padding-right: 110px;
       padding-left: 7px;
   }
  li  button{
@@ -49,16 +58,29 @@ ul
   h3{
   margin-left: 600px;
   }
+  b{
+padding-right: 20px;
+}
+.btn {
+margin-right: 30px;
+margin-left: 30px;
+}
+button{
+padding-top: 5px;
+padding-bottom: 5px;
+}
 </style>
 </head>
 <body>
 <div class="nav">
     <ul>        
-        <li><a href="ShowProduct.jsp" class="set1">Show Products</a></li>
+        <li><a href="ShowProduct.jsp">Show Product</a></li> 
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        <li><a href="Ratings.jsp">Add Ratings</a></li>
+        
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
@@ -88,26 +110,26 @@ CartDaoimpl cartDaoimpl = new CartDaoimpl();
                        
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=150 height=300 alt="book"></td>    
+                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=150 height=350 alt="book"></td>    
                                     <td class="book">
-                                         <span><b>Category: </b><%=bookdetails.getCategory() %> </span><br>
-                                         <span><b>Description: </b><%=bookdetails.getDescription() %>  </span><br>
-                                         <span><b>Book Title: </b><%=bookdetails.getBook_title()%> </span><br>
-                                         <span><b>Book Code:</b><%=bookdetails.getBook_code() %> </span><br>
-                                         <span><b>Price:</b><%=bookdetails.getPrice() %></span><br>
-                                         <span><b>Publish Date:</b><%=bookdetails.getPublish_date()%></span><br>
-                                         <span><b>Condition:</b><%=bookdetails.getCondition() %></span><br>
-                                         <span><b>Author Name:</b><%=bookdetails.getName() %></span><br>
-                                         <span><b>Author Email:</b><%=bookdetails.getEmail_id() %></span><br>
+                                         <p><b>CATEGORY  :    </b><%=bookdetails.getCategory() %> <br></p>
+                                         <p><b>DESCRIPTION: </b><%=bookdetails.getDescription() %><br></p>
+                                         <p><b>BOOK TITLE: </b><%=bookdetails.getBook_title()%><br></p>
+                                         <p><b>BOOK CODE:</b><%=bookdetails.getBook_code() %><br></p>
+                                         <p><b>PRICE:</b><%=bookdetails.getPrice() %><br></p>
+                                         <p><b>PUBLISH DATE:</b><%=bookdetails.getPublish_date()%><br></p>
+                                         <p><b>CONDITION:</b><%=bookdetails.getCondition() %><br></p>
+                                         <p><b>AUTHOR NAME:</b><%=bookdetails.getName() %><br></p>
+                                         <p><b>AUTHOR EMAIL:</b><%=bookdetails.getEmail_id() %><br></p>
                                          <%
                                          Rating rating = new Rating();
                                          rating.setBook_id(bookdetails.getBookid());
                                          rate = ratingdaoimpl.fetchrating(rating);
                                          
                                          %>
-                                         <span><b>Ratings:</b><%=rate %></span><br><br>
-                                         <span><a href = "BuyOrder.jsp?bookid=<%=bookdetails.getBookid()%>"><button>Buy</button></a></span>
-                                         <span><a href = "removecart?bookid=<%=bookdetails.getBookid()%>"><button>Remove</button></a></span>
+                                        <b>RATINGS:</b><%=rate %><br><br>
+                                         <a href = "BuyOrder.jsp?bookid=<%=bookdetails.getBookid()%>"><button class="btn">Buy</button></a>
+                                        <a href = "removecart?bookid=<%=bookdetails.getBookid()%>"><button>Remove</button></a>
                                          
                                     </td>
                                 </tr>

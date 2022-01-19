@@ -8,13 +8,13 @@
 <style>
 	
 body{
- background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
-}
-h1{
-margin-left: 380px;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
+}h1{
+text-align:center;
 padding-top: 200px;
 }
 h2{
@@ -41,11 +41,11 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
+      padding-right: 90px;
       padding-left: 7px;
   }
  li  button{
-      margin-right: 700px;
+      margin-right: 500px;
   }
   
   .set1{
@@ -62,12 +62,14 @@ ul
         <li><a href="Ratings.jsp">Add Ratings</a></li>
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
         <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
+        
         
     </ul>
 </div>
 <h1>NOT ENOUGH AMOUNT IN YOUR WALLET !...</h1>
-<h1>Recharge Your Wallet</h1>
-<% int user=(int) session.getAttribute("newwallet");%>
+<h2>Recharge Your Wallet..</h2>
+<% int user=(int) session.getAttribute("availwallet");%>
 <h2>Available Balance : <% out.print(user);%></h2>
 </body>
 </html>

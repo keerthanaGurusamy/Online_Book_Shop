@@ -23,21 +23,22 @@ public class RatingServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		int userid= (int)session.getAttribute("userId");
-		String bookname = request.getParameter("bookname");
-		
-		BookdetailsDaoimpl bookdetailsDao = new BookdetailsDaoimpl();
-		int book=bookdetailsDao.findProductid(bookname);
+
+		int ID = (int) session.getAttribute("BookID");		
 		
 		int rating = Integer.parseInt(request.getParameter("ratings"));
 		
-		Rating rate=new Rating(userid,book,rating);
+		Rating rate=new Rating(userid,ID,rating);
+		
 		Ratingdaoimpl ratingdao = new Ratingdaoimpl();
+		
 		try {
 			int res = ratingdao.insertrating(rate);
+			
 			if(res > 0) {
 				response.sendRedirect("ShowProduct.jsp");
 			}else {
-				response.getWriter().println("You have already rated for this book!!");
+				response.sendRedirect("AlreadyRating.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -21,6 +21,7 @@
         <a href="forgot password.html">Forgot password??</a><br><br>
         <p>Don't have an account??...
         <a href="Register.jsp">Register</a></p>
+        
   </fieldset>
 </form>
 </body>

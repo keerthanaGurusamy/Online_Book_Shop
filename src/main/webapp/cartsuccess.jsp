@@ -7,10 +7,11 @@
 <title>cart success</title>
 <style>
 body{
- background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 h1{
 margin-left: 380px;

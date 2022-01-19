@@ -24,7 +24,7 @@ public class Ratingdaoimpl implements RatingDao{
 				pstm.setDouble(3, rating.getRating());
 				int res =pstm.executeUpdate();
 				pstm.executeUpdate("commit");
-				System.out.println("Book details are inserted ");
+				System.out.println("Ratings inserted ");
 				return res;
 				
 			} catch (SQLException e) {

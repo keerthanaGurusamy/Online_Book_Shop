@@ -7,31 +7,60 @@
 <title>Add Author</title>
 <style>
 body{
-   background-color: #cce5ff;
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+        h2{
+        margin-top:50px;
+        text-align: center;
+        
         }
-        ul{
-        	background-color: DodgerBlue;
-        }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
+        h1{
+        margin-top: 100px;
         }
         
+fieldset{
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
 </style>
 </head>
 <body>

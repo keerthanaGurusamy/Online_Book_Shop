@@ -29,9 +29,9 @@ public class OrderCancelServlet extends HttpServlet {
 		
 		if(status.equals("order canceled")) {
 			
-			session.setAttribute("cancel", "Already cancelled this order");
 			
-			response.sendRedirect("ViewMyOrders.jsp");
+			
+			response.sendRedirect("AlreadyCancel.jsp");
 			
 			
 		}else {
@@ -50,6 +50,8 @@ public class OrderCancelServlet extends HttpServlet {
 		
 				int refund = wallet + totalAmount;
 				
+				session.setAttribute("availbalance", refund);
+				
 				String email=(String) session.getAttribute("emailid");
 				
 				Userdetails updatewallet = new Userdetails(null,0,null,email,null,refund);
@@ -58,7 +60,7 @@ public class OrderCancelServlet extends HttpServlet {
 				
 				
 				
-				response.sendRedirect("ViewMyOrders.jsp");
+				response.sendRedirect("OrderCancel.jsp");
 			
 		}
 		

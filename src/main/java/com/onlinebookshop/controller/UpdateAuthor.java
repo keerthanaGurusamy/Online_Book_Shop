@@ -45,6 +45,7 @@ public class UpdateAuthor extends HttpServlet {
           AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
           authordao.updateAuthor(authoremail, authorname);
      
+          response.sendRedirect("ViewAuthor.jsp");
 		//doGet(request, response);
 	}
 

@@ -43,13 +43,13 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		return 1;
 	}
 	
-	public void deleteBooks(String product) {
-		String delete="delete from bookdetails where book_title=?";
+	public void deleteBooks(int product) {
+		String delete="update bookdetails set status='Not Available' where book_id=?";
 		Connection con = Connectionutil.getDbConnection();
 		PreparedStatement pstm=null;
 		try {
 			pstm=con.prepareStatement(delete);
-			pstm.setString(1, product);
+			pstm.setInt(1, product);
 			int noOfRows=pstm.executeUpdate();
 			System.out.println(noOfRows+ "row deleted");
 		} catch (SQLException e) {
@@ -63,7 +63,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	{
 		List<ProductDetails> productsList=new ArrayList<ProductDetails>();
 		
-		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id ";
+		String show = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where status='Available'";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pstm = con.prepareStatement(show);
@@ -100,6 +100,24 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			e.printStackTrace();
 		}
 		return productId;
+		
+	}
+	public String findBookname(int book_id) {
+		String find="select book_title from bookdetails where book_id='"+book_id+"'";
+		Connection con = Connectionutil.getDbConnection();
+		String product =null;
+		try {
+			Statement stm =con.createStatement();
+			ResultSet rs=stm.executeQuery(find);
+			if(rs.next())
+			{
+				product=rs.getString(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return product;
 		
 	}
 	
@@ -159,6 +177,27 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		return FilterPrice;
 	}
 	
+      public List<ProductDetails> filterName(String bookname) {
+		
+		List<ProductDetails> FilterName=new ArrayList<ProductDetails>();
+		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where price <= ?";
+		Connection con = Connectionutil.getDbConnection();
+		try {
+			PreparedStatement pstm = con.prepareStatement(filter);
+		    pstm.setString(1, bookname);
+			ResultSet rs=pstm.executeQuery();
+			while(rs.next())
+			{
+				ProductDetails product = new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11));
+				FilterName.add(product);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}	
+		return FilterName;
+	}
+	
 	public List<ProductDetails> filterCondition(int userid) {
 		List<ProductDetails> conditionList=new ArrayList<ProductDetails>();
 		String condition="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old'";
@@ -203,7 +242,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 	{
 		List<Bookdetails> productsList=new ArrayList<Bookdetails>();
 		
-		String show = "select book_id,category,description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails";
+		String show = "select book_id,category,description,book_title,book_code,price,publish_date,condition,bookimages,status from bookdetails";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pstm = con.prepareStatement(show);
@@ -211,7 +250,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 			ResultSet rs=pstm.executeQuery();
 			while(rs.next())
 			{
-				Bookdetails book = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9));
+				Bookdetails book = new Bookdetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10));
 				productsList.add(book);
 				
 			
@@ -224,6 +263,18 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
 		return productsList;
 	}
 	
+	public List<ProductDetails> ratingproducts(int bookid) throws SQLException{
+		Connection con = Connectionutil.getDbConnection();
+		List<ProductDetails> bookdetails = new ArrayList<ProductDetails>();
+		String query = "select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id in ?";
+		PreparedStatement pstm = con.prepareStatement(query);
+		pstm.setInt(1, bookid);
+		ResultSet rs = pstm.executeQuery();
+		while(rs.next()) {
+			bookdetails.add(new ProductDetails(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6),rs.getDate(7).toLocalDate(),rs.getString(8),rs.getString(9),rs.getString(10),0,rs.getString(11)));
+		}
+		return bookdetails;
+	}
 	
 
 }

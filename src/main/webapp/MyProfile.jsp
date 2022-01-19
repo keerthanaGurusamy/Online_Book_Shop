@@ -11,17 +11,16 @@
 <title>USERS LIST PAGE</title>
 <style>
 body{
-   background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
-    
+    background-size: 2000px 2470px;
+    color:black;
     
 }
 fieldset{
             position: absolute;
             top: 120px;
-            right: 40%;
+            right: 35%;
             padding-right: 30px;
             padding-left: 30px;
             padding-top: 20px;
@@ -65,6 +64,10 @@ fieldset{
   h2{
   padding-left: 500px;
   }
+  pre{
+    font-size: 17px;  
+  
+  }
 </style>
 <body>
 <%
@@ -77,12 +80,13 @@ int user=(int)session.getAttribute("userId");
 %>
 <div class="nav">
     <ul>
-        
+         <li><a href="ShowProduct.jsp">Show Product</a></li> 
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-        
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
-        <li><a href="Ratings.jsp">Add Ratings</a></li>
+        
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
@@ -98,7 +102,7 @@ for (Userdetails viewUser : userList) {
 <fieldset>
 
 <pre><b>Name         :  </b><%=viewUser.getName()%><br>
-<b>Phone No     :  </b> <%=viewUser.getPhoneNo()%><br>
+<b>Phone No     :  </b><%=viewUser.getPhoneNo()%><br>
 <b>Address      :  </b><%=viewUser.getAddress()%><br>
 <b>Email_id     :  </b><%=viewUser.getEmail_id()%><br>
 <b>Password     :  </b><%=viewUser.getPassword()%><br>

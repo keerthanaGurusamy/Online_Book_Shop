@@ -13,31 +13,47 @@
 <title>All Books</title>
 <style>
 body{
-   background-image:url("image/backgroundimg.jpeg");
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
-        }
-        ul{
-        	background-color: DodgerBlue;
-        }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
-        }
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+        h2{
+        margin-top:50px;
+        text-align: center;
         
+        }
+        h1{
+        margin-top: 100px;
+        }        
 </style>
 </head>
 <body>
@@ -81,6 +97,8 @@ body{
 <th>Publish Date</th>
 <th>Condition</th>
 <th>Book image</th>
+<th>Status</th>
+<th>Delete</th>
 </tr>
 </thead>
 <br>
@@ -105,7 +123,8 @@ for (Bookdetails viewBook : userList) {
 <td> <%=viewBook.getPublish_date()%></td>
 <td> <%=viewBook.getCondition()%></td>
 <td> <%=viewBook.getBookimages()%></td>
-
+<td> <%=viewBook.getStatus()%></td>
+ <td><a href = "DeleteBooks?bookid=<%=viewBook.getBookid()%>"><button>Remove</button></a></td>
 </tr>
 
 <%

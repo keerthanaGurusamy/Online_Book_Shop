@@ -7,36 +7,60 @@
 <title>Delete User</title>
 <style>
 body{
-   background-image:url("image/backgroundimg.jpeg");
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+        h2{
+        margin-top:50px;
+        text-align: center;
+        
         }
-        ul{
-        	background-color: DodgerBlue;
+        h1{
+        margin-top: 100px;
         }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
-        }
-        .delete
-        {
-        	border: 1px solid black;
-        	padding : 20px 30px;
-        	margin: 100px 500px;
-        }
+        
+fieldset{
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
            
 </style>
 </head>
@@ -60,12 +84,15 @@ body{
  <h2>Books Wagon</h2>
 
 <form action="deleteuser" method="post">
+<fieldset>
 <div class="delete">
+
  <h4>Delete User  :</h4><br>
 <label for="emailid">User Email Id :</label><br><br>
 <input type="text" name="emailid" class="emailid"  pattern="[a-z0-9]+[@][a-z]+[.][a-z]+{8,15}" required><br><br>
 <button type="submit">Delete</button>
 </div>
+</fieldset>
 </form>
 </body>
 </html>

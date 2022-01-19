@@ -7,29 +7,46 @@
 <title>Admin</title>
 <style>
 body{
-   background-image:url("image/backgroundimg.jpeg");
-   background-size:cover;
+    background-image: url(image/new4.jpg);
+    background-repeat: no-repeat;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 *{
 			margin:0;
 			padding:0;
 		}
-        li{
-            list-style:none;
-            display: inline-flex;
-            padding-top : 18px;
-            padding-bottom: 18px;
-            padding-left: 40px; 
+ul
+    {
+        list-style: none;
+        background-color: #1c1c1c;
+        margin:0;./,
+    }
+  li{
+      display:inline-block;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 7px;
+  }
+ li  button{
+      margin-right: 500px;
+  }
+        h2{
+        margin-top:50px;
+        text-align: center;
+        
         }
-        ul{
-        	background-color: DodgerBlue;
-        }
-        li a{
-        	list-style: none;
-        	text-decoration: none;
-        	color: black;
-        	font-size: 18px;
-        	font-weight:bold;
+        h1{
+        margin-top: 100px;
         }
         
 </style>
@@ -50,6 +67,6 @@ body{
 		<li><a href="ViewAllOrders.jsp">View ALL Orders</a></li>
 </ul>
 	<h2>Books Wagon</h2>
-	<h1>Welcome Admin!...</h1>
+	<marquee><h1>Welcome Admin!...</h1></marquee>
 </body>
 </html>

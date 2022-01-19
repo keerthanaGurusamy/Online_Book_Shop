@@ -42,7 +42,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
 		//String view ="select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from orderdetails where cus_id in ?)";
 		
-		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails";
+		String view = "select cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			Statement stm = con.createStatement();
@@ -117,7 +117,7 @@ public class OrderDetailsDaoimpl implements OrderDetailsDao{
 	public List<OrderDetails> viewUserOrder(int userid){
 		
 		List<OrderDetails> orderList=new ArrayList<OrderDetails>();
-		String myCart ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=?";
+		String myCart ="select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=? order by order_id desc";
 		
 		Connection con = Connectionutil.getDbConnection();
 		try {

@@ -14,6 +14,14 @@ public class Bookdetails {
 	private LocalDate publish_date;
 	private String condition;
 	private String bookimages;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getCategory() {
 		return category;
 	}
@@ -96,6 +104,21 @@ public class Bookdetails {
 		this.publish_date = publish_date;
 		this.condition = condition;
 		this.bookimages = bookimages;
+	}
+	
+	public Bookdetails(int bookid, String category, String description, String book_title, String book_code, int price,
+			LocalDate publish_date, String condition, String bookimages, String status) {
+		super();
+		this.bookid = bookid;
+		this.category = category;
+		this.description = description;
+		this.book_title = book_title;
+		this.book_code = book_code;
+		this.price = price;
+		this.publish_date = publish_date;
+		this.condition = condition;
+		this.bookimages = bookimages;
+		this.status = status;
 	}
 	@Override
 	public String toString() {

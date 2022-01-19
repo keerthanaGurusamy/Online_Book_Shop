@@ -30,7 +30,7 @@ public class OrderServlet extends HttpServlet {
 
 		//System.out.println(userName);
 		
-		int itemid = (int) session.getAttribute("itemidcart");
+		int itemid = (int) session.getAttribute("Book");
 
 		BookdetailsDaoimpl bookdetails = new BookdetailsDaoimpl();
 
@@ -50,7 +50,7 @@ public class OrderServlet extends HttpServlet {
 
 		int wallet = userdao.walletballance(userid);
 
-		
+		session.setAttribute("availwallet", wallet);
 		
 		if (wallet > totalprice) {
 

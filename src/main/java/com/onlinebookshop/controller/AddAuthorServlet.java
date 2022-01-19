@@ -55,7 +55,7 @@ public class AddAuthorServlet extends HttpServlet {
 		authordao.insertAuthor(author);
 		
 		request.setAttribute("addauthor", "Author added sucessfully");
-		response.sendRedirect("admin.jsp");
+		response.sendRedirect("ViewAuthor.jsp");
 		
 	}
 

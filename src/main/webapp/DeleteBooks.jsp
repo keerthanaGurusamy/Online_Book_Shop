@@ -86,7 +86,7 @@ body{
 </aside>
  <h2>Books Wagon</h2>
 
-<form action="DeleteBooks" method="post">
+<form action="#" method="post">
 <fieldset>
 <label for="booktitle">Book Title :</label><br>
 <input type="text" name="booktitle" class="booktitle"  required><br><br>

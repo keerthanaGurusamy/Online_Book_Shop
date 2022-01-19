@@ -7,11 +7,21 @@
 <title>Buy Books</title>
 <style>
 body{
- background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
+fieldset{
+    position: absolute;
+    top: 140px;
+    right: 40%;
+    padding-right: 30px;
+    padding-left: 30px;
+    
+}
+
 h1{
 margin-left: 380px;
 padding-top: 200px;
@@ -40,7 +50,7 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
+      padding-right: 90px;
       padding-left: 7px;
   }
  li  button{
@@ -70,7 +80,7 @@ ul
         <li><a href="Ratings.jsp">Add Ratings</a></li>
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
         <li><a href="FilterByCondition.jsp">Old Books</a></li>
-        <li><a href="ShowProduct.jsp">Show Product</a>
+        <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
@@ -81,7 +91,7 @@ ul
 <fieldset>
 <form action="OrderServlet" method="post">
 <label for="quantity">Quantity:</label><br>
-<input type="number" name="quantity" class="quantity"  required><br><br>
+<input type="text" name="quantity" class="quantity" pattern="[1-9]+" required><br><br>
 <button type="submit">Order</button>
 </form>
 </fieldset>

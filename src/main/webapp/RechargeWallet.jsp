@@ -9,10 +9,11 @@
    <style>
    
 body{
- background-image: url(image/book.jpg);
+    background-image: url(image/new4.jpg);
     background-repeat: no-repeat;
-    background-size: 1350px 800px; 
-    color: white;
+    background-size: 2000px 2470px;
+    color:black;
+    font-weight: 100px;
 }
 fieldset{
     position: absolute;
@@ -53,21 +54,29 @@ ul
   .set1{
       margin-right: 10px;
   }
+  h2,h3{
+  
+  text-align: center;
+  }
    </style>
 </head>
 <body>
 <div class="nav">
-    <ul>        
-        <li><a href="ShowProduct.jsp" class="set1">Show Products</a></li>
+    <ul>   
+        <li><a href="ShowProduct.jsp">Show Product</a></li>      
+        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         
-        <li><a href="Ratings.jsp">Add Ratings</a></li>
         <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
         
     </ul>
 </div>
+
 <% Userdetails user = (Userdetails) session.getAttribute("currentuser");%>
-<center><h2>Welcome <% out.print(user.getName());%>!</h2></center>
+<h2>Welcome <% out.print(user.getName());%>!</h2>
+<h3>Available Wallet : <%out.print(user.getWallet());%></h3>
 
 <form action="recharge" method="post">
     <fieldset class="signup">

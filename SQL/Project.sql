@@ -60,6 +60,7 @@ create table orderdetails(order_id int DEFAULT ORDER_ID.nextval,
                  CONSTRAINT customer_id FOREIGN KEY(cus_id) REFERENCES user_details(cus_id),
                  CONSTRAINT books_id FOREIGN KEY(book_id) REFERENCES bookdetails(book_id));
 
+                                               
                           
 ALTER TABLE orderdetails
 MODIFY  order_date Default SYSDATE;
@@ -88,7 +89,7 @@ create table cart(cart_id int generated always as IDENTITY(start with 100 increm
 select Category,Description,book_title,book_code,price,publish_date,condition,bookimages from bookdetails where book_id in (select book_id from cart where cus_id in 106);
 select name,phoneno,address,email_id,password,wallet from user_details where cus_id=108;
 
-update user_details set role='user' where email_id='keerthi05@gmail.com';
+
 
 commit;
 
@@ -99,6 +100,8 @@ select * from bookdetails;
 select * from author_details;
 select * from rating;
 
+delete from author_details where author_id=2043;
+commit;
 alter table bookdetails add status varchar2(20) Default 'Available';
 --truncate table bookdetails;
 --truncate table orderdetails;
@@ -117,6 +120,7 @@ desc cart;
 desc orderdetails;
 desc rating;
 
+commit;
 --select * from user_details inner join orderdetails on user_details.cus_id = orderdetails.cus_id 
 --inner join bookdetails on orderdetails.book_id =bookdetails.book_id WHERE user_details.cus_id=107;
 
@@ -141,3 +145,7 @@ select b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,
 select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.condition='old';
 
 delete from cart where book_id=1047 and cus_id= 106;
+
+select order_id, cus_id,book_id,quantity,total_cost,order_date,status from orderdetails order by order_id desc;
+
+select order_id,cus_id,book_id,quantity,total_cost,order_date,status from orderdetails where cus_id=107 order by order_id desc;

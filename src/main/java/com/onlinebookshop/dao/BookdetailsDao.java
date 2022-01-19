@@ -9,7 +9,7 @@ import com.onlinebookshop.model.ProductDetails;
 public interface BookdetailsDao {
 
 	public int insertBooks(Bookdetails product);
-	public void deleteBooks(String product);
+	public void deleteBooks(int product);
 	public List<ProductDetails> showProduct(int userid);
 	public int findProductid(String book_title);
 	public int findPrice(int proid);
