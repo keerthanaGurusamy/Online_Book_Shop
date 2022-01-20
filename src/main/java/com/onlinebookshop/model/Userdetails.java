@@ -4,14 +4,23 @@ import java.util.Objects;
 
 public class Userdetails {
 
+	private int cus_id;
 	private String name;
 	private long phoneNo;
 	private String address;
 	private String email_id;
 	private String password;
-    private int cus_id;
     private int wallet;
+    private String role;
     
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public int getCus_id() {
 	return cus_id;
 }
@@ -85,6 +94,21 @@ public void setWallet(int wallet) {
 	public Userdetails(int cus_id) {
 		
 		this.cus_id = cus_id;
+		
+	}
+	
+
+	public Userdetails(int cus_id,String name, long phoneNo,String role,String address, String email_id, String password, 
+			int wallet) {
+		super();
+		this.cus_id = cus_id;
+		this.name = name;
+		this.phoneNo = phoneNo;
+		this.role = role;
+		this.address = address;
+		this.email_id = email_id;
+		this.password = password;
+		this.wallet = wallet;
 		
 	}
 

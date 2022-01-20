@@ -54,7 +54,7 @@ ul
         }
         table{
         	border: 2px solid black;
-        	margin : 40px 200px;
+        	margin : 10px 100px;
         }
         th, td{
         	border: 2px solid black;
@@ -99,12 +99,16 @@ ul
 <thead>
 <tr>
   <th >S.no</th>
+<th>Customer ID</th>
 <th>Name</th>
 <th>Phone No</th>
 <th>Address</th>
 <th>Email_id</th>
 <th>Password</th>
 <th>Wallet</th>
+<th>Role</th>
+<th>Inactive</th>
+<th>Active</th>
 </tr>
 </thead>
 <br>
@@ -120,12 +124,16 @@ for (Userdetails viewUser : userList) {
 
 
 <td><%=i%></td>
+<td><%=viewUser.getCus_id()%></td>
 <td><%=viewUser.getName()%></td>
 <td><%=viewUser.getPhoneNo()%></td>
 <td><%=viewUser.getAddress()%></td>
-<td> <%=viewUser.getEmail_id()%></td>
-<td> <%=viewUser.getPassword()%></td>
-<td> <%=viewUser.getWallet()%></td>
+<td><%=viewUser.getEmail_id()%></td>
+<td><%=viewUser.getPassword()%></td>
+<td><%=viewUser.getWallet()%></td>
+<td><%=viewUser.getRole()%></td>
+<td><a href = "deleteuser?emailid=<%=viewUser.getEmail_id()%>"><button>Inactive</button></a></td>
+<td><a href = "activeuser?emailid=<%=viewUser.getEmail_id()%>"><button>Active</button></a></td>
 </tr>
 
 <%

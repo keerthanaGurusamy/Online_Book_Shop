@@ -44,7 +44,7 @@ public class OrderServlet extends HttpServlet {
 
 		OrderDetails orderBook = new OrderDetails(itemid, userid, quantity, totalprice);
 
-		orderDao.insertOrder(orderBook);
+		
 		
 		UserdetailsDao userdao = new UserdetailsDao();
 
@@ -53,7 +53,9 @@ public class OrderServlet extends HttpServlet {
 		session.setAttribute("availwallet", wallet);
 		
 		if (wallet > totalprice) {
-
+            
+			orderDao.insertOrder(orderBook);
+			
 			int newWallet = wallet - totalprice;
 
 			session.setAttribute("newwallet", newWallet);

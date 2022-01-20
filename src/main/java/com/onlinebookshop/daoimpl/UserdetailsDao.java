@@ -119,19 +119,34 @@ public class UserdetailsDao implements UserDetailsDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void activeUser(String delete) {
+		String deleteQuery="update user_details set role='user' where email_id=?";
+		Connection con=Connectionutil.getDbConnection();
+		System.out.println("Connection Sucessfull");
+		try {
+			PreparedStatement pst =con.prepareStatement(deleteQuery);
+			pst.setString(1, delete);
+			int i=pst.executeUpdate();
+			System.out.println(i+" row deleted");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
 	
 	public List<Userdetails> viewUser(){
 		List<Userdetails> userList=new ArrayList<Userdetails>();
-		String show="select * from user_details where role='user'";
+		String show="select cus_id,name,phoneNo,role,address,email_id,password,wallet from user_details where role!='admin'";
 		Connection con=Connectionutil.getDbConnection();
 		try {
 			Statement stm=con.createStatement();
 			ResultSet rs=stm.executeQuery(show);
 			while(rs.next()) {
-				Userdetails user=new Userdetails(rs.getString(2),rs.getLong(3),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
+				Userdetails user=new Userdetails(rs.getInt(1),rs.getString(2),rs.getLong(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8));
 				userList.add(user);
 			}
 		} catch (SQLException e) {

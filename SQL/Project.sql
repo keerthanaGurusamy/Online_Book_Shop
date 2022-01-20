@@ -99,8 +99,13 @@ select * from orderdetails;
 select * from bookdetails;
 select * from author_details;
 select * from rating;
-
+select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),
+b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where status='Available' and b.book_id=1045;
 delete from author_details where author_id=2043;
+
+select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,
+NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_id=1045;
+
 commit;
 alter table bookdetails add status varchar2(20) Default 'Available';
 --truncate table bookdetails;

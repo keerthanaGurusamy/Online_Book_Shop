@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 //           RequestDispatcher rd = request.getRequestDispatcher("ShowProduct.jsp");
 //             rd.forward(request, response);
              
-             HttpSession session=request.getSession();
+			HttpSession session=request.getSession();
  			session.setAttribute("currentuser", user);
  			
  			int userid=userdao.findUserId(email);
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
  			
  			
  			session.setAttribute("emailid", email);
- 			response.sendRedirect("ShowProduct.jsp");
+ 			response.sendRedirect("ShowBook.jsp");
 		}
 		else if(admin!=null)
 		{

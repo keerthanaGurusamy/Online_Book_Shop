@@ -63,7 +63,7 @@ public class CartDaoimpl {
 			PreparedStatement pstm = con.prepareStatement(Query);
 			pstm.setInt(1, cusid);
 	
-			System.out.println("usr" + cusid);
+			//System.out.println("usr" + cusid);
 			
 			ResultSet rs = pstm.executeQuery();
 			while(rs.next()) {

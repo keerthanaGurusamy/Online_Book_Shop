@@ -102,10 +102,10 @@ ul
 </form>
 <%!double rate; %>
 <%
-int price=(int)session.getAttribute("filteredbook");
+int userid = (int)session.getAttribute("userId");
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<ProductDetails> showProduct= bookdetaildao.filterPrice(price);
-
+List<ProductDetails> showProduct= bookdetaildao.showProduct(userid);
+Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 
 

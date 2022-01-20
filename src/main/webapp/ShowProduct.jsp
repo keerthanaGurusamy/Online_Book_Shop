@@ -13,17 +13,20 @@
 <meta charset="ISO-8859-1">
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-image: url(image/back5.jpeg);
+    background-repeat:repeat;
+    color:white;
+    background-size:2600px 900px ;
+    font-weight: 1000;
+    font-size: 15px;
+    font-weight: 100px;  
 }
+
 img{
 width: 250px;
 padding:20px;
 border-radius: 14%;
-box-shadow: 5px 15px 12px #888888;
+
 }
 span{
 position : relative;
@@ -81,11 +84,10 @@ ul
 </style>
 </head>
 <body>
-<form action="filterprice" method="post">
+
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="Enter price"></li>
-        <li><a href=><button>Search</button></a></li>
+       
         
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
@@ -96,12 +98,14 @@ ul
         <li><a href="login.jsp">Log Out</a></li>
     </ul>
 </div>
-</form>
+
 <%!double rate; %>
 <%
 int userid = (int)session.getAttribute("userId");
+int bookid = Integer.parseInt(request.getParameter("BookId"));
+System.out.println(bookid);
 BookdetailsDaoimpl bookdetaildao = new BookdetailsDaoimpl();
-List<ProductDetails> showProduct= bookdetaildao.showProduct(userid);
+List<ProductDetails> showProduct= bookdetaildao.showBook(bookid);
 Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
 
 
