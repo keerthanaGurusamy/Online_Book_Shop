@@ -206,7 +206,7 @@ public class BookdetailsDaoimpl implements BookdetailsDao{
       public List<ProductDetails> filterName(String bookname) {
 		
 		List<ProductDetails> FilterName=new ArrayList<ProductDetails>();
-		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title= ?";
+		String filter="select b.book_id,b.category,b.description,b.book_title,b.book_code,b.price,b.publish_date,b.condition,NVL(a.name,'NOT AVAILABLE')as AuthorName,NVL(a.email_id,'NOT AVAILABLE'),b.bookimages from bookdetails b left join author_details a on b.book_id = a.book_id where b.book_title= '%?%'";
 		Connection con = Connectionutil.getDbConnection();
 		try {
 			PreparedStatement pstm = con.prepareStatement(filter);

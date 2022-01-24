@@ -16,23 +16,23 @@ public class RechargeWalletServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		 String email = request.getParameter("UserEmail");
-		 //System.out.println(email);
+		 //String email = request.getParameter("UserEmail");
+		
+		HttpSession session = request.getSession();
+		
+		String email = (String) session.getAttribute("emailid");
 		
 		 int amount = Integer.parseInt(request.getParameter("Amount"));
-		// System.out.println(amount);
 		 
-		 Double cardNumber = Double.parseDouble(request.getParameter("AccountNumber"));
-		 //System.out.println(cardNumber);
+		 //Double cardNumber = Double.parseDouble(request.getParameter("AccountNumber"));
 		 
-		 Double cvv = Double.parseDouble(request.getParameter("cvv"));
-		 //System.out.println(cvv);
+		 //Double cvv = Double.parseDouble(request.getParameter("cvv"));
 		 
 		 
 		 
 		 UserdetailsDao userdao = new UserdetailsDao();
 		 
-		 HttpSession session = request.getSession();
+		 
 			
 			int userid=Integer.parseInt(session.getAttribute("userId").toString());
 			
@@ -50,7 +50,7 @@ public class RechargeWalletServlet extends HttpServlet {
 		
 		 if(wall)
 		 {
-			 response.sendRedirect("ShowProduct.jsp");
+			 response.sendRedirect("ShowBook.jsp");
 		 }
 		 else {
 			 response.getWriter().print("Wallet not recharged");

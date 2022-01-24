@@ -7,14 +7,17 @@
 <title>Already Rated</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+    position: fixed;
+     
 }
-
-
 button{
 padding-top: 5px;
 padding-bottom: 5px;
@@ -22,8 +25,10 @@ padding-bottom: 5px;
 ul
     {
         list-style: none;
-        background-color:rgb(72,72,72);
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
     }
   li{
       display:inline-block;
@@ -36,16 +41,23 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 50px;
-      padding-left: 50px;
+      padding-right: 40px;
+      padding-left: 60px;
   }
- li  button{
-      margin-right: 350px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
-  
-  .set1{
-      margin-right: 10px;
+  button:hover{
+   opacity: 0.7;
+   color: gold;
+   font-weight: bold;
   }
+ 
+.set1 {
+	margin-right: 10px;
+}
   h2{
   
   margin-top: 150px;
@@ -56,7 +68,7 @@ ul
 <body>
 <div class="nav">
     <ul>
-        <li><a href="ShowProduct.jsp">Show Product</a><li> 
+        <li><a href="ShowBook.jsp">Home</a><li> 
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>

@@ -13,19 +13,22 @@
 <meta charset="ISO-8859-1">
 <style>
 body{
-    background-image: url(image/back5.jpeg);
+    background-image: url(image/book.jpg);
     background-repeat:repeat;
     color:white;
-    background-size:2600px 900px ;
+    background-size:1700px 700px;
+    background-attachment: fixed;
     font-weight: 1000;
-    font-size: 15px;
-    font-weight: 100px;  
+    font-size: 18px;
+    font-weight:bold;  
 }
 
 img{
 width: 250px;
 padding:20px;
 border-radius: 14%;
+margin-top: 50px;
+margin-left:60px;
 
 }
 span{
@@ -56,8 +59,11 @@ padding-bottom: 5px;
 ul
     {
         list-style: none;
-        background-color:rgb(72,72,72);
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 97%;
+        position: fixed;
     }
   li{
       display:inline-block;
@@ -70,16 +76,30 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 10px;
-      padding-left: 10px;
+      padding-right: 40px;
+      padding-left: 60px;
   }
- li  button{
-      margin-right: 350px;
-      
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
   
   .set1{
       margin-right: 10px;
+  }
+  .text{
+  	padding: 7px;
+  	border-radius: 4px;
+  	border-color: transparent;
+  }
+  li button{
+  	padding: 5.5px;
+  	border-radius: 4px;
+  	background-color: SandyBrown;
+  	color: White;
+  	font-weight: bold;
+  	border-color: transparent;
   }
 </style>
 </head>
@@ -87,8 +107,6 @@ ul
 <form action="filterprice" method="post">
 <div class="nav">
     <ul>
-        <li><input type="text" name="search" class="text" placeholder="Enter price"></li>
-        <li><a href=><button>Search</button></a></li>
         
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>

@@ -13,50 +13,121 @@
 <title>Ratings</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+    position: fixed;
+     
+}
+
+img{
+width: 250px;
+padding:20px;
+border-radius: 14%;
+margin-left: 10px;
+
+
 }
 
 fieldset {
-	position: absolute;
+
+	position: fixed;
 	top: 140px;
-	right: 40%;
+	right: 190px;
 	padding-right: 30px;
 	padding-left: 30px;
 }
 
-ul {
-	list-style: none;
-	background-color: #1c1c1c;
-	margin: 0;
-}
+button{
 
-li {
-	display: inline-block;
-	padding-top: 12px;
-	padding-bottom: 12px;
-	text-align: center;
-	font-size: 17px;
+   padding: 10px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: White;
+  	font-weight: bold;
+  	border-color: transparent;
 }
-
-li a {
-	text-decoration: none;
-	color: white;
-	display: block;
-	padding-right: 6px;
-	padding-left: 7px;
-}
-
-li  button {
-	margin-right: 500px;
-}
-
+  a:hover{
+  	opacity: 0.7;
+  	color: Gold;
+  	font-weight: bold;
+  }
+ul
+    {
+        list-style: none;
+        background-color:SaddleBrown;
+        margin:0;
+        color: black;
+        width: 136.3%;
+    }
+  li{
+      display:inline-block;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      font-size: 17px;
+  }
+  li a{
+      text-decoration: none;
+      color:white;
+      display:block;
+      padding-right: 40px;
+      padding-left: 60px;
+  }
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
+  }
+  button:hover{
+   opacity: 0.7;
+   color: gold;
+   font-weight: bold;
+  }
+ 
 .set1 {
 	margin-right: 10px;
 }
+.cat{
+     padding-right: 45px;
+  }
+   .desc{
+     padding-right: 25px;
+  }
+  .title{
+     padding-right: 32px;
+  }
+  .price{
+     padding-right: 89px;
+  }
+  .date{
+     padding-right: 15px;
+  }
+  .condition{
+     padding-right: 43px;
+  }
+  .aname{
+     padding-right: 11px;
+  }
+  .aemail{
+     padding-right: 10px;
+  }
+  .rating{
+     padding-right: 77px;
+  }
+  input[type=text]
+        {
+        	border-top: none;
+        	border-right: none;
+        	padding-right: 20px;
+        	padding-top: 7px;
+            
+        }
 </style>
 </head>
 <body>
@@ -66,11 +137,14 @@ li  button {
 			<ul>
 
 
-				<li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
-				<li><a href="MyProfile.jsp">User profile</a></li>
-				<li><a href="RechargeWallet.jsp">Recharge Wallet</a>
-				<li>
-				<li><a href="ViewMyOrders.jsp">View My Order</a></li>
+		<li><a href="ShowBook.jsp">Home</a></li>
+        <li><a href="FilterByCondition.jsp">Old Books</a></li>
+        <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
+        <li><a href="MyProfile.jsp">User profile</a></li>
+        <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
+        
+        <li><a href="ViewMyOrders.jsp">View My Order</a></li>
+        <li><a href="login.jsp">Log Out</a></li>
 
 			</ul>
 		</div>
@@ -90,7 +164,7 @@ li  button {
 		<fieldset>
 			<h2>Add Your Ratings..</h2>
 			<br> <label for="ratings">Ratings :</label><br> 
-			<input	type="number" name="ratings" class="ratings" required><br>
+			<input	type="text" name="ratings" class="ratings" Pattern="[1-9]" title="Positive number between 1-5" required><br>
 			<br>
 			<button type="submit">Add</button>
 		</fieldset>
@@ -108,14 +182,15 @@ li  button {
                                 <tr>
                                     <td><img src="image/<%=bookdetails.getBookimages()%>" width=180 height=350 alt="book"></td>    
                                     <td class="book">
-                                        <p><b>CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
-                                        <p><b>DESCRIPTION :</b><%=bookdetails.getDescription()%><br></p>
-                                        <p><b>BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
-                                        <p><b>BOOK CODE  :   </b><%=bookdetails.getBook_code() %><br></p>
-                                        <p><b>PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                        <p><b>PUBLISH DATE   :   </b><%=bookdetails.getPublish_date()%><br></p>
-                                        <p><b>CONDITION   :   </b><%=bookdetails.getCondition() %><br></p>
-                                         
+                                        <p><b class="cat">CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
+                                        <p><b class="desc">DESCRIPTION :</b><%=bookdetails.getDescription()%><br></p>
+                                        <p><b class="title">BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
+                                        <p><b class="title">BOOK CODE  :   </b><%=bookdetails.getBook_code() %><br></p>
+                                        <p><b class="price">PRICE :  </b><%=bookdetails.getPrice() %><br></p>
+                                        <p><b class="date">PUBLISH DATE   :   </b><%=bookdetails.getPublish_date()%><br></p>
+                                        <p><b class="condition">CONDITION   :   </b><%=bookdetails.getCondition() %><br></p>
+                                        <p><b class="aname">AUTHOR NAME   :  </b><%=bookdetails.getName() %><br></p>
+                                        <p><b class="aemail">AUTHOR EMAIL   :  </b><%=bookdetails.getEmail_id() %><br></p>
                                         <%
                      
                                          Rating rating = new Rating();
@@ -124,7 +199,7 @@ li  button {
                                          
                                          %>
                                          
-                                         <b>RATINGS    :</b><%=rate %><br><br>
+                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
                                          
                                     </td>
                                 </tr>

@@ -13,19 +13,22 @@
 <meta charset="ISO-8859-1">
 <style>
 body{
-    background-image: url(image/back5.jpeg);
+    background-image: url(image/book.jpg);
     background-repeat:repeat;
     color:white;
-    background-size:2600px 900px ;
+    background-size:1700px 700px;
+    background-attachment: fixed;
     font-weight: 1000;
-    font-size: 15px;
-    font-weight: 100px;  
+    font-size: 18px;
+    font-weight:bold;  
 }
 
 img{
 width: 250px;
 padding:20px;
 border-radius: 14%;
+margin-top: 50px;
+margin-left:60px;
 
 }
 span{
@@ -56,8 +59,10 @@ padding-bottom: 5px;
 ul
     {
         list-style: none;
-        background-color:rgb(72,72,72);
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        position: fixed;
     }
   li{
       display:inline-block;
@@ -65,6 +70,11 @@ ul
       padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
+  }
+  li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
   li a{
       text-decoration: none;
@@ -80,6 +90,19 @@ ul
   
   .set1{
       margin-right: 10px;
+  }
+  .text{
+  	padding: 7px;
+  	border-radius: 4px;
+  	border-color: transparent;
+  }
+  li button{
+  	padding: 5.5px;
+  	border-radius: 4px;
+  	background-color: SandyBrown;
+  	color: White;
+  	font-weight: bold;
+  	border-color: transparent;
   }
 </style>
 </head>
@@ -123,16 +146,24 @@ Ratingdaoimpl ratingdaoimpl = new Ratingdaoimpl();
                         <table id="producttable">
                             <tbody>
                                 <tr>
-                                    <td><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></td>    
+                                    <td><a href = "ShowProduct.jsp?BookId=<%=bookdetails.getBookid()%>"><img src="image/<%=bookdetails.getBookimages()%>" width=50 height=350 alt="book"></a></td>    
                                     <td class="book">
                                         <p><b>CATEGORY   :   </b><%=bookdetails.getCategory() %><br></p>
                                         
                                         <p><b>BOOK TITLE  :   </b><%=bookdetails.getBook_title()%><br></p>
                                         
                                         <p><b>PRICE :  </b><%=bookdetails.getPrice() %><br></p>
-                                       
+                                       <%
+                     
+                                         Rating rating = new Rating();
+                                         rating.setBook_id(bookdetails.getBookid());
+                                         rate = ratingdaoimpl.fetchrating(rating);
+                                         
+                                         %>
+                                         
+                                         <p><b class="rating">RATINGS    :</b><%=rate %><br><br></p>
                                         
-                                         <a href = "ShowProduct.jsp?BookId=<%=bookdetails.getBookid()%>"><button>View</button></a>
+                                         
                                          
                                     </td>
                                 </tr>

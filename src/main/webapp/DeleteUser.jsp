@@ -53,8 +53,8 @@ fieldset{
     position: absolute;
     top: 140px;
     right: 40%;
-    padding-right: 30px;
-    padding-left: 30px;
+    padding: 30px 30px;
+    border: 2px solid black;
     
 }
 a{

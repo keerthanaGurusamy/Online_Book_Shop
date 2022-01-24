@@ -13,26 +13,30 @@
 <title>View Orders</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
-}
-a{
-    text-decoration: none;
-    color: white;
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+   
+     
 }
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
+         position: fixed;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
   }
@@ -40,30 +44,46 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 40px;
+      padding-left: 60px;
   }
- li  button{
-      margin-right: 700px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
-  
-  .set1{
-      margin-right: 10px;
+  button:hover{
+   opacity: 0.7;
+   color: gold;
+   font-weight: bold;
   }
+ 
+.set1 {
+	margin-right: 10px;
+}
   h3{
-  text-align: center;
-  
+  margin-left: 600px;  
+  font-size: 30px;
   }
   table {
-	margin-left: 450px;
+    
+	margin-left: 380px;
+	top: 5px;
 }
+table,td,th{
+border: 1px solid black;
+padding: 6px 6px;
+margin-top: 5px;
+
+}
+
   
 </style>
 </head>
 <body>
 <div class="nav">
     <ul>       
-        <li><a href="ShowProduct.jsp">Show Product</a></li>   
+        <li><a href="ShowBook.jsp">Home</a></li>   
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
@@ -83,7 +103,7 @@ int userid = (int) session.getAttribute("userId");
 
 <div>
 <h3>My Orders</h3>
-<table border="2" id="allusers">
+<table id="allusers">
 <thead>
 <tr>
   <th >S.no</th>
@@ -117,8 +137,6 @@ for (OrderDetails viewOrder : orderList) {
 <td><%=viewOrder.getOrder_date()%></td>
 <td><%=viewOrder.getStatus() %></td>
 <td><span><a href = "cancelorder?orderid=<%=viewOrder.getOrder_id()%>"><button>Cancel</button></a></span><td>
-
-
 </tr>
 
 <%

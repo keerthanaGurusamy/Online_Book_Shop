@@ -34,9 +34,9 @@ public class RatingServlet extends HttpServlet {
 		
 		try {
 			int res = ratingdao.insertrating(rate);
-			
+			System.out.println(res);
 			if(res > 0) {
-				response.sendRedirect("ShowProduct.jsp");
+				response.sendRedirect("ShowBook.jsp");
 			}else {
 				response.sendRedirect("AlreadyRating.jsp");
 			}

@@ -67,6 +67,13 @@ a{
 }
 table {
 	margin-left: 450px;
+	border-collapse: collapse;
+	border: 3px solid black;
+}
+
+td, th{
+   padding: 10px;
+
 }
 </style>
 </head>
@@ -99,7 +106,7 @@ AuthorDetailsDaoimpl authordao = new AuthorDetailsDaoimpl();
 %>
 
 
-<table border="2" id="allusers">
+<table border="1" id="allusers">
 <thead>
 <tr>
   <th >S.no</th>

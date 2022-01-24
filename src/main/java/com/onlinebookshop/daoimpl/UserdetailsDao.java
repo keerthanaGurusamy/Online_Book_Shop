@@ -278,6 +278,30 @@ public class UserdetailsDao implements UserDetailsDao{
 		}
 		return true;
 	}
+       
+       public void forgotPassword(Userdetails user) {
+   		String updateQuery="update user_details set password=? where email_id=?";
+   		Connection con = Connectionutil.getDbConnection();
+   		try {
+   			PreparedStatement pst=con.prepareStatement(updateQuery);
+   			
+   			pst.setString(1, user.getPassword());
+   			pst.setString(2,user.getEmail_id() );
+   			int i=pst.executeUpdate();
+   			System.out.println(i+"row updated");
+   			pst.close();
+   			con.close();
+   		} catch (SQLException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   			//System.out.println("Connection failed");
+   		}
+   		
+   		
+   	}
+       
+       
+
 
 }
 	

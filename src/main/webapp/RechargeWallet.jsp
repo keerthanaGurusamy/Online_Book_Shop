@@ -9,34 +9,63 @@
    <style>
    
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+    position: fixed;
+     
 }
-fieldset{
-    position: absolute;
-    top: 140px;
-    right: 40%;
-    padding-right: 30px;
-    padding-left: 30px;
-    
+
+img{
+width: 250px;
+padding:20px;
+border-radius: 14%;
+margin-left: 10px;
+
+
 }
-a{
-    text-decoration: none;
-    color: white;
+
+fieldset {
+
+	position: absolute;
+	top: 180px;
+	right: 360px;
+	padding-right: 30px;
+	padding-left: 30px;
+	
 }
+
+button{
+
+   padding: 10px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: White;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+  a:hover{
+  	opacity: 0.7;
+  	color: Gold;
+  	font-weight: bold;
+  }
 ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
   }
@@ -44,16 +73,58 @@ ul
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 7px;
-      padding-left: 7px;
+      padding-right: 40px;
+      padding-left: 60px;
   }
- li  button{
-      margin-right: 700px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
   }
-  
-  .set1{
-      margin-right: 10px;
+  button:hover{
+   opacity: 0.7;
+   color: gold;
+   font-weight: bold;
   }
+ 
+.set1 {
+	margin-right: 10px;
+}
+.cat{
+     padding-right: 45px;
+  }
+   .desc{
+     padding-right: 25px;
+  }
+  .title{
+     padding-right: 32px;
+  }
+  .price{
+     padding-right: 89px;
+  }
+  .date{
+     padding-right: 15px;
+  }
+  .condition{
+     padding-right: 43px;
+  }
+  .aname{
+     padding-right: 11px;
+  }
+  .aemail{
+     padding-right: 10px;
+  }
+  .rating{
+     padding-right: 77px;
+  }
+  input[type=text]
+        {
+        	border-top: none;
+        	border-right: none;
+        	padding-right: 20px;
+        	padding-top: 7px;
+            
+        }
   h2,h3{
   
   text-align: center;
@@ -82,17 +153,12 @@ ul
     <fieldset class="signup">
        <h2>Recharge Your Wallet..</h2>
 
-         <label for="emailId">Email Id:</label><br>
-         <input type="email" name="UserEmail" id="emailId" placeholder="Enter email Id"  required ><br><br>
+        
                  
-         <label for="CardNumber">Card Number:</label><br>
-         <input type="text" name="AccountNumber" id="AccountNumber" placeholder="---- ---- ----"  required autofocus ><br><br>
-                 
-         <label for="cvv">CVV:</label><br>
-         <input type="number" name="cvv" id="cvv" placeholder="Enter CVV" Pattern="[0-9]+" maxlength="3" ><br><br>
+         
          
          <label for="Amount">Amount:</label><br>
-         <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+" maxlength="5" ><br><br>
+         <input type="text" name="Amount" id="amount" placeholder="Enter Amount" Pattern="[1-9][0-9]+{1,5}"  ><br><br>
          
           
          <button type="submit">Recharge Wallet</button>

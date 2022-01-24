@@ -17,27 +17,47 @@
 <title>My Cart</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    font-weight: 100px;
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+    
+     
 }
+
+
 img{
 width: 250px;
 padding:20px;
 border-radius: 14%;
-box-shadow: 5px 15px 12px #888888;
-}ul
+
+}
+button{
+
+   padding: 7px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
+        position: fixed;
     }
   li{
       display:inline-block;
-      padding-top: 14px;
-      padding-bottom: 14px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
   }
@@ -45,18 +65,56 @@ box-shadow: 5px 15px 12px #888888;
       text-decoration: none;
       color:white;
       display:block;
-      padding-right: 110px;
-      padding-left: 7px;
+      padding-right: 40px;
+      padding-left: 60px;
   }
- li  button{
-      margin-right: 500px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
+  }
+      a:hover{
+  	opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
   }
   
+ 
   .set1{
       margin-right: 10px;
   }
+  
+  .cat{
+     padding-right: 45px;
+  }
+   .desc{
+     padding-right: 25px;
+  }
+  .title{
+     padding-right: 32px;
+  }
+  .price{
+     padding-right: 89px;
+  }
+  .date{
+     padding-right: 15px;
+  }
+  .condition{
+     padding-right: 43px;
+  }
+  .aname{
+     padding-right: 11px;
+  }
+  .aemail{
+     padding-right: 10px;
+  }
+  .rating{
+     padding-right: 77px;
+  }
   h3{
   margin-left: 600px;
+
+  font-size: x-large;
   }
   b{
 padding-right: 20px;
@@ -65,16 +123,13 @@ padding-right: 20px;
 margin-right: 30px;
 margin-left: 30px;
 }
-button{
-padding-top: 5px;
-padding-bottom: 5px;
-}
+
 </style>
 </head>
 <body>
 <div class="nav">
     <ul>        
-        <li><a href="ShowProduct.jsp">Show Product</a></li> 
+        <li><a href="ShowBook.jsp">Home</a></li> 
         <li><a href="MyProfile.jsp">User profile</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         

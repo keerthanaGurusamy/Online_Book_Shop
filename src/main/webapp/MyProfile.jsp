@@ -11,16 +11,21 @@
 <title>USERS LIST PAGE</title>
 <style>
 body{
-    background-image: url(image/new4.jpg);
-    background-repeat: no-repeat;
-    background-size: 2000px 2470px;
-    color:black;
-    
+    background-image: url(image/book.jpg);
+    background-repeat:repeat;
+    color:white;
+    background-size:cover;
+    background-attachment: fixed;
+    font-weight: 1000;
+    font-size: 18px;
+    font-weight:bold; 
+    position: fixed;
+     
 }
 fieldset{
             position: absolute;
             top: 120px;
-            right: 35%;
+            right: 20%;
             padding-right: 30px;
             padding-left: 30px;
             padding-top: 20px;
@@ -31,16 +36,27 @@ fieldset{
         pre{
         size: 50px;
         }
- ul
+button{
+
+    padding: 10px;
+  	border-radius: 4px;
+  	background-color: GoldenRod;
+  	color: black;
+  	font-weight: bold;
+  	border-color: transparent;
+}
+ul
     {
         list-style: none;
-        background-color: #1c1c1c;
+        background-color:SaddleBrown;
         margin:0;
+        color: black;
+        width: 136.3%;
     }
   li{
       display:inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 12px;
+      padding-bottom: 12px;
       text-align: center;
       font-size: 17px;
   }
@@ -49,24 +65,25 @@ fieldset{
       color:white;
       display:block;
       padding-right: 40px;
-      padding-left: 7px;
+      padding-left: 67px;
   }
- li  button{
-      margin-right: 500px;
+   li a:hover{
+  	opacity: 0.7;
+  	color: black;
+  	font-weight: bold;
+  }
+      a:hover{
+  	opacity: 0.7;
+  	color: gold;
+  	font-weight: bold;
   }
   
+ 
   .set1{
       margin-right: 10px;
   }
-  pre{
-  font-size: 15px;
-  }
   h2{
   padding-left: 500px;
-  }
-  pre{
-    font-size: 17px;  
-  
   }
 </style>
 <body>
@@ -80,7 +97,7 @@ int user=(int)session.getAttribute("userId");
 %>
 <div class="nav">
     <ul>
-         <li><a href="ShowProduct.jsp">Show Product</a></li> 
+         <li><a href="ShowBook.jsp">Home</a></li> 
         <li><a href="ShowCart.jsp" class="set1">My Cart</a></li>
         <li><a href="RechargeWallet.jsp">Recharge Wallet</a><li>
         

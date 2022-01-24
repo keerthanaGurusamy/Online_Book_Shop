@@ -95,6 +95,14 @@ ul
            padding-top: 6px;
            padding-bottom: 6px;
         }
+        input[type=text]
+        {
+        	border-top: none;
+        	border-right: none;
+        	padding-right: 20px;
+        	padding-top: 7px;
+
+        }
 </style>
 </head>
 <body>
